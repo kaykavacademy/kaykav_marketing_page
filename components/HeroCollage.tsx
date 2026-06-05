@@ -1,193 +1,243 @@
 "use client";
 import { useEffect, useRef } from "react";
 
-// Replace these with actual student project screenshot URLs
-const PROJECTS = [
-  "https://picsum.photos/seed/kav1/800/560",
-  "https://picsum.photos/seed/kav2/800/560",
-  "https://picsum.photos/seed/kav3/800/560",
-  "https://picsum.photos/seed/kav4/800/560",
-  "https://picsum.photos/seed/kav5/800/560",
-  "https://picsum.photos/seed/kav6/800/560",
-  "https://picsum.photos/seed/kav7/800/560",
-  "https://picsum.photos/seed/kav8/800/560",
-  "https://picsum.photos/seed/kav9/800/560",
+const CARDS: [string, string, string][] = [
+  ["#12002e", "#7c3aed", "PROJECT 01"],
+  ["#001529", "#0ea5e9", "PROJECT 02"],
+  ["#001a0f", "#10b981", "PROJECT 03"],
+  ["#1a0010", "#e11d48", "PROJECT 04"],
+  ["#0d0d20", "#6366f1", "PROJECT 05"],
+  ["#1a0900", "#f59e0b", "PROJECT 06"],
+  ["#001919", "#14b8a6", "PROJECT 07"],
+  ["#0c0020", "#a855f7", "PROJECT 08"],
+  ["#001a0a", "#22c55e", "PROJECT 09"],
 ];
 
-const CARD_W = 3.2;
-const CARD_H = 2.24; // 800:560 aspect ratio
-const ORBIT_RADIUS = 4.2;
-const CORNER_RADIUS = 0.09; // fraction of shorter side
+const CARD_W = 2.9;
+const CARD_H = 1.8;
+const ORBIT_R = 4.2;
 
-function makeRoundedTexture(THREE: any, src: string): Promise<any> {
-  return new Promise((resolve) => {
-    const img = new window.Image();
-    img.crossOrigin = "anonymous";
-    img.onload = () => {
-      const W = 800, H = 560;
-      const canvas = document.createElement("canvas");
-      canvas.width = W;
-      canvas.height = H;
-      const ctx = canvas.getContext("2d")!;
-      const r = H * CORNER_RADIUS;
+function buildTexture(dark: string, accent: string, label: string, THREE: typeof import("three")) {
+  const W = 512, H = 320;
+  const cv = document.createElement("canvas");
+  cv.width = W; cv.height = H;
+  const ctx = cv.getContext("2d")!;
 
-      ctx.beginPath();
-      ctx.moveTo(r, 0);
-      ctx.arcTo(W, 0, W, H, r);
-      ctx.arcTo(W, H, 0, H, r);
-      ctx.arcTo(0, H, 0, 0, r);
-      ctx.arcTo(0, 0, W, 0, r);
-      ctx.closePath();
-      ctx.clip();
-      ctx.drawImage(img, 0, 0, W, H);
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, dark);
+  bg.addColorStop(1, accent + "88");
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
 
-      resolve(new THREE.CanvasTexture(canvas));
-    };
-    img.onerror = () => resolve(null);
-    img.src = src;
-  });
+  // Dot grid
+  ctx.fillStyle = "rgba(255,255,255,0.07)";
+  for (let x = 24; x < W; x += 28)
+    for (let y = 24; y < H; y += 28) {
+      ctx.beginPath(); ctx.arc(x, y, 1.1, 0, Math.PI * 2); ctx.fill();
+    }
+
+  // Glow orb
+  const rg = ctx.createRadialGradient(W / 2, H / 2, 4, W / 2, H / 2, 90);
+  rg.addColorStop(0, accent + "66");
+  rg.addColorStop(0.5, accent + "22");
+  rg.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = rg;
+  ctx.beginPath(); ctx.arc(W / 2, H / 2, 90, 0, Math.PI * 2); ctx.fill();
+
+  // Inner ring
+  ctx.strokeStyle = accent + "88"; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.arc(W / 2, H / 2, 62, 0, Math.PI * 2); ctx.stroke();
+
+  // Outer dashed ring
+  ctx.strokeStyle = accent + "33"; ctx.lineWidth = 0.5;
+  ctx.setLineDash([3, 10]);
+  ctx.beginPath(); ctx.arc(W / 2, H / 2, 100, 0, Math.PI * 2); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Labels
+  ctx.fillStyle = "rgba(255,255,255,0.6)";
+  ctx.font = "bold 11px 'Courier New',monospace";
+  ctx.fillText(label, 18, 26);
+  ctx.fillStyle = "rgba(255,255,255,0.2)";
+  ctx.font = "9px 'Courier New',monospace";
+  ctx.fillText("KAYKAV ACADEMY", 18, H - 14);
+
+  return new THREE.CanvasTexture(cv);
 }
 
 export default function HeroCollage() {
-  const mountRef = useRef<HTMLDivElement>(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = mountRef.current;
-    if (!container) return;
+    const wrap = wrapRef.current;
+    if (!wrap) return;
 
-    let animId: number;
-    let renderer: any;
-    let mounted = true;
+    let raf = 0;
+    let alive = true;
 
-    // Named handlers for proper cleanup
-    let onMouseMove: (e: MouseEvent) => void;
-    let onResize: () => void;
-
-    async function init() {
+    (async () => {
       const THREE = await import("three");
-      if (!mounted) return;
+      if (!alive) return;
 
-      const W = container.clientWidth;
-      const H = container.clientHeight;
+      const W = wrap.clientWidth  || window.innerWidth;
+      const H = wrap.clientHeight || window.innerHeight;
 
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      // ── Renderer ──────────────────────────────────────────────────────
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(W, H);
       renderer.setClearColor(0x000000, 0);
-      container.appendChild(renderer.domElement);
+      wrap.appendChild(renderer.domElement);
 
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(62, W / H, 0.1, 100);
-      camera.position.set(0, 0, 8);
+      // ── Scene ─────────────────────────────────────────────────────────
+      const scene  = new THREE.Scene();
 
-      const group = new THREE.Group();
-      scene.add(group);
+      // Camera: pulled back, offset left so orbit sits on right of screen
+      const camera = new THREE.PerspectiveCamera(55, W / H, 0.1, 100);
+      camera.position.set(-2, 0, 11);
+      camera.lookAt(2, 0, 0);
 
-      const count = PROJECTS.length; // 9 cards = 3 rings × 3 per ring
-      const meshes: Array<{ mesh: any; yBase: number }> = [];
+      // ── Orbit group ───────────────────────────────────────────────────
+      const orbit = new THREE.Group();
+      orbit.position.set(2, 0, 0);   // push orbit to right
+      scene.add(orbit);
 
-      // Create cards immediately with placeholder color, load textures async
-      PROJECTS.forEach((src, i) => {
-        const geo = new THREE.PlaneGeometry(CARD_W, CARD_H);
-        const mat = new THREE.MeshBasicMaterial({
-          color: 0x1e2d4a,
-          transparent: true,
-        });
-        const mesh = new THREE.Mesh(geo, mat);
+      // ── Cards ─────────────────────────────────────────────────────────
+      const meshes: THREE.Mesh[] = [];
 
-        const ring = Math.floor(i / 3);
-        const slot = i % 3;
-        // Each ring is offset by half a slot-angle so rings don't overlap
-        const angle = (slot / 3) * Math.PI * 2 + (ring * (Math.PI / 4));
-        const yBase = (ring - 1) * (CARD_H + 0.4);
+      CARDS.forEach(([dark, accent, label], i) => {
+        const angle = (i / CARDS.length) * Math.PI * 2;
 
-        mesh.position.set(
-          Math.sin(angle) * ORBIT_RADIUS,
-          yBase,
-          Math.cos(angle) * ORBIT_RADIUS
+        // Curved geometry — vertex-displaced plane
+        const geo = new THREE.PlaneGeometry(CARD_W, CARD_H, 12, 1);
+        const pos = geo.attributes.position as THREE.BufferAttribute;
+        for (let v = 0; v < pos.count; v++) {
+          const xn = pos.getX(v) / (CARD_W * 0.5);
+          pos.setZ(v, -0.08 * xn * xn);
+        }
+        pos.needsUpdate = true;
+        geo.computeVertexNormals();
+
+        const mesh = new THREE.Mesh(
+          geo,
+          new THREE.MeshBasicMaterial({
+            map: buildTexture(dark, accent, label, THREE),
+            side: THREE.DoubleSide,   // no face-culling issues
+            transparent: true,
+            opacity: 1,
+          })
         );
-        mesh.rotation.y = angle;
-        // Subtle tilt for visual interest
-        mesh.rotation.x = Math.sin(i * 1.618) * 0.12;
 
-        group.add(mesh);
-        meshes.push({ mesh, yBase });
+        // Position on orbit ring
+        mesh.position.set(
+          Math.sin(angle) * ORBIT_R,
+          Math.sin(angle * 2.2 + i * 0.3) * 0.85,
+          Math.cos(angle) * ORBIT_R
+        );
 
-        // Load rounded texture and swap in
-        makeRoundedTexture(THREE, src).then((tex) => {
-          if (!mounted || !tex) return;
-          mat.map = tex;
-          mat.color.set(0xffffff);
-          mat.needsUpdate = true;
-        });
+        // Face toward orbit centre (world origin of orbit = 0,0,0 local)
+        // use target = (0, mesh.position.y, 0) in orbit-local → that's correct because
+        // mesh is a child of orbit, but lookAt takes WORLD coords.
+        // orbit.position = (2,0,0), so orbit local origin in world = (2,0,0)
+        // lookAt world target for orbit-centre-at-card-height = (2, worldY, 0)
+        // worldY = orbit.position.y + mesh.position.y = 0 + localY = localY
+        mesh.lookAt(2, mesh.position.y, 0);
+
+        orbit.add(mesh);
+        meshes.push(mesh);
       });
 
-      // Mouse parallax
-      let mx = 0, my = 0;
-      onMouseMove = (e: MouseEvent) => {
-        mx = (e.clientX / window.innerWidth - 0.5) * 2;
-        my = (e.clientY / window.innerHeight - 0.5) * 2;
+      // ── Event listeners ───────────────────────────────────────────────
+      let tx = 0, ty = 0, mx = 0, my = 0;
+      const onMouse = (e: MouseEvent) => {
+        tx = (e.clientX / window.innerWidth  - 0.5) * 2;
+        ty = -(e.clientY / window.innerHeight - 0.5) * 2;
       };
-      window.addEventListener("mousemove", onMouseMove, { passive: true });
+      window.addEventListener("mousemove", onMouse, { passive: true });
 
-      onResize = () => {
-        if (!container || !renderer) return;
-        const w = container.clientWidth;
-        const h = container.clientHeight;
+      const onResize = () => {
+        if (!wrap || !alive) return;
+        const w = wrap.clientWidth, h = wrap.clientHeight;
         camera.aspect = w / h;
         camera.updateProjectionMatrix();
         renderer.setSize(w, h);
       };
       window.addEventListener("resize", onResize);
 
-      const clock = new THREE.Clock();
+      // ── Render loop ───────────────────────────────────────────────────
+      let t = 0;
+      const tmp = new THREE.Vector3();
 
-      function animate() {
-        animId = requestAnimationFrame(animate);
-        const t = clock.getElapsedTime();
+      const loop = () => {
+        if (!alive) return;
+        raf = requestAnimationFrame(loop);
+        t += 0.004;
 
-        // Continuous orbit rotation
-        group.rotation.y += 0.0025;
+        // Lerp mouse
+        mx += (tx - mx) * 0.04;
+        my += (ty - my) * 0.04;
 
-        // Gentle per-card float
-        meshes.forEach(({ mesh, yBase }, i) => {
-          mesh.position.y = yBase + Math.sin(t * 0.55 + i * 0.95) * 0.14;
+        // Rotate orbit
+        orbit.rotation.y += 0.0035;
+
+        // Per-card float + DoF opacity
+        meshes.forEach((mesh, i) => {
+          // Gentle float
+          mesh.position.y =
+            Math.sin(t * 0.55 + i * 1.1) * 0.15 +
+            Math.sin((i / CARDS.length) * Math.PI * 4) * 0.7;
+
+          // Re-face orbit centre each frame (world coords)
+          mesh.lookAt(2, mesh.position.y, 0);
+
+          // Depth → opacity
+          mesh.getWorldPosition(tmp);
+          const op = THREE.MathUtils.mapLinear(tmp.z, -ORBIT_R - 1, ORBIT_R + 1, 0.25, 1);
+          (mesh.material as THREE.MeshBasicMaterial).opacity = Math.max(0.25, Math.min(1, op));
         });
 
-        // Smooth camera parallax from mouse
-        camera.position.x += (mx * 0.9 - camera.position.x) * 0.04;
-        camera.position.y += (-my * 0.65 - camera.position.y) * 0.04;
-        camera.lookAt(0, 0, 0);
+        // Camera parallax
+        camera.position.x += (-2 + mx * 1.0 - camera.position.x) * 0.04;
+        camera.position.y += (my * 0.8 - camera.position.y) * 0.04;
+        camera.lookAt(2, 0, 0);
 
         renderer.render(scene, camera);
-      }
+      };
 
-      animate();
-    }
+      loop();
 
-    init().catch(console.error);
+      // ── Cleanup ───────────────────────────────────────────────────────
+      // Store cleanup fn where the return can reach it
+      (wrapRef as any)._cleanup = () => {
+        alive = false;
+        cancelAnimationFrame(raf);
+        window.removeEventListener("mousemove", onMouse);
+        window.removeEventListener("resize", onResize);
+        meshes.forEach(m => {
+          m.geometry.dispose();
+          const mat = m.material as THREE.MeshBasicMaterial;
+          mat.map?.dispose();
+          mat.dispose();
+        });
+        renderer.dispose();
+        renderer.domElement.remove();
+      };
+    })();
 
     return () => {
-      mounted = false;
-      cancelAnimationFrame(animId);
-      if (onMouseMove) window.removeEventListener("mousemove", onMouseMove);
-      if (onResize) window.removeEventListener("resize", onResize);
-      if (renderer) {
-        renderer.dispose();
-        renderer.domElement?.remove();
-      }
+      alive = false;
+      cancelAnimationFrame(raf);
+      (wrapRef as any)._cleanup?.();
     };
   }, []);
 
   return (
     <div
-      ref={mountRef}
+      ref={wrapRef}
       style={{
         position: "absolute",
-        right: 0,
-        top: 0,
-        width: "65%",
-        height: "100%",
+        inset: 0,
+        zIndex: 0,
         pointerEvents: "none",
       }}
     />
