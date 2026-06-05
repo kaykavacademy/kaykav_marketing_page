@@ -251,7 +251,7 @@ export default function Testimonials() {
       />
 
       {/* Top-right CTA */}
-      <div style={{
+      <div className="testi-cta-wrapper" style={{
         position: "absolute",
         top: "140px",
         right: "30px",
@@ -520,6 +520,9 @@ export default function Testimonials() {
         }
 
         @media (max-width: 768px) {
+          .testi-cta-wrapper {
+            display: none !important;
+          }
           .testi-grid {
             grid-template-columns: 1fr !important;
           }

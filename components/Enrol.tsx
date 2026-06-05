@@ -237,7 +237,7 @@ export default function Enrol() {
         }
 
         @media (max-width: 768px) {
-          .enrol-col { padding-left: 24px !important; }
+          .enrol-col { padding-left: 24px !important; padding-right: 24px !important; }
         }
       `}</style>
     </section>

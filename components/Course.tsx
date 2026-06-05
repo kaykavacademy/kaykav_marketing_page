@@ -50,7 +50,7 @@ export default function Course() {
         }}
       >
         {/* Left column */}
-        <div style={{ padding: "104px 30px 80px" }}>
+        <div className="course-left-col" style={{ padding: "104px 30px 80px" }}>
           <h2
             className="anim-lines"
             style={{
@@ -99,6 +99,7 @@ export default function Course() {
 
         {/* Right column */}
         <div
+          className="course-right-col"
           style={{
             padding: "104px 30px 0",
             display: "flex",
@@ -163,6 +164,8 @@ export default function Course() {
             grid-template-columns: 1fr !important;
           }
           .gold-btn { width: 100% !important; }
+          .course-left-col { padding-bottom: 40px !important; }
+          .course-right-col { padding-top: 0 !important; }
         }
       `}</style>
     </section>
