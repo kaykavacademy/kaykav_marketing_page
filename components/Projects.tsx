@@ -2,13 +2,55 @@
 import React, { useEffect, useRef } from "react";
 
 const PROJECTS = [
-  { id: 1, title: "Lumina UI Kit", author: "Sarah Jenkins", desc: "A comprehensive design system built entirely with AI agents, featuring 100+ reusable components." },
-  { id: 2, title: "FinDash", author: "Michael Chen", desc: "A responsive financial dashboard MVP with real-time charting capabilities and custom layout grids." },
-  { id: 3, title: "EcoStore", author: "Amina Yusuf", desc: "An e-commerce prototype focused on sustainable products with a custom cart and checkout flow." },
-  { id: 4, title: "HealthSync", author: "David Okafor", desc: "A patient portal MVP for tracking daily health metrics seamlessly across devices." },
-  { id: 5, title: "TaskMaster Pro", author: "Elena Rodriguez", desc: "A productivity app featuring Kanban boards, time tracking, and team collaboration tools." },
-  { id: 6, title: "Wanderlust", author: "James Wilson", desc: "A travel booking interface with interactive map integration and beautiful destination galleries." },
-  { id: 7, title: "Foodie Hub", author: "Zara Ali", desc: "A restaurant discovery platform with advanced filtering, user reviews, and table reservations." },
+  { 
+    id: 1, 
+    title: "WEDDING PLANNER & IDEAS JOURNAL", 
+    author: "ADESEWA OWOEYE", 
+    desc: "An offline-first app that holds both the to-dos and the creative vision of a wedding in one place, syncing automatically when back online.",
+    image: ""
+  },
+  { 
+    id: 2, 
+    title: "MYBABYLOG", 
+    author: "AYOBAMI ADEREMI", 
+    desc: "A shared, offline-first feeding, nappy, and sleep tracker that keeps two carers perfectly in sync on a baby's day — no constant texting.",
+    image: ""
+  },
+  { 
+    id: 3, 
+    title: "BITEPLAN", 
+    author: "JOHN TAIWO", 
+    desc: "An offline-first meal assistant that decides what to cook from the ingredients you have, your mood, budget, and time — ending decision fatigue.",
+    image: ""
+  },
+  { 
+    id: 4, 
+    title: "WANDAR", 
+    author: "IVAR LOTHBROK", 
+    desc: "A social platform for creating, discovering, and remixing detailed travel itineraries as interactive folders of places and recommendations.",
+    image: ""
+  },
+  { 
+    id: 5, 
+    title: "PRECISION", 
+    author: "ENIOLA ALEX", 
+    desc: "A web app that manages every dermatology-clinic client from first booking to final follow-up — intake, treatment plans, and progress tracking.",
+    image: ""
+  },
+  { 
+    id: 6, 
+    title: "DDT STRUCTURE", 
+    author: "OLAOLUWA OBAFEMI", 
+    desc: "A web tool for running non-destructive testing (NDT) labs — assigning tasks, tracking staff efficiency, and monitoring projects start to finish.",
+    image: ""
+  },
+  { 
+    id: 7, 
+    title: "DRAFTDESK", 
+    author: "MIDE", 
+    desc: "An offline-first feedback and revision tracker that pulls scattered client notes from chats, email, and voice memos into one focused workspace.",
+    image: ""
+  },
 ];
 
 export default function Projects() {
@@ -125,7 +167,7 @@ export default function Projects() {
                 e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";
               }}
             >
-              {/* Image Placeholder */}
+              {/* Image */}
               <div style={{
                 width: "100%",
                 aspectRatio: "16/10",
@@ -133,11 +175,16 @@ export default function Projects() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                borderBottom: "1px solid rgba(255, 255, 255, 0.08)"
+                borderBottom: "1px solid rgba(255, 255, 255, 0.08)",
+                overflow: "hidden"
               }}>
-                <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "14px", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                  Project Image
-                </span>
+                {project.image ? (
+                  <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                ) : (
+                  <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "14px", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                    Project Image
+                  </span>
+                )}
               </div>
 
               {/* Card Content */}
