@@ -258,7 +258,7 @@ export default function Testimonials() {
         zIndex: 10,
       }}>
         <a
-          href="https://mainstack.com/c/kaykav"
+          href="https://mainstack.com/ship-real-mvps-with-ai-agents-kaykav"
           target="_blank"
           rel="noopener noreferrer"
           className="testi-cta"

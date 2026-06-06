@@ -1,22 +1,25 @@
-"use client";
+import React from "react";
 
-const curriculum = [
-  "Introduction to AI Prompts",
-  "Setting up your workspace",
-  "Architecture before code",
-  "Foundations for your live product",
-  "The Build Loop",
+const learningPoints = [
+  "Ship a real, production-ready MVP to a live URL in 4 weeks, not a demo, a working product",
+  "Write the ProjectPort document that turns AI agents into disciplined engineers, the single file that keeps every Claude Code and Antigravity session on rails",
+  "Run a two-agent workflow where Claude Code handles architecture and logic while Antigravity handles UI, and know exactly when to use which",
+  "Build offline-first apps with IndexedDB, sync queues, and last-write-wins conflict resolution that actually hold up when internet drops",
+  "Set up auth, Row Level Security, and Supabase sync without writing a backend API, the patterns that keep user data safe with just the JS client",
+  "Design production-grade UIs without Figma, using Tailwind design tokens, dark mode with anti-flash, and a component system that doesn't look AI-generated",
+  "Debug with AI instead of against it, turn cryptic errors into structured prompts that fix root causes, not symptoms"
 ];
 
 export default function Course() {
   return (
-    <section
-      id="course"
-      style={{
-        position: "relative",
-        minHeight: "100vh",
-        background: "#fff",
-        overflow: "hidden",
+    <section 
+      id="course" 
+      style={{ 
+        position: "relative", 
+        minHeight: "100vh", 
+        background: "#fff", 
+        overflow: "hidden", 
+        padding: "clamp(80px, 10vw, 140px) 30px" 
       }}
     >
       {/* Background texture */}
@@ -35,137 +38,142 @@ export default function Course() {
           pointerEvents: "none",
           userSelect: "none",
           opacity: 0.9,
+          zIndex: 0,
         }}
       />
 
-      {/* Content */}
-      <div
-        className="course-grid"
-        style={{
-          position: "relative",
-          zIndex: 1,
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          minHeight: "100vh",
-        }}
-      >
-        {/* Left column */}
-        <div className="course-left-col" style={{ padding: "104px 30px 80px" }}>
-          <h2
-            className="anim-lines"
-            style={{
-              fontSize: "clamp(32px, 5.2vw, 72px)",
-              color: "#000",
-              textTransform: "uppercase",
-              lineHeight: 1.2,
-              letterSpacing: "-0.01em",
-            }}
-          >
-            <span className="line-mask">
-              <span className="line-inner" style={{ fontWeight: 800, display: "block" }}>What you learn.</span>
-            </span>
-            <span className="line-mask">
-              <span className="line-inner" style={{ fontWeight: 300, display: "block" }}>What you keep.</span>
-            </span>
+      <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto" }}>
+        
+        {/* Intro Section */}
+        <div style={{ maxWidth: "900px", marginBottom: "clamp(80px, 12vw, 120px)" }}>
+          <h2 style={{ 
+            fontSize: "clamp(40px, 5.2vw, 72px)", 
+            color: "#000", 
+            textTransform: "uppercase", 
+            lineHeight: 1.1, 
+            letterSpacing: "-0.02em",
+            fontWeight: 800,
+            marginBottom: "40px"
+          }}>
+            Build a real product.<br/>Not just a demo.
           </h2>
-
-          <a
-            href="https://mainstack.com/c/kaykav"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="anim-fade gold-btn"
-            style={{
-              marginTop: "clamp(24px, 5vh, 68px)",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "10px",
-              background: "#d3a35c",
-              color: "#000",
-              height: "64px",
-              width: "clamp(240px, 28vw, 450px)",
-              fontSize: "clamp(13px, 1.4vw, 24px)",
-              fontWeight: 400,
-              textTransform: "uppercase",
-              textDecoration: "none",
-            }}
-          >
-            Apply now for cohort 2.0
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M4 20L20 4M20 4H8M20 4V16" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </a>
+          <div style={{ 
+            fontSize: "clamp(18px, 2.2vw, 24px)", 
+            lineHeight: 1.5, 
+            color: "#111", 
+            display: "flex", 
+            flexDirection: "column", 
+            gap: "24px",
+            fontWeight: 400
+          }}>
+            <p>
+              Over 4 weeks, you'll learn the exact system I used to build and ship TailorTab — an offline-first PWA now used by real tailors in Nigeria. No engineering team. No design-to-code handoff tools. Just Claude Code, Antigravity, and a method that treats AI agents like brilliant junior engineers who need structure to do their best work.
+            </p>
+            <p>
+              You won't just watch me build. You'll ship your own MVP alongside me — week by week, screen by screen, deployed to a real URL by the end.
+            </p>
+          </div>
         </div>
 
-        {/* Right column */}
-        <div
-          className="course-right-col"
-          style={{
-            padding: "104px 30px 0",
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <p
-            className="anim-fade"
-            style={{
-              fontSize: "clamp(15px, 2.2vw, 36px)",
-              fontWeight: 400,
-              color: "#000",
-              textTransform: "uppercase",
-              lineHeight: 1.2,
-            }}
-          >
-            Four modules, each building on the last. Every concept taught through building something real — not slides, not theory, not notes you&apos;ll never revisit.
-          </p>
-
-          {/* Curriculum list */}
-          <div style={{ marginTop: "auto" }} className="anim-stagger">
-            {curriculum.map((item, i) => (
-              <div
-                key={i}
-                style={{
-                  borderTop: "1px solid rgba(0,0,0,0.2)",
-                  padding: "clamp(14px, 2vh, 24px) 0",
-                }}
-              >
-                <p style={{
-                  fontSize: "clamp(15px, 2.2vw, 36px)",
-                  fontWeight: 400,
-                  color: "#000",
-                  textTransform: "uppercase",
-                  lineHeight: 1.2,
-                }}>
-                  {item}
+        {/* What you will learn - Grid matching the screenshot */}
+        <div style={{ marginBottom: "clamp(80px, 12vw, 120px)" }}>
+          <h3 style={{ 
+            fontSize: "clamp(28px, 3.5vw, 40px)", 
+            fontWeight: 700, 
+            marginBottom: "56px", 
+            letterSpacing: "-0.01em",
+            color: "#111"
+          }}>
+            What you will learn
+          </h3>
+          <div style={{ 
+            display: "grid", 
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+            gap: "48px 80px" 
+          }}>
+            {learningPoints.map((point, index) => (
+              <div key={index} style={{ display: "flex", gap: "20px", alignItems: "flex-start" }}>
+                <div style={{ marginTop: "2px", flexShrink: 0 }}>
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="11" stroke="#333" strokeWidth="1"/>
+                    <path d="M8 12.5L10.5 15L16 9" stroke="#333" strokeWidth="1.2"/>
+                  </svg>
+                </div>
+                <p style={{ fontSize: "18px", lineHeight: 1.5, color: "#222", margin: 0 }}>
+                  {point}
                 </p>
               </div>
             ))}
           </div>
         </div>
-      </div>
 
-      <style>{`
-        .gold-btn {
-          transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .gold-btn:hover {
-          background-color: #295898 !important; /* switch to primary blue */
-          color: #fff !important;
-        }
-        .gold-btn svg path {
-          transition: stroke 0.3s ease;
-        }
-        .gold-btn:hover svg path {
-          stroke: #fff !important;
-        }
+        {/* Who this is for & Format */}
+        <div style={{ 
+          display: "grid", 
+          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+          gap: "60px 80px", 
+          marginBottom: "clamp(80px, 12vw, 120px)",
+          paddingTop: "80px",
+          borderTop: "1px solid rgba(0,0,0,0.1)"
+        }}>
+          <div>
+            <h3 style={{ fontSize: "clamp(24px, 2.5vw, 28px)", fontWeight: 700, marginBottom: "32px", color: "#111" }}>Who this is for</h3>
+            <div style={{ fontSize: "18px", lineHeight: 1.6, color: "#222", display: "flex", flexDirection: "column", gap: "20px" }}>
+              <p>
+                Founders who are tired of waiting on developers. Designers who are tired of handing off. Anyone who has watched AI tools ship impressive demos but struggled to turn those demos into something a real user would trust.
+              </p>
+              <p>
+                You don't need to be a senior engineer. You do need to be willing to think architecturally — and this course will teach you how.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h3 style={{ fontSize: "clamp(24px, 2.5vw, 28px)", fontWeight: 700, marginBottom: "32px", color: "#111" }}>Format</h3>
+            <ul style={{ 
+              fontSize: "18px", 
+              lineHeight: 1.6, 
+              color: "#222", 
+              display: "flex", 
+              flexDirection: "column", 
+              gap: "20px", 
+              listStyle: "none", 
+              padding: 0,
+              margin: 0
+            }}>
+              <li style={{ display: "flex", gap: "16px" }}>
+                <span style={{ color: "#2563EB", fontWeight: "bold" }}>•</span>
+                4 live sessions, 3 hours each, across 4 weeks
+              </li>
+              <li style={{ display: "flex", gap: "16px" }}>
+                <span style={{ color: "#2563EB", fontWeight: "bold" }}>•</span>
+                Mix of concept teaching, live coding, and cohort Q&A
+              </li>
+              <li style={{ display: "flex", gap: "16px" }}>
+                <span style={{ color: "#2563EB", fontWeight: "bold" }}>•</span>
+                Weekly build homework with a deployed deliverable
+              </li>
+              <li style={{ display: "flex", gap: "16px" }}>
+                <span style={{ color: "#2563EB", fontWeight: "bold" }}>•</span>
+                Recordings, templates, and reference repo included
+              </li>
+              <li style={{ display: "flex", gap: "16px" }}>
+                <span style={{ color: "#2563EB", fontWeight: "bold" }}>•</span>
+                Limited cohort size for personal code review access
+              </li>
+            </ul>
+          </div>
+        </div>
         
+      </div>
+      <style>{`
+        .course-cta-button:hover {
+          opacity: 0.9;
+        }
         @media (max-width: 768px) {
-          .course-grid {
-            grid-template-columns: 1fr !important;
+          .hidden-mobile {
+            display: none;
           }
-          .gold-btn { width: 100% !important; }
-          .course-left-col { padding-bottom: 40px !important; }
-          .course-right-col { padding-top: 0 !important; }
         }
       `}</style>
     </section>

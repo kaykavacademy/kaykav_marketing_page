@@ -39,7 +39,7 @@ export default function Nav() {
 
         {/* Desktop enroll CTA */}
         <a
-          href="https://mainstack.com/c/kaykav"
+          href="https://mainstack.com/ship-real-mvps-with-ai-agents-kaykav"
           target="_blank"
           rel="noopener noreferrer"
           className="nav-enroll"
@@ -72,7 +72,7 @@ export default function Nav() {
         }}>
           {[
             { label: "Course Details", href: "#course" },
-            { label: "Enroll Now", href: "https://mainstack.com/c/kaykav", external: true },
+            { label: "Enroll Now", href: "https://mainstack.com/ship-real-mvps-with-ai-agents-kaykav", external: true },
           ].map(({ label, href, external }) => (
             <a
               key={label}

@@ -181,32 +181,37 @@ export default function Enrol() {
             transform: "translateX(-50%)",
             zIndex: 2,
           }}>
-            <a
-              href="https://mainstack.com/c/kaykav"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="enrol-cta"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "10px",
-                background: "#d3a35c",
-                color: "#000",
-                height: "64px",
-                width: "clamp(240px, 28vw, 450px)",
-                fontSize: "clamp(13px, 1.4vw, 24px)",
-                fontWeight: 400,
-                textTransform: "uppercase",
-                textDecoration: "none",
-                whiteSpace: "nowrap",
-              }}
-            >
-              Apply now for cohort 2.0
-              <svg width="18" height="18" viewBox="0 0 48 48" fill="none">
-                <path d="M18 13.3006C18 13.3006 31.8766 12.2152 33.8308 14.1693C35.7848 16.1233 34.6992 30 34.6992 30M33 15L13 35" stroke="#141B34" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </a>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+              <p style={{ color: "#fff", fontWeight: 700, fontSize: "clamp(14px, 1.5vw, 20px)", background: "rgba(0,0,0,0.6)", padding: "4px 16px", borderRadius: "100px", margin: 0 }}>
+                $70 (NGN 90,000)
+              </p>
+              <a
+                href="https://mainstack.com/ship-real-mvps-with-ai-agents-kaykav"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="enrol-cta"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "10px",
+                  background: "#d3a35c",
+                  color: "#000",
+                  height: "64px",
+                  width: "clamp(240px, 28vw, 450px)",
+                  fontSize: "clamp(13px, 1.4vw, 24px)",
+                  fontWeight: 400,
+                  textTransform: "uppercase",
+                  textDecoration: "none",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Apply now for cohort 2.0
+                <svg width="18" height="18" viewBox="0 0 48 48" fill="none">
+                  <path d="M18 13.3006C18 13.3006 31.8766 12.2152 33.8308 14.1693C35.7848 16.1233 34.6992 30 34.6992 30M33 15L13 35" stroke="#141B34" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
