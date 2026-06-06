@@ -54,7 +54,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <section ref={ref} style={{ backgroundColor: "#000", padding: "120px 30px", minHeight: "100vh", position: "relative" }}>
+    <section ref={ref} style={{ backgroundColor: "#141414", padding: "120px 30px", minHeight: "100vh", position: "relative" }}>
       <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
         
         {/* Section Header */}
