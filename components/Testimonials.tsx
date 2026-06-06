@@ -6,80 +6,56 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const testimonialsData = [
   {
-    name: "Ifeoma",
+    name: "ADESEWA",
     size: "48px",
     weight: 600,
     color: "#fffde2",
-    quote: "This course is a masterclass in visual storytelling. The attention to detail in layout systems and typography has completely reshaped how I approach product design.",
-    tagline: "A masterclass in visual storytelling"
+    quote: "The value I got was way more than the money I paid. I moved through every function of a proper product team — PM, business analysis, UI/UX, frontend and backend — on one journey, handled through the multi-agent workflow. As a designer, I walked away with a new understanding of databases and code stacks.",
+    tagline: "ONE BUILDER, WHOLE PRODUCT TEAM"
   },
   {
-    name: "Ngozi",
+    name: "SEWA",
     size: "49px",
     weight: 600,
     color: "#fffde2",
-    quote: "The focus on micro-interactions and motion design was exactly what I needed. It bridged the gap between static screens and high-fidelity prototypes.",
-    tagline: "Bridged the gap to high-fidelity"
+    quote: "The value I got was way more than the money I paid. I moved through every function of a proper product team — PM, business analysis, UI/UX, frontend and backend — on one journey, handled through the multi-agent workflow. As a designer, I walked away with a new understanding of databases and code stacks.",
+    tagline: "ONE BUILDER, WHOLE PRODUCT TEAM"
   },
   {
-    name: "Amaka",
+    name: "JOHN",
     size: "48px",
     weight: 600,
     color: "#fffde2",
-    quote: "I’ve taken many courses, but this one stands out. The practical frameworks for styling, token systems, and layouts are directly applicable to my daily work.",
-    tagline: "Directly applicable frameworks"
+    quote: "As a Product Manager and Designer, the only piece missing from my skill set was development. This has been one of my best investments this year — I've learned to build products from scratch with AI, and I'm already applying it in my 9-5 by collaborating more effectively with my dev team.",
+    tagline: "THE MISSING PIECE"
   },
   {
-    name: "Ayomide",
+    name: "ENIOLA",
     size: "51px",
     weight: 600,
     color: "#fffde2",
-    quote: "Every lesson felt like pair programming with an industry expert. The section on responsive grids and components saved me weeks of trial and error.",
-    tagline: "Pair programming with experts"
+    quote: "I came in to learn how to set up the engineering for my startup, and this gave me all the empowerment I needed to get started. It's mind-blowing what's now possible just from knowing how to think systematically.",
+    tagline: "ENGINEERING FOR MY STARTUP"
   },
   {
-    name: "Chijioke",
+    name: "WOLE",
     size: "48px",
     weight: 600,
     color: "#fffde2",
-    quote: "The content and production quality of this course is next level. HIGHLY recommend for anyone looking to level up their interface design skills.",
-    tagline: "Next level course quality"
+    quote: "Prompting is a technical skill, not a 'one-shot' thing. You can't out-prompt a designer who can define every modality of the result they want, or an engineer who puts guardrails on the agents. Learn the skill of using AI — not just the vibes.",
+    tagline: "PROMPTING IS A TECHNICAL SKILL"
   },
   {
-    name: "Daniel",
+    name: "OLAOLUWA",
     size: "49px",
     weight: 600,
     color: "#fffde2",
-    quote: "A clear, step-by-step process that removes guesswork from building interfaces. It teaches you how to think, not just what tools to use.",
-    tagline: "Removes guesswork from design"
-  },
-  {
-    name: "Zainab",
-    size: "49px",
-    weight: 600,
-    color: "#fffde2",
-    quote: "The design system section alone is worth the price. Setting up scalable typography, color tokens, and layout guidelines has never been clearer.",
-    tagline: "Scalable typography & design systems"
-  },
-  {
-    name: "Toyin",
-    size: "48px",
-    weight: 600,
-    color: "#fffde2",
-    quote: "This course pushed my skills beyond standard templates. I learned how to create bespoke interactive layouts that truly stand out in the market.",
-    tagline: "Create bespoke layouts"
-  },
-  {
-    name: "Lanre",
-    size: "48px",
-    weight: 600,
-    color: "#fffde2",
-    quote: "An absolute game-changer. The framework teaches you how to balance visual expression with technical implementation constraints seamlessly.",
-    tagline: "Balance visual expression with code"
+    quote: "A dream come true — you gave the first cohort a spark. Three weeks in, I'd shipped an expense tracker with Claude and Google Antigravity using well-constructed prompts. Cheers to shipping products fast.",
+    tagline: "SHIPPING PRODUCTS FAST"
   }
 ];
 
-// Generate 36 items by repeating the 9 unique testimonials 4 times
+// Generate 36 items by repeating the unique testimonials
 // This fills the entire 360-degree circle (10 degrees spacing between items)
 const totalWheelItems = 36;
 const itemSpacing = 360 / totalWheelItems; // 10 degrees
@@ -93,18 +69,18 @@ const wheelItems = Array.from({ length: totalWheelItems }, (_, i) => {
   };
 });
 
-// At progress 0, we want Chijioke (unique index 4) to be active.
-// Chijioke's angle is 4 * 10 = 40 deg.
-// For Chijioke to be active (screen angle = 0), the initial wheel rotation should be -40 deg.
-const START_ROTATION = -40;
+// At progress 0, we want ENIOLA (unique index 3) to be active.
+// ENIOLA's angle is 3 * 10 = 30 deg.
+// For ENIOLA to be active (screen angle = 0), the initial wheel rotation should be -30 deg.
+const START_ROTATION = -30;
 
 export default function Testimonials() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const wheelRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<ScrollTrigger | null>(null);
 
-  const [activeWheelIndex, setActiveWheelIndex] = useState(4); // Start with Chijioke
-  const [displayIndex, setDisplayIndex] = useState(4);
+  const [activeWheelIndex, setActiveWheelIndex] = useState(3); // Start with ENIOLA
+  const [displayIndex, setDisplayIndex] = useState(3);
   const [isFading, setIsFading] = useState(false);
 
   // Smooth fade transition when the displayed testimonial unique index changes
@@ -130,7 +106,7 @@ export default function Testimonials() {
     const wheel = wheelRef.current;
     if (!section || !wheel) return;
 
-    // As progress goes from 0 to 1, the wheel rotates 360 degrees (from -40 to -400)
+    // As progress goes from 0 to 1, the wheel rotates 360 degrees (from -30 to -390)
     // The section is pinned for 200vh of scroll distance
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -191,14 +167,9 @@ export default function Testimonials() {
     const end = trigger.end;
     const duration = end - start;
 
-    // Solve for target progress p:
-    // rotation = -40 - p * 360
-    // We want rotation = -index * 10 + k * 360
-    // This gives p = (index * 10 - 40 - k * 360) / 360
-    // We find the integer k that yields p in [0, 1]
     let targetProgress = 0;
     for (let k = -2; k <= 2; k++) {
-      const prog = (index * itemSpacing - 40 - k * 360) / 360;
+      const prog = (index * itemSpacing + START_ROTATION - k * 360) / 360;
       if (prog >= 0 && prog <= 1) {
         targetProgress = prog;
         break;
@@ -230,26 +201,6 @@ export default function Testimonials() {
         overflow: "hidden",
       }}
     >
-      {/* Blob overlay */}
-      <img
-        src="/bg-blob.png"
-        alt=""
-        aria-hidden
-        style={{
-          position: "absolute",
-          top: "-56px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "120%",
-          height: "115%",
-          objectFit: "cover",
-          mixBlendMode: "screen",
-          pointerEvents: "none",
-          userSelect: "none",
-          zIndex: 0,
-        }}
-      />
-
       {/* Top-right CTA */}
       <div className="testi-cta-wrapper" style={{
         position: "absolute",
