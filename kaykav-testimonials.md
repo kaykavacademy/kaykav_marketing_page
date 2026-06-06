@@ -39,20 +39,26 @@ testimonial array — do not hardcode it.
 - **name:** ADESEWA
 - **tag:** ONE BUILDER, WHOLE PRODUCT TEAM
 - **quote:**
+  "The value I got was way more than the money I paid. As a designer, I moved through every function of a proper product team on one journey, walking away with a new understanding of databases and code stacks."
+
+### 2. Sewa (Adesewa Alternate)
+- **name:** SEWA
+- **tag:** BUILDING REAL SOLUTIONS
+- **quote:**
   "The value I got was way more than the money I paid. I joined just to build my portfolio, and now I'm creating a tool that solves a real problem: a wedding and ideas journal app."
 - **Alternate quote:**
   "I joined the cohort just to build my own portfolio — and now I'm creating a tool that solves a real problem, and already using it myself."
 - **Product built:** a wedding and ideas journal app
 - **Full source:** "My experience with KayKav's Built Not Prompted course was quite impactful… the value I got was way more than the money I paid… I'm creating a tool that solves a real problem: a wedding and ideas journal app… I was able to move through all the functions you'd find in a proper product team — product management, business analysis, UI/UX, frontend and backend — on one singular journey (including the role of a CEO), handled effectively through the multi-agent workflow… As a designer, I walked away with new understanding of databases and code stacks… everyone should have a side project. KayKav is where you come to build it."
 
-### 2. John Taiwo
+### 3. John Taiwo
 - **name:** JOHN
 - **tag:** THE MISSING PIECE
 - **quote:**
   "As a Product Manager and Designer, the only piece missing from my skill set was development. This has been one of my best investments this year — I've learned to build products from scratch with AI, and I'm already applying it in my 9-5 by collaborating more effectively with my dev team."
 - **Full source:** "As a Product Manager and Designer, the only piece missing from my skill set was development. Enrolling in this class has been one of my best investments this year. I've learned how to build products from scratch using AI, worked on my personal projects and I'm already applying these skills in my 9-5 work by collaborating more effectively with my development team. A huge thank you to KayKav and the entire team for an incredible learning experience."
 
-### 3. Eniola Alex
+### 4. Eniola Alex
 - **name:** ENIOLA
 - **tag:** ENGINEERING FOR MY STARTUP
 - **quote:**
@@ -60,14 +66,14 @@ testimonial array — do not hardcode it.
 - **Product built:** Precision — precision care for skin issues (https://www.tryprecisioncare.com)
 - **Full source:** "I came in with the goal of learning the ropes on how to set up the engineering for my startup, and this gave me all the empowerment I needed to get started. It's mind-blowing seeing how learning engineering is changing, and what's now possible just from knowing how to think systematically."
 
-### 4. Wole Adaramola
+### 5. Wole Adaramola
 - **name:** WOLE
 - **tag:** PROMPTING IS A TECHNICAL SKILL
 - **quote:**
   "Prompting is a technical skill, not a 'one-shot' thing. You can't out-prompt a designer who can define every modality of the result they want, or an engineer who puts guardrails on the agents. Learn the skill of using AI — not just the vibes."
 - **Full source:** "In this era of AI and layoffs, your skill matters more than ever… Prompting is a technical skill, not a 'one-shot' thing. You can't out prompt a designer who is able to define all the modalities of the result they want to see or an engineer who can put guard rails and limits to the agents… we should also learn the skill of using AI, not just the vibes. Prompting is a technical skill. Learn it."
 
-### 5. Olaoluwa Obafemi
+### 6. Olaoluwa Obafemi
 - **name:** OLAOLUWA
 - **tag:** SHIPPING PRODUCTS FAST
 - **quote:**
