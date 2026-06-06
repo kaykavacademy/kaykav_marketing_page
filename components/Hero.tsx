@@ -303,7 +303,7 @@ export default function Hero() {
         className="proof-inner"
         >
           <div>
-            [X] products shipped &nbsp;·&nbsp; [X] builders graduated &nbsp;·&nbsp; [X] countries
+            12 products shipped &nbsp;·&nbsp; 32 builders graduated &nbsp;·&nbsp; 6 countries
           </div>
           <div style={{ color: "#fff", fontWeight: 600 }}>
             4 Weeks &nbsp;·&nbsp; Live &nbsp;·&nbsp; Demo Day &nbsp;·&nbsp; Starts [Date]
