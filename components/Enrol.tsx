@@ -8,18 +8,7 @@ const FEATURES = [
   { icon: <Sparkle />,   label: "AI skill Framework" },
 ];
 
-// ── Marquee: 8 cohort photo placeholders, alternating tall/short ─────────────
-// Figma boxes: short = 283px, tall = 326px | width = 483px | gap = 23px
-const MARQUEE_ITEMS = [
-  { n: "01", tall: false },
-  { n: "02", tall: true  },
-  { n: "03", tall: false },
-  { n: "04", tall: true  },
-  { n: "05", tall: false },
-  { n: "06", tall: true  },
-  { n: "07", tall: false },
-  { n: "08", tall: true  },
-];
+
 
 export default function Enrol() {
   return (
@@ -130,59 +119,15 @@ export default function Enrol() {
           </div>
         </div>
 
-        {/* ── Bottom: marquee strip + floating CTA ─────────────────────────── */}
-        <div style={{ position: "relative", flexShrink: 0 }}>
-
-          {/* Marquee */}
-          <div
-            className="marquee-wrap"
-            style={{
-              overflow: "hidden",
-              display: "flex",
-              alignItems: "flex-end",
-            }}
-          >
-            {/* Duplicate items for seamless loop */}
-            <div className="marquee-inner" style={{ display: "flex", alignItems: "flex-end", gap: "clamp(10px, 1.2vw, 23px)" }}>
-              {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
-                <div
-                  key={i}
-                  style={{
-                    flexShrink: 0,
-                    width: "clamp(180px, 25.15vw, 483px)",
-                    height: item.tall
-                      ? "clamp(140px, 30.2vh, 326px)"
-                      : "clamp(116px, 26.2vh, 283px)",
-                    background: "#d9d9d9",
-                    display: "flex",
-                    alignItems: "flex-end",
-                    padding: "14px 18px",
-                  }}
-                >
-                  <span style={{
-                    fontSize: "10px",
-                    fontWeight: 600,
-                    color: "rgba(0,0,0,0.3)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.12em",
-                  }}>
-                    Cohort 2.0 · {item.n}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* CTA — centred, floating over marquee */}
+        {/* ── Bottom: CTA ─────────────────────────── */}
+        <div style={{ position: "relative", flexShrink: 0, paddingBottom: "100px", display: "flex", justifyContent: "center" }}>
+          {/* CTA — centred */}
           <div style={{
-            position: "absolute",
-            bottom: "clamp(16px, 4vh, 48px)",
-            left: "50%",
-            transform: "translateX(-50%)",
             zIndex: 2,
+            marginTop: "60px",
           }}>
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
-              <p style={{ color: "#fff", fontWeight: 700, fontSize: "clamp(14px, 1.5vw, 20px)", background: "rgba(0,0,0,0.6)", padding: "4px 16px", borderRadius: "100px", margin: 0 }}>
+              <p style={{ color: "#fff", fontWeight: 700, fontSize: "clamp(14px, 1.5vw, 20px)", background: "rgba(255,255,255,0.1)", padding: "4px 16px", borderRadius: "100px", margin: 0 }}>
                 $70 (NGN 90,000)
               </p>
               <a
@@ -222,10 +167,7 @@ export default function Enrol() {
           padding-left: calc(33.33% + 17px);
         }
 
-        /* Marquee speed — 40s for a full cycle */
-        .enrol-col ~ div .marquee-inner {
-          animation: ticker 40s linear infinite;
-        }
+
 
         .enrol-cta {
           transition: background-color 0.3s ease, color 0.3s ease;

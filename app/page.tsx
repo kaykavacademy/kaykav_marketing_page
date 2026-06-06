@@ -2,6 +2,7 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import Course from "@/components/Course";
 import Enrol from "@/components/Enrol";
+import Projects from "@/components/Projects";
 import Testimonials from "@/components/Testimonials";
 import Cta from "@/components/Cta";
 import Footer from "@/components/Footer";
@@ -19,6 +20,7 @@ export default function Home() {
         <Hero />
         <Course />
         <Enrol />
+        <Projects />
         <Testimonials />
       </main>
       <Cta />
