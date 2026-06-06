@@ -39,7 +39,7 @@ testimonial array — do not hardcode it.
 - **name:** ADESEWA
 - **tag:** ONE BUILDER, WHOLE PRODUCT TEAM
 - **quote:**
-  "The value I got was way more than the money I paid. I moved through every function of a proper product team — PM, business analysis, UI/UX, frontend and backend — on one journey, handled through the multi-agent workflow. As a designer, I walked away with a new understanding of databases and code stacks."
+  "The value I got was way more than the money I paid. As a designer, I moved through every function of a proper product team on one journey, walking away with a new understanding of databases and code stacks."
 - **Alternate quote:**
   "I joined the cohort just to build my own portfolio — and now I'm creating a tool that solves a real problem, and already using it myself."
 - **Product built:** a wedding and ideas journal app

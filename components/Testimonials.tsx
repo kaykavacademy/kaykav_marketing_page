@@ -10,7 +10,7 @@ const testimonialsData = [
     size: "48px",
     weight: 600,
     color: "#fffde2",
-    quote: "The value I got was way more than the money I paid. I moved through every function of a proper product team — PM, business analysis, UI/UX, frontend and backend — on one journey, handled through the multi-agent workflow. As a designer, I walked away with a new understanding of databases and code stacks.",
+    quote: "The value I got was way more than the money I paid. As a designer, I moved through every function of a proper product team on one journey, walking away with a new understanding of databases and code stacks.",
     tagline: "ONE BUILDER, WHOLE PRODUCT TEAM"
   },
   {
@@ -18,7 +18,7 @@ const testimonialsData = [
     size: "49px",
     weight: 600,
     color: "#fffde2",
-    quote: "The value I got was way more than the money I paid. I moved through every function of a proper product team — PM, business analysis, UI/UX, frontend and backend — on one journey, handled through the multi-agent workflow. As a designer, I walked away with a new understanding of databases and code stacks.",
+    quote: "The value I got was way more than the money I paid. As a designer, I moved through every function of a proper product team on one journey, walking away with a new understanding of databases and code stacks.",
     tagline: "ONE BUILDER, WHOLE PRODUCT TEAM"
   },
   {
