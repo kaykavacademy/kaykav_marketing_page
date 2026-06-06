@@ -8,7 +8,7 @@ const FEATURES = [
   { icon: <Sparkle />,   label: "AI skill Framework" },
 ];
 
-
+import { DottedSurface } from "@/components/ui/dotted-surface";
 
 export default function Enrol() {
   return (
@@ -32,6 +32,7 @@ export default function Enrol() {
           userSelect: "none",
         }}
       />
+      <DottedSurface />
 
       {/* ── Main layout ───────────────────────────────────────────────────── */}
       <div style={{
@@ -40,15 +41,21 @@ export default function Enrol() {
         display: "flex",
         flexDirection: "column",
         minHeight: "100vh",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "100px 24px",
       }}>
 
-        {/* ── Right-column text content (left 1/3 is intentionally empty) ── */}
+        {/* ── Centered text content ── */}
         <div
           className="enrol-col"
           style={{
-            flex: 1,
-            paddingTop: "68px",
-            paddingRight: "30px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
+            maxWidth: "800px",
+            width: "100%",
           }}
         >
           {/* Headline */}
@@ -73,7 +80,7 @@ export default function Enrol() {
             </span>
           </h2>
 
-          {/* Subtext — same left indent as headline */}
+          {/* Subtext */}
           <p
             className="anim-fade"
             style={{
@@ -99,7 +106,9 @@ export default function Enrol() {
               columnGap: "clamp(32px, 5vw, 80px)",
               rowGap: "clamp(14px, 2vh, 24px)",
               marginTop: "clamp(28px, 5vh, 60px)",
-              maxWidth: "480px",
+              maxWidth: "500px",
+              width: "100%",
+              textAlign: "left",
             }}
           >
             {FEATURES.map(({ icon, label }, i) => (
@@ -120,7 +129,7 @@ export default function Enrol() {
         </div>
 
         {/* ── Bottom: CTA ─────────────────────────── */}
-        <div style={{ position: "relative", flexShrink: 0, paddingBottom: "100px", display: "flex", justifyContent: "center" }}>
+        <div style={{ position: "relative", flexShrink: 0, marginTop: "40px", display: "flex", justifyContent: "center" }}>
           {/* CTA — centred */}
           <div style={{
             zIndex: 2,
@@ -162,12 +171,6 @@ export default function Enrol() {
       </div>
 
       <style>{`
-        /* Left-indent: right 2/3 column (left 1/3 stays empty per Figma) */
-        .enrol-col {
-          padding-left: calc(33.33% + 17px);
-        }
-
-
 
         .enrol-cta {
           transition: background-color 0.3s ease, color 0.3s ease;
@@ -183,9 +186,6 @@ export default function Enrol() {
           stroke: #fff !important;
         }
 
-        @media (max-width: 768px) {
-          .enrol-col { padding-left: 24px !important; padding-right: 24px !important; }
-        }
       `}</style>
     </section>
   );
