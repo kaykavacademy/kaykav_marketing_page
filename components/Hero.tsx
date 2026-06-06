@@ -66,13 +66,12 @@ function ProductShowcase() {
         boxShadow: "0 32px 64px rgba(0,0,0,0.4)",
         transform: "perspective(1000px) rotateY(-12deg) rotateX(4deg)",
         zIndex: 2,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center"
       }}>
-        <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "12px", textTransform: "uppercase", textAlign: "center", padding: "10px" }}>
-          [Mobile Screenshot]
-        </div>
+        <img 
+          src="/ddt-mobile.png" 
+          alt="DDT Structure Mobile View" 
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} 
+        />
       </div>
     </div>
   );
