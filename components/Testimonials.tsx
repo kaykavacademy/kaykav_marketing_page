@@ -10,7 +10,7 @@ const testimonialsData = [
     size: "48px",
     weight: 600,
     color: "#fffde2",
-    quote: "The value I got was way more than the money I paid. As a designer, I moved through every function of a proper product team on one journey, walking away with a new understanding of databases and code stacks.",
+    quote: "The value I got was way more than the money I paid. I joined just to build my portfolio, and now I'm creating a tool that solves a real problem: a wedding and ideas journal app.",
     tagline: "ONE BUILDER, WHOLE PRODUCT TEAM"
   },
   {
@@ -18,7 +18,7 @@ const testimonialsData = [
     size: "49px",
     weight: 600,
     color: "#fffde2",
-    quote: "The value I got was way more than the money I paid. As a designer, I moved through every function of a proper product team on one journey, walking away with a new understanding of databases and code stacks.",
+    quote: "The value I got was way more than the money I paid. I joined just to build my portfolio, and now I'm creating a tool that solves a real problem: a wedding and ideas journal app.",
     tagline: "ONE BUILDER, WHOLE PRODUCT TEAM"
   },
   {
