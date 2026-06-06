@@ -14,14 +14,6 @@ const testimonialsData = [
     tagline: "ONE BUILDER, WHOLE PRODUCT TEAM"
   },
   {
-    name: "SEWA",
-    size: "49px",
-    weight: 600,
-    color: "#fffde2",
-    quote: "The value I got was way more than the money I paid. I joined just to build my portfolio, and now I'm creating a tool that solves a real problem: a wedding and ideas journal app.",
-    tagline: "BUILDING REAL SOLUTIONS"
-  },
-  {
     name: "JOHN",
     size: "48px",
     weight: 600,
@@ -36,6 +28,14 @@ const testimonialsData = [
     color: "#fffde2",
     quote: "I came in to learn how to set up the engineering for my startup, and this gave me all the empowerment I needed to get started. It's mind-blowing what's now possible just from knowing how to think systematically.",
     tagline: "ENGINEERING FOR MY STARTUP"
+  },
+  {
+    name: "SEWA",
+    size: "49px",
+    weight: 600,
+    color: "#fffde2",
+    quote: "The value I got was way more than the money I paid. I joined just to build my portfolio, and now I'm creating a tool that solves a real problem: a wedding and ideas journal app.",
+    tagline: "BUILDING REAL SOLUTIONS"
   },
   {
     name: "WOLE",

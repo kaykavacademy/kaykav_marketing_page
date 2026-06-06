@@ -43,6 +43,23 @@ testimonial array — do not hardcode it.
 
 ### 2. Sewa (Adesewa Alternate)
 - **name:** SEWA
+### 2. John Taiwo
+- **name:** JOHN
+- **tag:** THE MISSING PIECE
+- **quote:**
+  "As a Product Manager and Designer, the only piece missing from my skill set was development. This has been one of my best investments this year — I've learned to build products from scratch with AI, and I'm already applying it in my 9-5 by collaborating more effectively with my dev team."
+- **Full source:** "As a Product Manager and Designer, the only piece missing from my skill set was development. Enrolling in this class has been one of my best investments this year. I've learned how to build products from scratch using AI, worked on my personal projects and I'm already applying these skills in my 9-5 work by collaborating more effectively with my development team. A huge thank you to KayKav and the entire team for an incredible learning experience."
+
+### 3. Eniola Alex
+- **name:** ENIOLA
+- **tag:** ENGINEERING FOR MY STARTUP
+- **quote:**
+  "I came in to learn how to set up the engineering for my startup, and this gave me all the empowerment I needed to get started. It's mind-blowing what's now possible just from knowing how to think systematically."
+- **Product built:** Precision — precision care for skin issues (https://www.tryprecisioncare.com)
+- **Full source:** "I came in with the goal of learning the ropes on how to set up the engineering for my startup, and this gave me all the empowerment I needed to get started. It's mind-blowing seeing how learning engineering is changing, and what's now possible just from knowing how to think systematically."
+
+### 4. Sewa (Adesewa Alternate)
+- **name:** SEWA
 - **tag:** BUILDING REAL SOLUTIONS
 - **quote:**
   "The value I got was way more than the money I paid. I joined just to build my portfolio, and now I'm creating a tool that solves a real problem: a wedding and ideas journal app."
@@ -50,21 +67,6 @@ testimonial array — do not hardcode it.
   "I joined the cohort just to build my own portfolio — and now I'm creating a tool that solves a real problem, and already using it myself."
 - **Product built:** a wedding and ideas journal app
 - **Full source:** "My experience with KayKav's Built Not Prompted course was quite impactful… the value I got was way more than the money I paid… I'm creating a tool that solves a real problem: a wedding and ideas journal app… I was able to move through all the functions you'd find in a proper product team — product management, business analysis, UI/UX, frontend and backend — on one singular journey (including the role of a CEO), handled effectively through the multi-agent workflow… As a designer, I walked away with new understanding of databases and code stacks… everyone should have a side project. KayKav is where you come to build it."
-
-### 3. John Taiwo
-- **name:** JOHN
-- **tag:** THE MISSING PIECE
-- **quote:**
-  "As a Product Manager and Designer, the only piece missing from my skill set was development. This has been one of my best investments this year — I've learned to build products from scratch with AI, and I'm already applying it in my 9-5 by collaborating more effectively with my dev team."
-- **Full source:** "As a Product Manager and Designer, the only piece missing from my skill set was development. Enrolling in this class has been one of my best investments this year. I've learned how to build products from scratch using AI, worked on my personal projects and I'm already applying these skills in my 9-5 work by collaborating more effectively with my development team. A huge thank you to KayKav and the entire team for an incredible learning experience."
-
-### 4. Eniola Alex
-- **name:** ENIOLA
-- **tag:** ENGINEERING FOR MY STARTUP
-- **quote:**
-  "I came in to learn how to set up the engineering for my startup, and this gave me all the empowerment I needed to get started. It's mind-blowing what's now possible just from knowing how to think systematically."
-- **Product built:** Precision — precision care for skin issues (https://www.tryprecisioncare.com)
-- **Full source:** "I came in with the goal of learning the ropes on how to set up the engineering for my startup, and this gave me all the empowerment I needed to get started. It's mind-blowing seeing how learning engineering is changing, and what's now possible just from knowing how to think systematically."
 
 ### 5. Wole Adaramola
 - **name:** WOLE
