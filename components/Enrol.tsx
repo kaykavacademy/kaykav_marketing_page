@@ -16,22 +16,7 @@ export default function Enrol() {
       id="enrol"
       style={{ position: "relative", minHeight: "100vh", background: "#000", overflow: "hidden" }}
     >
-      {/* ── Background blob ───────────────────────────────────────────────── */}
-      <img
-        src="/bg-blob.png"
-        alt=""
-        aria-hidden
-        style={{
-          position: "absolute",
-          top: "-45px", left: "50%",
-          transform: "translateX(-50%)",
-          width: "120%", height: "115%",
-          objectFit: "cover",
-          mixBlendMode: "screen",
-          pointerEvents: "none",
-          userSelect: "none",
-        }}
-      />
+
       <DottedSurface />
 
       {/* ── Main layout ───────────────────────────────────────────────────── */}
