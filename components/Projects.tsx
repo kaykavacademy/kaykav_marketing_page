@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 const PROJECTS = [
   { 
     id: 1, 
-    title: "WEDDING PLANNER & IDEAS JOURNAL", 
+    title: "VOWS&CO", 
     author: "ADESEWA OWOEYE", 
     desc: "An offline-first app that holds both the to-dos and the creative vision of a wedding in one place, syncing automatically when back online.",
     image: ""
