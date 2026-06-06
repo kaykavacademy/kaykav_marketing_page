@@ -11,7 +11,7 @@ const PROJECTS = [
   },
   { 
     id: 2, 
-    title: "MYBABYLOG", 
+    title: "NESTLY", 
     author: "AYOBAMI ADEREMI", 
     desc: "A shared, offline-first feeding, nappy, and sleep tracker that keeps two carers perfectly in sync on a baby's day — no constant texting.",
     image: ""
