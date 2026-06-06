@@ -42,9 +42,13 @@ function ProductShowcase() {
           <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "rgba(255,255,255,0.2)" }} />
           <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "rgba(255,255,255,0.2)" }} />
         </div>
-        {/* Placeholder Area */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "calc(100% - 32px)", color: "rgba(255,255,255,0.4)", fontSize: "14px", textTransform: "uppercase", textAlign: "center", padding: "20px" }}>
-          [Desktop Screenshot Placeholder]
+        {/* Desktop Screenshot */}
+        <div style={{ height: "calc(100% - 32px)", width: "100%", overflow: "hidden" }}>
+          <img 
+            src="/wandar-desktop.png" 
+            alt="Wandar Project Desktop View" 
+            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} 
+          />
         </div>
       </div>
 
