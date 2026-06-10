@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const learningPoints = [
   "Ship a real, production-ready MVP to a live URL in 4 weeks, not a demo, a working product",
@@ -23,24 +24,26 @@ export default function Course() {
       }}
     >
       {/* Background texture */}
-      <img
-        src="/section1-bg.png"
-        alt=""
-        aria-hidden
-        style={{
-          position: "absolute",
-          top: "-45px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "120%",
-          height: "115%",
-          objectFit: "cover",
-          pointerEvents: "none",
-          userSelect: "none",
-          opacity: 0.9,
-          zIndex: 0,
-        }}
-      />
+      <div style={{
+        position: "absolute",
+        top: "-45px",
+        left: "50%",
+        transform: "translateX(-50%)",
+        width: "120%",
+        height: "115%",
+        pointerEvents: "none",
+        userSelect: "none",
+        opacity: 0.9,
+        zIndex: 0,
+      }}>
+        <Image
+          src="/section1-bg.png"
+          alt=""
+          aria-hidden
+          fill
+          style={{ objectFit: "cover" }}
+        />
+      </div>
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto" }}>
         

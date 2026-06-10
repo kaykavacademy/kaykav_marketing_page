@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 
 function ProductShowcase() {
   return (
@@ -43,11 +44,12 @@ function ProductShowcase() {
           <div style={{ width: "10px", height: "10px", borderRadius: "50%", background: "rgba(255,255,255,0.2)" }} />
         </div>
         {/* Desktop Screenshot */}
-        <div style={{ height: "calc(100% - 32px)", width: "100%", overflow: "hidden" }}>
-          <img 
+        <div style={{ position: "relative", height: "calc(100% - 32px)", width: "100%", overflow: "hidden" }}>
+          <Image 
             src="/wandar-desktop.png" 
             alt="Wandar Project Desktop View" 
-            style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} 
+            fill
+            style={{ objectFit: "cover", objectPosition: "top" }} 
           />
         </div>
       </div>
@@ -67,10 +69,11 @@ function ProductShowcase() {
         transform: "perspective(1000px) rotateY(-12deg) rotateX(4deg)",
         zIndex: 2,
       }}>
-        <img 
+        <Image 
           src="/ddt-mobile.png" 
           alt="DDT Structure Mobile View" 
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} 
+          fill
+          style={{ objectFit: "cover", objectPosition: "top" }} 
         />
       </div>
     </div>
@@ -111,23 +114,25 @@ export default function Hero() {
       }}
     >
       {/* Blob overlay — mix-blend-screen */}
-      <img
-        src="/bg-blob.png"
-        alt=""
-        aria-hidden
-        style={{
-          position: "absolute",
-          top: "-45px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "120%",
-          height: "115%",
-          objectFit: "cover",
-          mixBlendMode: "screen",
-          pointerEvents: "none",
-          userSelect: "none",
-        }}
-      />
+      <div style={{
+        position: "absolute",
+        top: "-45px",
+        left: "50%",
+        transform: "translateX(-50%)",
+        width: "120%",
+        height: "115%",
+        mixBlendMode: "screen",
+        pointerEvents: "none",
+        userSelect: "none",
+      }}>
+        <Image
+          src="/bg-blob.png"
+          alt=""
+          aria-hidden
+          fill
+          style={{ objectFit: "cover" }}
+        />
+      </div>
 
       {/* Main Content Grid */}
       <div
@@ -309,7 +314,7 @@ export default function Hero() {
             12 products shipped &nbsp;·&nbsp; 32 builders graduated &nbsp;·&nbsp; 6 countries
           </div>
           <div style={{ color: "#fff", fontWeight: 600 }}>
-            4 Weeks &nbsp;·&nbsp; Live &nbsp;·&nbsp; Demo Day &nbsp;·&nbsp; Starts [Date]
+            4 Weeks &nbsp;·&nbsp; Live &nbsp;·&nbsp; Demo Day &nbsp;·&nbsp; Starts July 1st
           </div>
         </div>
       </div>

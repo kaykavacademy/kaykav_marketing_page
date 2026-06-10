@@ -1,55 +1,62 @@
 "use client";
 import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 
 const PROJECTS = [
   { 
-    id: 1, 
-    title: "VOWS&CO", 
-    author: "ADESEWA OWOEYE", 
-    desc: "An offline-first app that holds both the to-dos and the creative vision of a wedding in one place, syncing automatically when back online.",
-    image: ""
+    id: 4, 
+    title: "WANDAR", 
+    author: "IVAR LOTHBROK (ALIAS)", 
+    desc: "A social platform for creating, discovering, and remixing detailed travel itineraries as interactive folders of places and recommendations.",
+    image: "/projects/wandar.png",
+    link: "https://www.wandar.co/"
   },
   { 
     id: 2, 
     title: "NESTLY", 
     author: "AYOBAMI ADEREMI", 
     desc: "A shared, offline-first feeding, nappy, and sleep tracker that keeps two carers perfectly in sync on a baby's day — no constant texting.",
-    image: ""
-  },
-  { 
-    id: 3, 
-    title: "BITEPLAN", 
-    author: "JOHN TAIWO", 
-    desc: "An offline-first meal assistant that decides what to cook from the ingredients you have, your mood, budget, and time — ending decision fatigue.",
-    image: ""
-  },
-  { 
-    id: 4, 
-    title: "WANDAR", 
-    author: "IVAR LOTHBROK", 
-    desc: "A social platform for creating, discovering, and remixing detailed travel itineraries as interactive folders of places and recommendations.",
-    image: ""
-  },
-  { 
-    id: 5, 
-    title: "PRECISION", 
-    author: "ENIOLA ALEX", 
-    desc: "A web app that manages every dermatology-clinic client from first booking to final follow-up — intake, treatment plans, and progress tracking.",
-    image: ""
-  },
-  { 
-    id: 6, 
-    title: "DDT STRUCTURE", 
-    author: "OLAOLUWA OBAFEMI", 
-    desc: "A web tool for running non-destructive testing (NDT) labs — assigning tasks, tracking staff efficiency, and monitoring projects start to finish.",
-    image: ""
+    image: "/projects/nestly.png",
+    link: "https://nestlybaby.app/"
   },
   { 
     id: 7, 
     title: "DRAFTDESK", 
     author: "MIDE", 
     desc: "An offline-first feedback and revision tracker that pulls scattered client notes from chats, email, and voice memos into one focused workspace.",
-    image: ""
+    image: "/projects/draftdesk.png",
+    link: "https://www.draftdesk.online/"
+  },
+  { 
+    id: 1, 
+    title: "VOWS&CO", 
+    author: "ADESEWA OWOEYE", 
+    desc: "An offline-first app that holds both the to-dos and the creative vision of a wedding in one place, syncing automatically when back online.",
+    image: "/projects/vows-and-co.png",
+    link: "https://vow-and-co.vercel.app/"
+  },
+  { 
+    id: 5, 
+    title: "PRECISION", 
+    author: "ENIOLA ALEX", 
+    desc: "A web app that manages every dermatology-clinic client from first booking to final follow-up — intake, treatment plans, and progress tracking.",
+    image: "/projects/precision.png"
+  },
+  { 
+    id: 6, 
+    title: "DDT STRUCTURE", 
+    author: "OLAOLUWA OBAFEMI", 
+    desc: "A web tool for running non-destructive testing (NDT) labs — assigning tasks, tracking staff efficiency, and monitoring projects start to finish.",
+    image: "/projects/ddt-structure.png",
+    link: "http://www.ddtstructure.com/"
+  },
+  { 
+    id: 3, 
+    title: "SCHOLARMATCH", 
+    author: "OLANREWAJU OLAPADE", 
+    desc: "AI-powered scholarship matching for African students. Discover fully funded scholarships matched to your nationality, degree, and ambitions.",
+    image: "/projects/scholarmatch.png",
+    link: "https://scholar-match-sable.vercel.app/"
   },
 ];
 
@@ -142,9 +149,14 @@ export default function Projects() {
           gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
           gap: "32px",
         }}>
-          {PROJECTS.map((project, index) => (
-            <div 
+          {PROJECTS.map((project, index) => {
+            const CardWrapper = project.link ? "a" : "div";
+            return (
+            <CardWrapper 
               key={project.id} 
+              href={project.link}
+              target={project.link ? "_blank" : undefined}
+              rel={project.link ? "noopener noreferrer" : undefined}
               className="project-card"
               style={{
                 background: "rgba(255, 255, 255, 0.03)",
@@ -157,6 +169,7 @@ export default function Projects() {
                 cursor: "pointer",
                 opacity: 0,
                 transform: "translateY(30px)",
+                textDecoration: "none",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-8px)";
@@ -169,6 +182,7 @@ export default function Projects() {
             >
               {/* Image */}
               <div style={{
+                position: "relative",
                 width: "100%",
                 aspectRatio: "16/10",
                 background: "rgba(255, 255, 255, 0.02)",
@@ -179,7 +193,7 @@ export default function Projects() {
                 overflow: "hidden"
               }}>
                 {project.image ? (
-                  <img src={project.image} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  <Image src={project.image} alt={project.title} fill style={{ objectFit: "cover" }} />
                 ) : (
                   <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "14px", textTransform: "uppercase", letterSpacing: "0.05em" }}>
                     Project Image
@@ -199,8 +213,9 @@ export default function Projects() {
                   {project.desc}
                 </p>
               </div>
-            </div>
-          ))}
+            </CardWrapper>
+            );
+          })}
 
           {/* 8th CTA Card */}
           <div 

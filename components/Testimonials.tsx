@@ -42,8 +42,8 @@ const testimonialsData = [
     size: "48px",
     weight: 600,
     color: "#fffde2",
-    quote: "Prompting is a technical skill, not a 'one-shot' thing. You can't out-prompt a designer who can define every modality of the result they want, or an engineer who puts guardrails on the agents. Learn the skill of using AI — not just the vibes.",
-    tagline: "PROMPTING IS A TECHNICAL SKILL"
+    quote: "The lectures eased me into new areas. Now I can use AI agents to release features that are useful and usable by actual people without breaking. I would not have thought a month ago that I'd have my idea shipped out!",
+    tagline: "FROM IDEAS TO SHIPPED FEATURES"
   },
   {
     name: "OLAOLUWA",
@@ -52,6 +52,14 @@ const testimonialsData = [
     color: "#fffde2",
     quote: "A dream come true — you gave the first cohort a spark. Three weeks in, I'd shipped an expense tracker with Claude and Google Antigravity using well-constructed prompts. Cheers to shipping products fast.",
     tagline: "SHIPPING PRODUCTS FAST"
+  },
+  {
+    name: "AYOBAMI",
+    size: "49px",
+    weight: 600,
+    color: "#fffde2",
+    quote: "I had an idea to build an app for my newborn but was stuck on the code. Then I took this course. 30 days later, I shipped my product and onboarded 5 families! Every class is expertly curated, and they even schedule meetings to walk you through challenges.",
+    tagline: "IDEA TO SHIPPED IN 30 DAYS"
   }
 ];
 
