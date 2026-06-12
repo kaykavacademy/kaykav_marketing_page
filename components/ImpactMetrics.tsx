@@ -11,7 +11,7 @@ const METRICS = [
     label: "Projects successfully deployed to Live URLs",
   },
   { value: 32, suffix: "+", label: "Builders graduated from the program" },
-  { value: 6, suffix: "+", label: "Countries represented across our cohorts" },
+  { value: 6, suffix: "+", label: "Countries represented across 3 continents" },
 ];
 
 const COUNT_MS = 2000;

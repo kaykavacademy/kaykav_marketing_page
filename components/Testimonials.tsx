@@ -48,11 +48,12 @@ const TESTIMONIALS: Testimonial[] = [
     photo: "/testimonials/eniola.png",
   },
   {
-    name: "Wole",
+    name: "Gideon",
     color: "#ef6351",
-    tag: "Prompting is a technical skill",
+    tag: "Ideas into reality",
     quote:
-      "Prompting is a technical skill, not a 'one-shot' thing. You can't out-prompt a designer who can define every modality of the result they want, or an engineer who puts guardrails on the agents. Learn the skill of using AI, not just the vibes.",
+      "I joined Kaykav to finally build a product my 9-to-5 kept pushing back. The cohort gave me structure, accountability, and community. It never felt like a class, just builders pushing each other. In 4 weeks I built something I'm proud of. I'd recommend Kaykav to anyone ready to turn ideas into reality.",
+    photo: "/testimonials/gideon.png",
   },
   {
     name: "Olaoluwa",

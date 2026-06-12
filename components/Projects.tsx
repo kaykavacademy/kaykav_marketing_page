@@ -30,7 +30,7 @@ const PROJECTS: Project[] = [
     href: "https://www.wandar.co/",
     description:
       "Plan, share, and remix travel itineraries with real recommendations from real travellers.",
-    builder: "Ivar Lothbrok",
+    builder: "Gideon Adeyemi",
   },
   {
     name: "Nestly",
