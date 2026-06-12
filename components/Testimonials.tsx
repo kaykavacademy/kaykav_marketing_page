@@ -315,21 +315,22 @@ export default function Testimonials() {
           ))}
         </motion.div>
 
-        {/* mobile: a plain, static pile — no scroll choreography to break */}
+        {/* mobile: a plain pile — each card reveals as it scrolls into view */}
         <div className="hidden max-[720px]:flex max-[720px]:flex-col max-[720px]:gap-7">
           {TESTIMONIALS.map((t, i) => (
-            <div
-              key={i}
-              style={{
-                backgroundColor: t.color,
-                // gentler than the desktop pile — full-width cards at full
-                // tilt read like a slope on a phone
-                rotate: `${TILT[i % TILT.length] * 0.35}deg`,
-              }}
-              className={CARD}
-            >
-              <CardBody t={t} withPhoto />
-            </div>
+            <Reveal key={i} y={24} duration={0.7}>
+              <div
+                style={{
+                  backgroundColor: t.color,
+                  // gentler than the desktop pile — full-width cards at full
+                  // tilt read like a slope on a phone
+                  rotate: `${TILT[i % TILT.length] * 0.35}deg`,
+                }}
+                className={CARD}
+              >
+                <CardBody t={t} withPhoto />
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -19,7 +19,8 @@ export default function Reveal({
   duration = 0.7,
   mask = false,
   inline = false,
-  once = true,
+  // replay on every re-entry — content reveals again when scrolling back up
+  once = false,
   immediate = false,
   className = "",
 }: {

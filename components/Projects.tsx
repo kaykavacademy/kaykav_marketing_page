@@ -321,18 +321,20 @@ export default function Projects() {
         </Reveal>
       </h2>
 
-      {/* mobile: every project stacked in a simple scrolling list */}
+      {/* mobile: every project stacked in a simple scrolling list, each
+          revealing as it enters the viewport */}
       <div className="hidden flex-col gap-[clamp(56px,16vw,90px)] px-[var(--pad)] max-[720px]:flex">
         {PROJECTS.map((p) => (
-          <a
-            key={p.name}
-            href={p.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block no-underline"
-          >
-            <ProjectCard project={p} />
-          </a>
+          <Reveal key={p.name} y={24} duration={0.7}>
+            <a
+              href={p.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block no-underline"
+            >
+              <ProjectCard project={p} />
+            </a>
+          </Reveal>
         ))}
       </div>
 
