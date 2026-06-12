@@ -322,7 +322,9 @@ export default function Testimonials() {
               key={i}
               style={{
                 backgroundColor: t.color,
-                rotate: `${TILT[i % TILT.length]}deg`,
+                // gentler than the desktop pile — full-width cards at full
+                // tilt read like a slope on a phone
+                rotate: `${TILT[i % TILT.length] * 0.35}deg`,
               }}
               className={CARD}
             >
