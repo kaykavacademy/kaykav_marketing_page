@@ -121,40 +121,41 @@ export default function HeroVideoCard() {
 
   return (
     <>
-      {/* the small snippet card — click to open the full player */}
-      <button
-        type="button"
-        aria-label="Play the course trailer"
-        onClick={openPlayer}
-        className="group absolute right-[var(--pad)] bottom-[clamp(40px,5vw,80px)] block aspect-[1.42/1] w-[clamp(230px,25vw,350px)] cursor-pointer appearance-none overflow-hidden rounded-[4px] border-0 bg-transparent p-0 text-left shadow-[0_16px_48px_rgba(0,0,0,0.22)] max-[720px]:relative max-[720px]:right-auto max-[720px]:bottom-auto max-[720px]:mt-7 max-[720px]:aspect-video max-[720px]:w-full"
-      >
-        <video
-          // React omits the `muted` attribute from SSR HTML, which can let the
-          // browser start unmuted (or block autoplay) — force it on the element
-          ref={(el) => {
-            if (el) {
-              el.muted = true;
-              el.defaultMuted = true;
-            }
-          }}
-          src={VIDEO_SRC}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        {/* legibility gradient over the footage */}
-        <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(8,10,16,0)_55%,rgba(8,10,16,0.55)_100%)]" />
-        {/* 64×64 play tile — brand gold, flips white on hover like the CTAs */}
-        <span className="absolute top-1/2 left-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[2px] bg-[#FDC97A] shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-[background-color,transform] duration-[180ms] ease-[ease] group-hover:scale-105 group-hover:bg-white">
-          <span className="ml-[4px] h-0 w-0 border-y-[11px] border-l-[17px] border-y-transparent border-l-black" />
-        </span>
-        <span className="absolute bottom-[clamp(14px,1.4vw,22px)] left-[clamp(14px,1.4vw,22px)] text-[clamp(12px,1vw,15px)] font-semibold text-white">
+      {/* the small snippet card — a white panel: heading on top, video below.
+          click opens the full player */}
+      <div className="absolute right-[var(--pad)] bottom-[clamp(40px,5vw,80px)] w-[clamp(230px,25vw,350px)] rounded-[6px] bg-white p-[clamp(12px,1.2vw,18px)] shadow-[0_16px_48px_rgba(0,0,0,0.22)] max-[720px]:relative max-[720px]:right-auto max-[720px]:bottom-auto max-[720px]:mt-7 max-[720px]:w-full">
+        <p className="mb-[clamp(8px,0.8vw,14px)] text-[clamp(14px,1.1vw,18px)] font-bold text-black">
           Course Trailer
-        </span>
-      </button>
+        </p>
+        <button
+          type="button"
+          aria-label="Play the course trailer"
+          onClick={openPlayer}
+          className="group relative block aspect-[1.42/1] w-full cursor-pointer appearance-none overflow-hidden rounded-[4px] border-0 bg-transparent p-0 text-left max-[720px]:aspect-video"
+        >
+          <video
+            // React omits the `muted` attribute from SSR HTML, which can let the
+            // browser start unmuted (or block autoplay) — force it on the element
+            ref={(el) => {
+              if (el) {
+                el.muted = true;
+                el.defaultMuted = true;
+              }
+            }}
+            src={VIDEO_SRC}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          {/* 64×64 play tile — brand gold, flips white on hover like the CTAs */}
+          <span className="absolute top-1/2 left-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[2px] bg-[#FDC97A] shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-[background-color,transform] duration-[180ms] ease-[ease] group-hover:scale-105 group-hover:bg-white">
+            <span className="ml-[4px] h-0 w-0 border-y-[11px] border-l-[17px] border-y-transparent border-l-black" />
+          </span>
+        </button>
+      </div>
 
       {/* fullscreen player — custom editorial controls, no native chrome */}
       <AnimatePresence>

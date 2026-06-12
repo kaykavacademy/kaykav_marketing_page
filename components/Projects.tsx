@@ -314,7 +314,7 @@ export default function Projects() {
   );
 
   return (
-    <section className="overflow-hidden pt-[clamp(34px,4vw,64px)] pb-[clamp(64px,8vw,140px)]">
+    <section className="overflow-hidden border-t border-line pt-[clamp(34px,4vw,64px)] pb-[clamp(64px,8vw,140px)]">
       <h2 className="mb-[clamp(56px,9vw,150px)] px-[var(--pad)] text-[clamp(40px,9vw,130px)] font-extrabold leading-[0.92] tracking-[-0.025em]">
         <Reveal inline mask duration={0.7}>
           Student projects

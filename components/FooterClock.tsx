@@ -21,5 +21,18 @@ export default function FooterClock() {
     return () => clearInterval(id);
   }, []);
 
-  return <span className="tabular-nums">{time ?? "--:--:--"}</span>;
+  // fixed-width slot per character — the font has no tabular figures, so
+  // without this the cell's width changes every second and reflows the row
+  return (
+    <span className="inline-flex">
+      {(time ?? "--:--:--").split("").map((c, i) => (
+        <span
+          key={i}
+          className={`inline-block text-center ${c === ":" ? "w-[0.34em]" : "w-[0.66em]"}`}
+        >
+          {c}
+        </span>
+      ))}
+    </span>
+  );
 }
