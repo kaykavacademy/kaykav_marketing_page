@@ -41,8 +41,6 @@ testimonial array — do not hardcode it.
 - **quote:**
   "The value I got was way more than the money I paid. As a designer, I moved through every function of a proper product team on one journey, walking away with a new understanding of databases and code stacks."
 
-### 2. Sewa (Adesewa Alternate)
-- **name:** SEWA
 ### 2. John Taiwo
 - **name:** JOHN
 - **tag:** THE MISSING PIECE
@@ -82,6 +80,14 @@ testimonial array — do not hardcode it.
   "A dream come true — you gave the first cohort a spark. Three weeks in, I'd shipped an expense tracker with Claude and Google Antigravity using well-constructed prompts. Cheers to shipping products fast."
 - **Full source (post 1):** "It's a dream come true and you made it possible… you gave me and other students of the first cohort a spark. Thank you. Cheers to shipping products fast!!!"
 - **Full source (post 2):** "I just got a new solo levelling skill… course on shipping MVP fast, we are 3 weeks down. So we built out an Expense tracker, using well constructed prompts on Claude and Google Antigravity… More projects to come."
+
+### 7. John Taiwo (BitePlan)
+- **name:** JOHN
+- **tag:** FROM IDEA TO LAUNCH
+- **quote:**
+  "In May 2026, I had no idea how to build my product ideas. One month later, I built BitePlan to 80% launch readiness and started two more products. For me, that's a huge leap. Thanks to Kaykav and the team. Anyone serious about building products should take the class."
+- **Product built:** BitePlan
+- **Note:** Second testimonial from John Taiwo (also #2, "The missing piece") — confirm whether to keep both slides or merge them.
 
 ---
 

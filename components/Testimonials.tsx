@@ -55,6 +55,13 @@ const TESTIMONIALS = [
     quote:
       "A dream come true. You gave the first cohort a spark. Three weeks in, I'd shipped an expense tracker with Claude and Google Antigravity using well-constructed prompts. Cheers to shipping products fast.",
   },
+  {
+    name: "John",
+    color: "#ffa552",
+    tag: "From idea to launch",
+    quote:
+      "In May 2026, I had no idea how to build my product ideas. One month later, I built BitePlan to 80% launch readiness and started two more products. For me, that's a huge leap. Thanks to Kaykav and the team. Anyone serious about building products should take the class.",
+  },
 ];
 
 const N = TESTIMONIALS.length;
@@ -68,10 +75,11 @@ const N = TESTIMONIALS.length;
 // card i deals onto the pile across this slice of its 1/N progress window
 const DEAL_START = 0.12;
 const DEAL_END = 0.55;
-// hand-placed pile look: deterministic final tilt + nudge per card
-const TILT = [-2, 2.5, -1.5, 3, -2.5, 2];
-const NUDGE_X = [0, 16, -12, 10, -16, 14];
-const NUDGE_Y = [0, 12, 22, 8, 18, 26];
+// hand-placed pile look: deterministic final tilt + nudge per card —
+// cycled by their own length so the testimonial array can grow freely
+const TILT = [-2, 2.5, -1.5, 3, -2.5, 2, -3];
+const NUDGE_X = [0, 16, -12, 10, -16, 14, -8];
+const NUDGE_Y = [0, 12, 22, 8, 18, 26, 14];
 
 const CARD =
   "origin-center px-[clamp(22px,2.2vw,40px)] py-[clamp(20px,2vw,36px)] text-left text-[clamp(13px,1.5vw,24px)] font-extrabold uppercase leading-[1.32] tracking-[0.2px] text-[#131313] shadow-[14px_16px_0_rgba(0,0,0,0.3)]";
@@ -102,8 +110,8 @@ function Sticker({
   const to = (index + DEAL_END) / N;
   const p = useTransform(progress, [from, to], [0, 1]);
   const opacity = useTransform(p, [0, 0.35, 1], [0, 1, 1]);
-  const y = useTransform(p, [0, 1], [110, NUDGE_Y[index % N]]);
-  const rotate = useTransform(p, [0, 1], [10, TILT[index % N]]);
+  const y = useTransform(p, [0, 1], [110, NUDGE_Y[index % NUDGE_Y.length]]);
+  const rotate = useTransform(p, [0, 1], [10, TILT[index % TILT.length]]);
   const scale = useTransform(p, [0, 1], [0.92, 1]);
 
   return (
@@ -113,7 +121,7 @@ function Sticker({
         y,
         rotate,
         scale,
-        x: NUDGE_X[index % N],
+        x: NUDGE_X[index % NUDGE_X.length],
         zIndex: index, // constant stacking order — later cards always on top
         backgroundColor: t.color,
       }}
@@ -254,9 +262,10 @@ export default function Testimonials() {
       >
         {/* names — indented in from the gutter; desktop scroll scene only */}
         <ul className="relative z-[1] list-none space-y-[clamp(4px,1vh,14px)] pl-[clamp(32px,12vw,240px)] text-left max-[720px]:hidden">
-          {TESTIMONIALS.map((t, i) => (
+          {TESTIMONIALS.map((_, i) => (
             <Name
-              key={t.name}
+              // index key: names can repeat (two Johns), entries never reorder
+              key={i}
               index={i}
               progress={scrollYProgress}
               onJump={jumpTo}
@@ -284,10 +293,10 @@ export default function Testimonials() {
         <div className="hidden max-[720px]:flex max-[720px]:flex-col max-[720px]:gap-7">
           {TESTIMONIALS.map((t, i) => (
             <div
-              key={t.name}
+              key={i}
               style={{
                 backgroundColor: t.color,
-                rotate: `${TILT[i % N]}deg`,
+                rotate: `${TILT[i % TILT.length]}deg`,
               }}
               className={CARD}
             >

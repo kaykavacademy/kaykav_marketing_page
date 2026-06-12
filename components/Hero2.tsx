@@ -11,14 +11,18 @@ const ENROLL_URL = "https://mainstack.com/ship-real-mvps-with-ai-agents-kaykav";
 export default function Hero2() {
   const [open, setOpen] = useState(false);
 
-  // lock page scroll + close on Escape while the player is open
+  // lock page scroll + close on Escape while the player is open. Lenis must
+  // be stopped explicitly: body overflow:hidden only blocks native scrolling,
+  // and Lenis scrolls programmatically from wheel events it intercepts
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     document.body.style.overflow = "hidden";
+    window.__lenis?.stop();
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
+      window.__lenis?.start();
       window.removeEventListener("keydown", onKey);
     };
   }, [open]);

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 const VIDEO_SRC = "/build-with-me-at-kaykav.mp4";
@@ -57,14 +58,18 @@ export default function HeroVideoCard() {
     };
   }, [open]);
 
-  // lock page scroll + close on Escape while the player is open
+  // lock page scroll + close on Escape while the player is open. Lenis must
+  // be stopped explicitly: body overflow:hidden only blocks native scrolling,
+  // and Lenis scrolls programmatically from wheel events it intercepts
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     document.body.style.overflow = "hidden";
+    window.__lenis?.stop();
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "";
+      window.__lenis?.start();
       window.removeEventListener("keydown", onKey);
     };
   }, [open]);
@@ -84,7 +89,11 @@ export default function HeroVideoCard() {
     setQualityMenu(false);
     if (i === quality) return;
     if (v) resumeRef.current = { t: v.currentTime, play: !v.paused };
-    setQuality(i);
+    // commit the src swap synchronously so the play() below still runs inside
+    // the user's tap — mobile browsers block unmuted play() outside a gesture
+    flushSync(() => setQuality(i));
+    const next = videoRef.current;
+    if (next && resumeRef.current?.play) next.play().catch(() => {});
   };
 
   const togglePlay = () => {
@@ -162,15 +171,17 @@ export default function HeroVideoCard() {
               animate={{ scale: 1 }}
               exit={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 320, damping: 30 }}
-              className="relative flex h-full w-full items-center justify-center"
+              // tap anywhere (incl. the letterbox around the mobile video) to
+              // toggle playback — controls stopPropagation to opt out
+              onClick={togglePlay}
+              className="relative flex h-full w-full cursor-pointer items-center justify-center"
             >
               <video
                 ref={videoRef}
-                key={QUALITIES[quality].src}
                 src={QUALITIES[quality].src}
                 autoPlay
+                muted={muted}
                 playsInline
-                onClick={togglePlay}
                 onPlay={() => setPlaying(true)}
                 onPause={() => setPlaying(false)}
                 onTimeUpdate={(e) => setTime(e.currentTarget.currentTime)}
@@ -194,14 +205,20 @@ export default function HeroVideoCard() {
               {/* CLOSE — spaced uppercase, top right */}
               <button
                 type="button"
-                onClick={() => setOpen(false)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setOpen(false);
+                }}
                 className="absolute top-[clamp(12px,1.6vw,24px)] right-[clamp(14px,1.8vw,28px)] cursor-pointer appearance-none rounded-[2px] border-0 bg-[#FDC97A] px-[14px] py-[8px] text-[13px] font-semibold tracking-[0.18em] text-black uppercase transition-colors hover:bg-white"
               >
                 Close
               </button>
 
               {/* quality + play/pause + mute tiles, bottom right above the scrubber */}
-              <div className="absolute right-[clamp(14px,1.8vw,28px)] bottom-[clamp(52px,6vw,84px)] flex gap-[10px]">
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="absolute right-[clamp(14px,1.8vw,28px)] bottom-[clamp(52px,6vw,84px)] flex gap-[10px]"
+              >
                 <div className="relative">
                   <button
                     type="button"
@@ -278,7 +295,10 @@ export default function HeroVideoCard() {
               </div>
 
               {/* scrubber + timecodes along the bottom */}
-              <div className="absolute inset-x-[clamp(14px,1.8vw,28px)] bottom-[clamp(12px,1.6vw,22px)]">
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="absolute inset-x-[clamp(14px,1.8vw,28px)] bottom-[clamp(12px,1.6vw,22px)]"
+              >
                 <div
                   ref={barRef}
                   onClick={seek}

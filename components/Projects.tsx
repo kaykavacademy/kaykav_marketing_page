@@ -101,8 +101,11 @@ const INTERACT_COOLDOWN_MS = 4000; // pause after any manual interaction
 
 type Metrics = { step: number; inset: number };
 
-// card body shared by the desktop carousel slide and the mobile stacked list
-function ProjectCard({ project }: { project: Project }) {
+// card body shared by the desktop carousel slide and the mobile stacked list.
+// eager: carousel slides sit behind the section's overflow clip and move by
+// transform, so lazy loading reacts too late — they spring into the active
+// slot before the image has started fetching
+function ProjectCard({ project, eager = false }: { project: Project; eager?: boolean }) {
   return (
     <>
       <h3 className="mb-[clamp(14px,1.6vw,28px)] text-[clamp(24px,2.5vw,38px)] font-extrabold leading-[1.05] tracking-[-0.01em] text-white">
@@ -116,6 +119,7 @@ function ProjectCard({ project }: { project: Project }) {
           alt={`${project.name}, a student project`}
           fill
           draggable={false}
+          loading={eager ? "eager" : undefined}
           sizes="(max-width: 720px) 90vw, 56vw"
           className="pointer-events-none object-cover object-top"
         />
@@ -169,7 +173,7 @@ function Slide({
         onClick={(e) => onSelect(e, index)}
         className="block no-underline"
       >
-        <ProjectCard project={project} />
+        <ProjectCard project={project} eager />
       </a>
     </motion.div>
   );
