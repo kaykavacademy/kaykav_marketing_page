@@ -82,6 +82,16 @@ const PROJECTS: Project[] = [
       "Matches African students with fully funded scholarships that fit their goals.",
     builder: "Olanrewaju Olapade",
   },
+  {
+    name: "Biteplan",
+    src: "/projects/biteplan.png",
+    href: "https://biteplan-2.vercel.app/",
+    description:
+      "Discover intelligent, culturally rich meal recommendations, curated daily around your location, budget, and taste.",
+    builder: "John Taiwo",
+    // native 3006×1718 — wider than the default frame; match it so nothing crops
+    aspectClass: "aspect-[3006/1718]",
+  },
 ];
 
 const N = PROJECTS.length;
