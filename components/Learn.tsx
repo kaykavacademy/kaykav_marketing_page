@@ -54,7 +54,7 @@ export default function Learn() {
             >
               <RippleTiles cols={16} rows={12} tileClass="bg-[#FDC97A]" />
             </span>
-            <Reveal delay={(i % 3) * 0.06} y={40} className="relative z-10">
+            <Reveal delay={(i % 3) * 0.05} y={40} className="relative z-10">
               <span className="mb-[clamp(20px,2.4vw,40px)] block text-[clamp(64px,9.2vw,138px)] font-extrabold leading-none tracking-[-0.03em] text-dim-deep transition-colors duration-300 group-hover:text-black">
                 {item.num}
               </span>

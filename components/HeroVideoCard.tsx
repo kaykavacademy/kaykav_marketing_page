@@ -128,7 +128,7 @@ export default function HeroVideoCard() {
           type="button"
           aria-label="Play the course trailer"
           onClick={openPlayer}
-          className="group relative block aspect-[1.42/1] w-full cursor-pointer appearance-none overflow-hidden border-0 bg-transparent p-0 text-left shadow-[0_16px_48px_rgba(0,0,0,0.22)] max-[720px]:aspect-video"
+          className="group relative block aspect-[1.42/1] w-full cursor-pointer appearance-none overflow-hidden border-0 bg-transparent p-0 text-left shadow-[0_16px_48px_rgba(0,0,0,0.22)] transition-[scale] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] max-[720px]:aspect-video"
         >
           <video
             // React omits the `muted` attribute from SSR HTML, which can let the
@@ -148,7 +148,7 @@ export default function HeroVideoCard() {
             className="absolute inset-0 h-full w-full object-cover"
           />
           {/* 64×64 play tile — brand gold, flips white on hover like the CTAs */}
-          <span className="absolute top-1/2 left-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[2px] bg-[#FDC97A] shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-[background-color,transform] duration-[180ms] ease-[ease] group-hover:scale-105 group-hover:bg-white">
+          <span className="absolute top-1/2 left-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[2px] bg-[#FDC97A] shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-[background-color,scale] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:bg-white">
             <span className="ml-[4px] h-0 w-0 border-y-[11px] border-l-[17px] border-y-transparent border-l-black" />
           </span>
           {/* label overlaid on the footage */}
@@ -164,8 +164,9 @@ export default function HeroVideoCard() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            // ease-out in, ease-in out — arrivals settle, departures accelerate
+            exit={{ opacity: 0, transition: { duration: 0.2, ease: "easeIn" } }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             className="fixed inset-0 z-[100] bg-black"
           >
             <motion.div
@@ -211,7 +212,7 @@ export default function HeroVideoCard() {
                   e.stopPropagation();
                   setOpen(false);
                 }}
-                className="absolute top-[clamp(12px,1.6vw,24px)] right-[clamp(14px,1.8vw,28px)] cursor-pointer appearance-none rounded-[2px] border-0 bg-[#FDC97A] px-[14px] py-[8px] text-[13px] font-semibold tracking-[0.18em] text-black uppercase transition-colors hover:bg-white"
+                className="absolute top-[clamp(12px,1.6vw,24px)] right-[clamp(14px,1.8vw,28px)] cursor-pointer appearance-none rounded-[2px] border-0 bg-[#FDC97A] px-[14px] py-[8px] text-[13px] font-semibold tracking-[0.18em] text-black uppercase transition-[background-color,scale] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-white active:scale-[0.97]"
               >
                 Close
               </button>
@@ -226,7 +227,7 @@ export default function HeroVideoCard() {
                     type="button"
                     aria-label="Video quality"
                     onClick={() => setQualityMenu((o) => !o)}
-                    className="flex h-10 cursor-pointer appearance-none items-center justify-center rounded-[2px] border-0 bg-[#FDC97A] px-3 text-[12px] font-semibold text-black transition-colors hover:bg-white"
+                    className="flex h-10 cursor-pointer appearance-none items-center justify-center rounded-[2px] border-0 bg-[#FDC97A] px-3 text-[12px] font-semibold text-black transition-[background-color,scale] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-white active:scale-[0.97]"
                   >
                     {QUALITIES[quality].label}
                   </button>
@@ -239,7 +240,7 @@ export default function HeroVideoCard() {
                               key={q.label}
                               type="button"
                               onClick={() => switchQuality(i)}
-                              className={`block w-full cursor-pointer appearance-none border-0 px-4 py-2 text-left text-[12px] font-semibold text-black transition-colors ${
+                              className={`block w-full cursor-pointer appearance-none border-0 px-4 py-2 text-left text-[12px] font-semibold text-black transition-[background-color,scale] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.97] ${
                                 i === quality
                                   ? "bg-[#FDC97A]"
                                   : "bg-white hover:bg-[#FDC97A]"
@@ -256,7 +257,7 @@ export default function HeroVideoCard() {
                   type="button"
                   aria-label={playing ? "Pause" : "Play"}
                   onClick={togglePlay}
-                  className="flex h-10 w-10 cursor-pointer appearance-none items-center justify-center rounded-[2px] border-0 bg-[#FDC97A] transition-colors hover:bg-white"
+                  className="flex h-10 w-10 cursor-pointer appearance-none items-center justify-center rounded-[2px] border-0 bg-[#FDC97A] transition-[background-color,scale] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-white active:scale-[0.97]"
                 >
                   {playing ? (
                     <span className="flex gap-[4px]">
@@ -271,7 +272,7 @@ export default function HeroVideoCard() {
                   type="button"
                   aria-label={muted ? "Unmute" : "Mute"}
                   onClick={toggleMute}
-                  className="flex h-10 w-10 cursor-pointer appearance-none items-center justify-center rounded-[2px] border-0 bg-[#FDC97A] transition-colors hover:bg-white"
+                  className="flex h-10 w-10 cursor-pointer appearance-none items-center justify-center rounded-[2px] border-0 bg-[#FDC97A] transition-[background-color,scale] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-white active:scale-[0.97]"
                 >
                   <svg
                     viewBox="0 0 24 24"

@@ -11,6 +11,9 @@ import { useInView, useReducedMotion } from "framer-motion";
 // transform/opacity transitions off the main thread, so the glide stays
 // 60fps even while the main thread is busy (hydration, video, dev server).
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+// exits ease-in and run shorter: departures build momentum and get out of
+// the way; only entrances get the long settle (and the stagger delay)
+const EASE_IN = "cubic-bezier(0.32, 0, 0.67, 0)";
 
 export default function Reveal({
   children,
@@ -69,7 +72,9 @@ export default function Reveal({
           className="block will-change-transform"
           style={{
             transform: shown ? "translateY(0)" : "translateY(115%)",
-            transition: `transform ${duration + 0.15}s ${EASE} ${delay}s`,
+            transition: shown
+              ? `transform ${duration + 0.15}s ${EASE} ${delay}s`
+              : `transform ${(duration + 0.15) * 0.6}s ${EASE_IN}`,
           }}
         >
           {children}
@@ -85,7 +90,9 @@ export default function Reveal({
       style={{
         opacity: shown ? 1 : 0,
         transform: shown ? "translateY(0)" : `translateY(${y}px)`,
-        transition: `transform ${duration}s ${EASE} ${delay}s, opacity ${duration}s ${EASE} ${delay}s`,
+        transition: shown
+          ? `transform ${duration}s ${EASE} ${delay}s, opacity ${duration}s ${EASE} ${delay}s`
+          : `transform ${duration * 0.6}s ${EASE_IN}, opacity ${duration * 0.6}s ${EASE_IN}`,
       }}
     >
       {children}

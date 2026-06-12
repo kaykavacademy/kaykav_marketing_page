@@ -178,7 +178,7 @@ function Name({
         type="button"
         style={{ color }}
         onClick={() => onJump(index)}
-        className="relative inline-block cursor-pointer appearance-none border-0 bg-transparent p-0 text-[clamp(40px,min(9vw,11.5vh),130px)] font-extrabold leading-[1.08] tracking-[-0.02em]"
+        className="relative inline-block origin-left cursor-pointer appearance-none border-0 bg-transparent p-0 text-[clamp(40px,min(9vw,11.5vh),130px)] font-extrabold leading-[1.08] tracking-[-0.02em] transition-[scale] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-[1.02] active:scale-[0.98]"
       >
         {t.photo ? (
           <motion.span
