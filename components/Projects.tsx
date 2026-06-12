@@ -101,6 +101,38 @@ const INTERACT_COOLDOWN_MS = 4000; // pause after any manual interaction
 
 type Metrics = { step: number; inset: number };
 
+// card body shared by the desktop carousel slide and the mobile stacked list
+function ProjectCard({ project }: { project: Project }) {
+  return (
+    <>
+      <h3 className="mb-[clamp(14px,1.6vw,28px)] text-[clamp(24px,2.5vw,38px)] font-extrabold leading-[1.05] tracking-[-0.01em] text-white">
+        {project.name}
+      </h3>
+      <div
+        className={`relative overflow-hidden rounded-[2px] ${project.aspectClass ?? "aspect-[1.6/1]"}`}
+      >
+        <Image
+          src={project.src}
+          alt={`${project.name}, a student project`}
+          fill
+          draggable={false}
+          sizes="(max-width: 720px) 90vw, 56vw"
+          className="pointer-events-none object-cover object-top"
+        />
+      </div>
+      <div className="mt-[clamp(14px,1.6vw,28px)] flex flex-wrap items-start justify-between gap-[clamp(12px,1.4vw,24px)]">
+        <p className="max-w-[38ch] flex-1 basis-[30ch] text-[clamp(14px,1.15vw,19px)] font-medium leading-[1.4] text-white">
+          {project.description}
+        </p>
+        {/* builder badge — white tile like the reference card */}
+        <span className="whitespace-nowrap rounded-[2px] bg-white px-[clamp(12px,1.3vw,22px)] py-[clamp(9px,0.95vw,15px)] text-[clamp(12px,0.95vw,15px)] font-semibold text-black">
+          Built by {project.builder}
+        </span>
+      </div>
+    </>
+  );
+}
+
 function Slide({
   project,
   index,
@@ -137,31 +169,7 @@ function Slide({
         onClick={(e) => onSelect(e, index)}
         className="block no-underline"
       >
-        <h3 className="mb-[clamp(14px,1.6vw,28px)] text-[clamp(24px,2.5vw,38px)] font-extrabold leading-[1.05] tracking-[-0.01em] text-white">
-          {project.name}
-        </h3>
-        <div
-          className={`relative overflow-hidden rounded-[2px] ${project.aspectClass ?? "aspect-[1.6/1]"}`}
-        >
-          <Image
-            src={project.src}
-            alt={`${project.name}, a student project`}
-            fill
-            draggable={false}
-            loading="eager"
-            sizes="(max-width: 720px) 84vw, 56vw"
-            className="pointer-events-none object-cover object-top"
-          />
-        </div>
-        <div className="mt-[clamp(14px,1.6vw,28px)] flex flex-wrap items-start justify-between gap-[clamp(12px,1.4vw,24px)]">
-          <p className="max-w-[38ch] flex-1 basis-[30ch] text-[clamp(14px,1.15vw,19px)] font-medium leading-[1.4] text-white">
-            {project.description}
-          </p>
-          {/* builder badge — white tile like the reference card */}
-          <span className="whitespace-nowrap rounded-[2px] bg-white px-[clamp(12px,1.3vw,22px)] py-[clamp(9px,0.95vw,15px)] text-[clamp(12px,0.95vw,15px)] font-semibold text-black">
-            Built by {project.builder}
-          </span>
-        </div>
+        <ProjectCard project={project} />
       </a>
     </motion.div>
   );
@@ -299,9 +307,25 @@ export default function Projects() {
         </Reveal>
       </h2>
 
+      {/* mobile: every project stacked in a simple scrolling list */}
+      <div className="hidden flex-col gap-[clamp(56px,16vw,90px)] px-[var(--pad)] max-[720px]:flex">
+        {PROJECTS.map((p) => (
+          <a
+            key={p.name}
+            href={p.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block no-underline"
+          >
+            <ProjectCard project={p} />
+          </a>
+        ))}
+      </div>
+
+      {/* desktop: draggable infinite carousel */}
       <div
         ref={viewportRef}
-        className="relative"
+        className="relative max-[720px]:hidden"
         role="region"
         aria-label="Student projects carousel"
         tabIndex={0}

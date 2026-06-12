@@ -117,7 +117,7 @@ export default function HeroVideoCard() {
         type="button"
         aria-label="Play the course trailer"
         onClick={openPlayer}
-        className="group absolute right-[var(--pad)] bottom-[clamp(40px,5vw,80px)] block aspect-[1.42/1] w-[clamp(230px,25vw,350px)] cursor-pointer appearance-none overflow-hidden rounded-[4px] border-0 bg-transparent p-0 text-left shadow-[0_16px_48px_rgba(0,0,0,0.22)] max-[720px]:relative max-[720px]:right-auto max-[720px]:bottom-auto max-[720px]:mt-7 max-[720px]:w-full max-[720px]:max-w-[360px]"
+        className="group absolute right-[var(--pad)] bottom-[clamp(40px,5vw,80px)] block aspect-[1.42/1] w-[clamp(230px,25vw,350px)] cursor-pointer appearance-none overflow-hidden rounded-[4px] border-0 bg-transparent p-0 text-left shadow-[0_16px_48px_rgba(0,0,0,0.22)] max-[720px]:relative max-[720px]:right-auto max-[720px]:bottom-auto max-[720px]:mt-7 max-[720px]:aspect-video max-[720px]:w-full"
       >
         <video
           // React omits the `muted` attribute from SSR HTML, which can let the
@@ -162,7 +162,7 @@ export default function HeroVideoCard() {
               animate={{ scale: 1 }}
               exit={{ scale: 1.01 }}
               transition={{ type: "spring", stiffness: 320, damping: 30 }}
-              className="relative h-full w-full"
+              className="relative flex h-full w-full items-center justify-center"
             >
               <video
                 ref={videoRef}
@@ -186,7 +186,9 @@ export default function HeroVideoCard() {
                     else v.pause();
                   }
                 }}
-                className="absolute inset-0 h-full w-full cursor-pointer object-cover"
+                // desktop fills the screen (cover); mobile shows the whole
+                // frame fitted to the width, centered on black — reels-style
+                className="h-full w-full cursor-pointer object-cover max-[720px]:h-auto max-[720px]:aspect-video"
               />
 
               {/* CLOSE — spaced uppercase, top right */}

@@ -21,6 +21,7 @@ const delight = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://kaykav-marketing-page.vercel.app"),
   title: "KayKav Academy: Built, not prompted",
   description: "Ship a real, deployed MVP with AI agents in four weeks.",
   openGraph: {
