@@ -83,7 +83,7 @@ const PROJECTS: Project[] = [
     builder: "Olanrewaju Olapade",
   },
   {
-    name: "Biteplan",
+    name: "BitePlan",
     src: "/projects/biteplan.png",
     href: "https://biteplan-2.vercel.app/",
     description:
