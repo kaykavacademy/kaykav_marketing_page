@@ -12,7 +12,7 @@ export default function Footer() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/kaykav-academy-logo.svg"
-          alt="KayKav. Academy"
+          alt="KayKav Academy"
           className="block h-[clamp(34px,2.9vw,45px)] w-auto"
         />
       </div>
