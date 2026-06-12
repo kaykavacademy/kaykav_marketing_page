@@ -27,7 +27,7 @@ export default function Hero() {
           rel="noopener noreferrer"
           size="hero"
         >
-          Apply Now For Cohort 2.0
+          Apply for Cohort 2.0
         </CtaButton>
       </Reveal>
 

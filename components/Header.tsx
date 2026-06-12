@@ -16,7 +16,7 @@ export default function Header() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        Apply Now For Cohort 2.0
+        Apply for Cohort 2.0
       </CtaButton>
     </header>
   );

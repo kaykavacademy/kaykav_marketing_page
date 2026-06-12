@@ -21,7 +21,7 @@ export default function FinalCta() {
         size="banner"
         className="mt-[clamp(28px,3.2vw,52px)]"
       >
-        Apply Now For Cohort 2.0
+        Apply for Cohort 2.0
         <svg
           viewBox="0 0 24 24"
           fill="none"

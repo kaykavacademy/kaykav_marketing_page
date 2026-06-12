@@ -40,13 +40,22 @@ testimonial array — do not hardcode it.
 - **tag:** ONE BUILDER, WHOLE PRODUCT TEAM
 - **quote:**
   "The value I got was way more than the money I paid. As a designer, I moved through every function of a proper product team on one journey, walking away with a new understanding of databases and code stacks."
+- **Alternate quote (tag: BUILDING REAL SOLUTIONS — previously a separate SEWA slide, removed as a duplicate of Adesewa):**
+  "The value I got was way more than the money I paid. I joined just to build my portfolio, and now I'm creating a tool that solves a real problem: a wedding and ideas journal app."
+- **Product built:** a wedding and ideas journal app (Vows&Co)
+- **Full source:** "My experience with KayKav's Built Not Prompted course was quite impactful… the value I got was way more than the money I paid… I'm creating a tool that solves a real problem: a wedding and ideas journal app… I was able to move through all the functions you'd find in a proper product team — product management, business analysis, UI/UX, frontend and backend — on one singular journey (including the role of a CEO), handled effectively through the multi-agent workflow… As a designer, I walked away with new understanding of databases and code stacks… everyone should have a side project. KayKav is where you come to build it."
 
 ### 2. John Taiwo
 - **name:** JOHN
-- **tag:** THE MISSING PIECE
+- **tag:** FROM IDEA TO LAUNCH
 - **quote:**
+  "In May 2026, I had no idea how to build my product ideas. One month later, I built BitePlan to 80% launch readiness and started two more products. For me, that's a huge leap. Thanks to Kaykav and the team. Anyone serious about building products should take the class."
+- **Product built:** BitePlan
+- **Note:** John has two testimonials, merged into one slide showing the newer
+  BitePlan quote. The earlier one is kept below — swap in if preferred.
+- **Previous quote (tag: THE MISSING PIECE):**
   "As a Product Manager and Designer, the only piece missing from my skill set was development. This has been one of my best investments this year — I've learned to build products from scratch with AI, and I'm already applying it in my 9-5 by collaborating more effectively with my dev team."
-- **Full source:** "As a Product Manager and Designer, the only piece missing from my skill set was development. Enrolling in this class has been one of my best investments this year. I've learned how to build products from scratch using AI, worked on my personal projects and I'm already applying these skills in my 9-5 work by collaborating more effectively with my development team. A huge thank you to KayKav and the entire team for an incredible learning experience."
+- **Full source (previous):** "As a Product Manager and Designer, the only piece missing from my skill set was development. Enrolling in this class has been one of my best investments this year. I've learned how to build products from scratch using AI, worked on my personal projects and I'm already applying these skills in my 9-5 work by collaborating more effectively with my development team. A huge thank you to KayKav and the entire team for an incredible learning experience."
 
 ### 3. Eniola Alex
 - **name:** ENIOLA
@@ -56,38 +65,20 @@ testimonial array — do not hardcode it.
 - **Product built:** Precision — precision care for skin issues (https://www.tryprecisioncare.com)
 - **Full source:** "I came in with the goal of learning the ropes on how to set up the engineering for my startup, and this gave me all the empowerment I needed to get started. It's mind-blowing seeing how learning engineering is changing, and what's now possible just from knowing how to think systematically."
 
-### 4. Sewa (Adesewa Alternate)
-- **name:** SEWA
-- **tag:** BUILDING REAL SOLUTIONS
-- **quote:**
-  "The value I got was way more than the money I paid. I joined just to build my portfolio, and now I'm creating a tool that solves a real problem: a wedding and ideas journal app."
-- **Alternate quote:**
-  "I joined the cohort just to build my own portfolio — and now I'm creating a tool that solves a real problem, and already using it myself."
-- **Product built:** a wedding and ideas journal app
-- **Full source:** "My experience with KayKav's Built Not Prompted course was quite impactful… the value I got was way more than the money I paid… I'm creating a tool that solves a real problem: a wedding and ideas journal app… I was able to move through all the functions you'd find in a proper product team — product management, business analysis, UI/UX, frontend and backend — on one singular journey (including the role of a CEO), handled effectively through the multi-agent workflow… As a designer, I walked away with new understanding of databases and code stacks… everyone should have a side project. KayKav is where you come to build it."
-
-### 5. Wole Adaramola
+### 4. Wole Adaramola
 - **name:** WOLE
 - **tag:** PROMPTING IS A TECHNICAL SKILL
 - **quote:**
   "Prompting is a technical skill, not a 'one-shot' thing. You can't out-prompt a designer who can define every modality of the result they want, or an engineer who puts guardrails on the agents. Learn the skill of using AI — not just the vibes."
 - **Full source:** "In this era of AI and layoffs, your skill matters more than ever… Prompting is a technical skill, not a 'one-shot' thing. You can't out prompt a designer who is able to define all the modalities of the result they want to see or an engineer who can put guard rails and limits to the agents… we should also learn the skill of using AI, not just the vibes. Prompting is a technical skill. Learn it."
 
-### 6. Olaoluwa Obafemi
+### 5. Olaoluwa Obafemi
 - **name:** OLAOLUWA
 - **tag:** SHIPPING PRODUCTS FAST
 - **quote:**
   "A dream come true — you gave the first cohort a spark. Three weeks in, I'd shipped an expense tracker with Claude and Google Antigravity using well-constructed prompts. Cheers to shipping products fast."
 - **Full source (post 1):** "It's a dream come true and you made it possible… you gave me and other students of the first cohort a spark. Thank you. Cheers to shipping products fast!!!"
 - **Full source (post 2):** "I just got a new solo levelling skill… course on shipping MVP fast, we are 3 weeks down. So we built out an Expense tracker, using well constructed prompts on Claude and Google Antigravity… More projects to come."
-
-### 7. John Taiwo (BitePlan)
-- **name:** JOHN
-- **tag:** FROM IDEA TO LAUNCH
-- **quote:**
-  "In May 2026, I had no idea how to build my product ideas. One month later, I built BitePlan to 80% launch readiness and started two more products. For me, that's a huge leap. Thanks to Kaykav and the team. Anyone serious about building products should take the class."
-- **Product built:** BitePlan
-- **Note:** Second testimonial from John Taiwo (also #2, "The missing piece") — confirm whether to keep both slides or merge them.
 
 ---
 

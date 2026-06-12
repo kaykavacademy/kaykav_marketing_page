@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
+import Image from "next/image";
 import {
   motion,
   useMotionValue,
@@ -12,20 +13,31 @@ import {
 import Reveal from "./Reveal";
 
 // Source of truth: kaykav-testimonials.md (Cohort 01)
-const TESTIMONIALS = [
+type Testimonial = {
+  name: string;
+  color: string;
+  tag: string;
+  quote: string;
+  /** student headshot — roster indicator on desktop, in-card on mobile */
+  photo?: string;
+};
+
+const TESTIMONIALS: Testimonial[] = [
   {
     name: "Adesewa",
     color: "#f3b50c",
     tag: "One builder, whole product team",
     quote:
       "The value I got was way more than the money I paid. As a designer, I moved through every function of a proper product team on one journey, walking away with a new understanding of databases and code stacks.",
+    photo: "/testimonials/adesewa.png",
   },
   {
     name: "John",
     color: "#5bc0eb",
-    tag: "The missing piece",
+    tag: "From idea to launch",
     quote:
-      "As a Product Manager and Designer, the only piece missing from my skill set was development. This has been one of my best investments this year. I've learned to build products from scratch with AI, and I'm already applying it in my 9-5 by collaborating more effectively with my dev team.",
+      "In May 2026, I had no idea how to build my product ideas. One month later, I built BitePlan to 80% launch readiness and started two more products. For me, that's a huge leap. Thanks to Kaykav and the team. Anyone serious about building products should take the class.",
+    photo: "/testimonials/john.png",
   },
   {
     name: "Eniola",
@@ -33,13 +45,7 @@ const TESTIMONIALS = [
     tag: "Engineering for my startup",
     quote:
       "I came in to learn how to set up the engineering for my startup, and this gave me all the empowerment I needed to get started. It's mind-blowing what's now possible just from knowing how to think systematically.",
-  },
-  {
-    name: "Sewa",
-    color: "#f48fb1",
-    tag: "Building real solutions",
-    quote:
-      "The value I got was way more than the money I paid. I joined just to build my portfolio, and now I'm creating a tool that solves a real problem: a wedding and ideas journal app.",
+    photo: "/testimonials/eniola.png",
   },
   {
     name: "Wole",
@@ -54,13 +60,7 @@ const TESTIMONIALS = [
     tag: "Shipping products fast",
     quote:
       "A dream come true. You gave the first cohort a spark. Three weeks in, I'd shipped an expense tracker with Claude and Google Antigravity using well-constructed prompts. Cheers to shipping products fast.",
-  },
-  {
-    name: "John",
-    color: "#ffa552",
-    tag: "From idea to launch",
-    quote:
-      "In May 2026, I had no idea how to build my product ideas. One month later, I built BitePlan to 80% launch readiness and started two more products. For me, that's a huge leap. Thanks to Kaykav and the team. Anyone serious about building products should take the class.",
+    photo: "/testimonials/olaoluwa.png",
   },
 ];
 
@@ -84,11 +84,25 @@ const NUDGE_Y = [0, 12, 22, 8, 18, 26, 14];
 const CARD =
   "origin-center px-[clamp(22px,2.2vw,40px)] py-[clamp(20px,2vw,36px)] text-left text-[clamp(13px,1.5vw,24px)] font-extrabold uppercase leading-[1.32] tracking-[0.2px] text-[#131313] shadow-[14px_16px_0_rgba(0,0,0,0.3)]";
 
-function CardBody({ t }: { t: (typeof TESTIMONIALS)[number] }) {
+function CardBody({ t, withPhoto = false }: { t: Testimonial; withPhoto?: boolean }) {
+  const photo = withPhoto && t.photo;
   return (
     <>
       {t.quote}
-      <div className="mt-[1.2em] flex items-end justify-between gap-3 text-[0.72em]">
+      {photo && (
+        <span className="relative mt-[1.1em] block h-[clamp(64px,18vw,88px)] w-[clamp(64px,18vw,88px)] overflow-hidden rounded-[4px]">
+          <Image
+            src={photo}
+            alt={`${t.name}, KayKav Academy student`}
+            fill
+            sizes="88px"
+            className="object-cover"
+          />
+        </span>
+      )}
+      <div
+        className={`${photo ? "mt-[0.7em]" : "mt-[1.2em]"} flex items-end justify-between gap-3 text-[0.72em]`}
+      >
         <span>{t.name}</span>
         <span className="text-right">{t.tag}</span>
       </div>
@@ -144,14 +158,16 @@ function Name({
   onJump: (i: number) => void;
   itemRef: (el: HTMLLIElement | null) => void;
 }) {
+  const t = TESTIMONIALS[index];
   const color = useTransform(progress, (v) => {
     const active = Math.min(N - 1, Math.max(0, Math.floor(v * N)));
     return active === index ? "#ffffff" : "#7da0cd";
   });
-  // gold caret marks the active name — function form keeps it JS-driven and
-  // in lockstep with the color above (range form gets compiled to a native
-  // scroll animation, which proved unreliable here)
-  const caretOpacity = useTransform(progress, (v) => {
+  // the student photo (gold caret when none exists) marks the active name —
+  // function form keeps it JS-driven and in lockstep with the color above
+  // (range form gets compiled to a native scroll animation, which proved
+  // unreliable here)
+  const markerOpacity = useTransform(progress, (v) => {
     const active = Math.min(N - 1, Math.max(0, Math.floor(v * N)));
     return active === index ? 1 : 0;
   });
@@ -163,12 +179,22 @@ function Name({
         onClick={() => onJump(index)}
         className="relative inline-block cursor-pointer appearance-none border-0 bg-transparent p-0 text-[clamp(40px,min(9vw,11.5vh),130px)] font-extrabold leading-[1.08] tracking-[-0.02em]"
       >
-        <motion.span
-          aria-hidden
-          style={{ opacity: caretOpacity }}
-          className="absolute top-1/2 left-[-0.62em] h-0 w-0 -translate-y-1/2 border-y-[0.21em] border-l-[0.36em] border-y-transparent border-l-[#FDC97A]"
-        />
-        {TESTIMONIALS[index].name}
+        {t.photo ? (
+          <motion.span
+            aria-hidden
+            style={{ opacity: markerOpacity }}
+            className="absolute top-1/2 left-[-1.55em] block h-[1.3em] w-[1.3em] -translate-y-1/2 overflow-hidden rounded-[0.07em]"
+          >
+            <Image src={t.photo} alt="" fill sizes="192px" className="object-cover" />
+          </motion.span>
+        ) : (
+          <motion.span
+            aria-hidden
+            style={{ opacity: markerOpacity }}
+            className="absolute top-1/2 left-[-0.62em] h-0 w-0 -translate-y-1/2 border-y-[0.21em] border-l-[0.36em] border-y-transparent border-l-[#FDC97A]"
+          />
+        )}
+        {t.name}
       </motion.button>
     </li>
   );
@@ -300,7 +326,7 @@ export default function Testimonials() {
               }}
               className={CARD}
             >
-              <CardBody t={t} />
+              <CardBody t={t} withPhoto />
             </div>
           ))}
         </div>
