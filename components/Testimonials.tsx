@@ -82,7 +82,7 @@ const NUDGE_X = [0, 16, -12, 10, -16, 14, -8];
 const NUDGE_Y = [0, 12, 22, 8, 18, 26, 14];
 
 const CARD =
-  "origin-center px-[clamp(22px,2.2vw,40px)] py-[clamp(20px,2vw,36px)] text-left text-[clamp(13px,1.5vw,24px)] font-extrabold uppercase leading-[1.32] tracking-[0.2px] text-[#131313] shadow-[14px_16px_0_rgba(0,0,0,0.3)]";
+  "origin-center px-[clamp(22px,2.2vw,40px)] py-[clamp(20px,2vw,36px)] text-left text-[clamp(13px,1.5vw,24px)] font-extrabold leading-[1.32] tracking-[0.2px] text-[#131313] shadow-[14px_16px_0_rgba(0,0,0,0.3)]";
 
 function CardBody({ t, withPhoto = false }: { t: Testimonial; withPhoto?: boolean }) {
   const photo = withPhoto && t.photo;

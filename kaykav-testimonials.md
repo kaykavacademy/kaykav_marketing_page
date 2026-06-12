@@ -14,7 +14,7 @@ Each testimonial slide has four content fields:
 | Field | Maps to | Notes |
 |---|---|---|
 | `name` | Floating highlighted name + the full roster of names | First name, uppercase (e.g. `ZAINAB`) |
-| `quote` | The large quote body | Keep the all-caps treatment already in the design |
+| `quote` | The large quote body | Rendered in normal (sentence) case |
 | `attribution` | The "— NAME" line under the quote | Same as `name` |
 | `tag` | The topic label (bottom-right) | Short, 2–4 words, all-caps in the design |
 
