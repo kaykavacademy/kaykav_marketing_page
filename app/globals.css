@@ -1,194 +1,75 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'Delight';
-  src: url('/fonts/Delight-Thin.woff2') format('woff2');
-  font-weight: 100; font-display: swap;
-}
-@font-face {
-  font-family: 'Delight';
-  src: url('/fonts/Delight-ExtraLight.woff2') format('woff2');
-  font-weight: 200; font-display: swap;
-}
-@font-face {
-  font-family: 'Delight';
-  src: url('/fonts/Delight-Light.woff2') format('woff2');
-  font-weight: 300; font-display: swap;
-}
-@font-face {
-  font-family: 'Delight';
-  src: url('/fonts/Delight-Regular.woff2') format('woff2');
-  font-weight: 400; font-display: swap;
-}
-@font-face {
-  font-family: 'Delight';
-  src: url('/fonts/Delight-Medium.woff2') format('woff2');
-  font-weight: 500; font-display: swap;
-}
-@font-face {
-  font-family: 'Delight';
-  src: url('/fonts/Delight-SemiBold.woff2') format('woff2');
-  font-weight: 600; font-display: swap;
-}
-@font-face {
-  font-family: 'Delight';
-  src: url('/fonts/Delight-Bold.woff2') format('woff2');
-  font-weight: 700; font-display: swap;
-}
-@font-face {
-  font-family: 'Delight';
-  src: url('/fonts/Delight-ExtraBold.woff2') format('woff2');
-  font-weight: 800; font-display: swap;
-}
-@font-face {
-  font-family: 'Delight';
-  src: url('/fonts/Delight-Black.woff2') format('woff2');
-  font-weight: 900; font-display: swap;
+@theme {
+  --font-sans: var(--font-delight), "Helvetica Neue", Helvetica, Arial,
+    system-ui, sans-serif;
+  --font-display-serif: Georgia, "Times New Roman", serif;
+
+  /* brand background + line variants derived from it */
+  --color-brand: #295898;
+  --color-line: #3a6cae; /* all dividers share the same contrast */
+  --color-dim: #7da0cd; /* dimmed text, e.g. inactive names (was #6e6e6e) */
+  --color-dim-deep: #6e92c2; /* deeper dimmed text, e.g. grid numbers (was #5f5f5f) */
 }
 
-/* ── Tokens ──────────────────────────────────────────────── */
 :root {
-  --bg:            #F7F4EE;
-  --bg-surface:    #EEE9DF;
-  --bg-elevated:   #E4DDD0;
-  --fg:            #111111;
-  --fg-2:          #6B6050;
-  --fg-3:          #B0A490;
-  --accent:        #295898;
-  --accent-hover:  #1e4274;
-  --gold:          #D3A35C;
-  --border:        #111111;
-  --border-light:  #D4CEC4;
+  /* ruler chrome thickness (keep in sync with SIZE in FancyRuler.tsx; ruler hides below md) */
+  --ruler: 0px;
+  /* page gutter — clears the ruler chrome plus the usual breathing room */
+  --pad: calc(var(--ruler) + clamp(18px, 2.2vw, 34px));
+  /* sticky header height: logo height + vertical padding (keep in sync with Header.tsx) */
+  --header-h: calc(clamp(36px, 3.2vw, 50px) + 2 * clamp(14px, 1.4vw, 22px));
+  /* shared button metrics — nav CTA, hero buttons and final CTA stay in sync */
+  --btn-h: clamp(50px, 4.7vw, 64px);
+  --btn-fs: clamp(16px, 1.45vw, 22px);
+  --btn-px: clamp(22px, 2.2vw, 40px);
 }
 
-/* ── Reset / Base ────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html, body {
-  background-color: #000;
-  color: #111111;
-  font-family: 'Delight', sans-serif;
-  cursor: none;
-  overflow-x: hidden;
+html {
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background: #295898;
+  /* brand scrollbar (Firefox) — peach thumb on deep navy */
+  scrollbar-color: #fdc97a #1c3a66;
 }
 
-a, button { cursor: none; }
-
-
-/* ── Custom cursor ───────────────────────────────────────── */
-#cursor-dot {
-  position: fixed; top: 0; left: 0;
-  width: 7px; height: 7px;
-  background: var(--gold);
-  border-radius: 50%;
-  pointer-events: none; z-index: 9999;
-  transform: translate(-50%, -50%);
-  will-change: transform;
+/* brand scrollbar (Chrome/Safari/Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #1c3a66;
+}
+::-webkit-scrollbar-thumb {
+  background: #fdc97a;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
 }
 
-#cursor-ring {
-  position: fixed; top: 0; left: 0;
-  width: 36px; height: 36px;
-  border: 1.5px solid rgba(211, 163, 92, 0.5);
-  border-radius: 50%;
-  pointer-events: none; z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: width .22s, height .22s, border-color .22s;
-  will-change: transform;
-}
-#cursor-ring.hovering { width: 60px; height: 60px; border-color: rgba(211, 163, 92, 0.9); }
-
-/* ── Marquee ─────────────────────────────────────────────── */
-.marquee-inner {
-  display: flex; width: max-content;
-  animation: ticker 30s linear infinite;
-}
-.marquee-wrap:hover .marquee-inner { animation-play-state: paused; }
-@keyframes ticker {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+@media (min-width: 768px) {
+  :root {
+    --ruler: 26px;
+  }
 }
 
-/* ── Scroll animations ───────────────────────────────────── */
-
-/* Fade up — generic blocks */
-.anim-fade {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+body {
+  background: #295898;
+  color: #fff;
+  font-family: var(--font-sans);
+  line-height: 1.1;
+  overflow-x: hidden;
+  /* keep content below the top ruler */
+  padding-top: var(--ruler);
 }
-.anim-fade.visible { opacity: 1; transform: translateY(0); }
 
-/* Word-split heading reveal */
-.word-mask {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-  line-height: inherit;
+button {
+  font-family: inherit;
 }
-.word-inner {
-  display: inline-block;
-  transform: translateY(108%);
-  transition: transform .85s cubic-bezier(.16,1,.3,1);
+
+/* drag-out ruler guides — gold like the rest of the chrome */
+.scena-guides-guide {
+  background: #FDC97A !important;
 }
-.split-heading.visible .word-inner { transform: translateY(0); }
-
-/* Stagger delays for word children */
-.split-heading.visible .word-mask:nth-child(1)  .word-inner { transition-delay: 0s }
-.split-heading.visible .word-mask:nth-child(2)  .word-inner { transition-delay: .06s }
-.split-heading.visible .word-mask:nth-child(3)  .word-inner { transition-delay: .12s }
-.split-heading.visible .word-mask:nth-child(4)  .word-inner { transition-delay: .18s }
-.split-heading.visible .word-mask:nth-child(5)  .word-inner { transition-delay: .24s }
-.split-heading.visible .word-mask:nth-child(6)  .word-inner { transition-delay: .30s }
-.split-heading.visible .word-mask:nth-child(7)  .word-inner { transition-delay: .36s }
-.split-heading.visible .word-mask:nth-child(8)  .word-inner { transition-delay: .42s }
-
-/* Line reveal — for multi-line headings */
-.line-mask  { overflow: hidden; display: block; }
-.line-inner {
-  display: block;
-  transform: translateY(105%);
-  transition: transform .9s cubic-bezier(.16,1,.3,1);
-}
-.anim-lines.visible .line-inner { transform: translateY(0); }
-.anim-lines.visible .line-mask:nth-child(1) .line-inner { transition-delay: 0s }
-.anim-lines.visible .line-mask:nth-child(2) .line-inner { transition-delay: .1s }
-.anim-lines.visible .line-mask:nth-child(3) .line-inner { transition-delay: .2s }
-.anim-lines.visible .line-mask:nth-child(4) .line-inner { transition-delay: .3s }
-
-/* Stagger grid children */
-.anim-stagger > * {
-  opacity: 0; transform: translateY(20px);
-  transition: opacity .65s ease, transform .65s ease;
-}
-.anim-stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0s }
-.anim-stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:.07s }
-.anim-stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:.14s }
-.anim-stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:.21s }
-.anim-stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:.28s }
-.anim-stagger.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay:.35s }
-
-/* ── Scrollbar ───────────────────────────────────────────── */
-::-webkit-scrollbar { width: 2px; }
-::-webkit-scrollbar-track { background: #F7F4EE; }
-::-webkit-scrollbar-thumb { background: var(--border-light); }
-
-/* ── Nav hover underline ─────────────────────────────────── */
-.nav-link { position: relative; }
-.nav-link::after {
-  content: ''; position: absolute; bottom: -1px; left: 0;
-  width: 0; height: 1px; background: var(--fg);
-  transition: width .3s cubic-bezier(.16,1,.3,1);
-}
-.nav-link:hover::after { width: 100%; }
-
-/* ── Cell hover fills ────────────────────────────────────── */
-.hover-fill {
-  transition: background .35s ease;
-}
-.hover-fill:hover { background: var(--accent) !important; }
-.hover-fill:hover p,
-.hover-fill:hover h3,
-.hover-fill:hover span:not(.no-invert) { color: #fff !important; }
-.hover-fill:hover [data-tag] { border-color: rgba(255,255,255,.25) !important; color: rgba(255,255,255,.7) !important; }

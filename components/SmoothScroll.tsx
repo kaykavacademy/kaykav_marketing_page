@@ -1,65 +1,34 @@
 "use client";
-import { useEffect } from "react";
 
-// Spring-like ease out (overshoots slightly then settles)
-function easeOutBack(x: number): number {
-  const c1 = 1.70158;
-  const c3 = c1 + 1;
-  return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+import { useEffect } from "react";
+import Lenis from "lenis";
+
+declare global {
+  interface Window {
+    __lenis?: Lenis;
+  }
 }
 
+// inertia scrolling — wheel input eases into the scroll position instead of
+// stepping, so scroll-linked animations glide. Exposed on window for
+// programmatic scrolls (e.g. testimonial name jumps) to ride the same easing.
 export default function SmoothScroll() {
   useEffect(() => {
-    const handleAnchorClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const anchor = target.closest("a");
-      if (!anchor) return;
-      
-      const href = anchor.getAttribute("href");
-      // Only intercept internal # links
-      if (!href || !href.startsWith("#") || href.length === 1) return;
-      
-      const targetElement = document.querySelector(href);
-      if (!targetElement) return;
-      
-      e.preventDefault();
-      
-      const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
-      const startPosition = window.scrollY;
-      const distance = targetPosition - startPosition;
-      
-      let start: number | null = null;
-      // Duration of the jump animation in ms
-      const duration = 1000; 
-      
-      const step = (timestamp: number) => {
-        if (!start) start = timestamp;
-        const progress = timestamp - start;
-        const percent = Math.min(progress / duration, 1);
-        
-        // Apply spring easing
-        const ease = easeOutBack(percent);
-        
-        window.scrollTo(0, startPosition + distance * ease);
-        
-        if (progress < duration) {
-          window.requestAnimationFrame(step);
-        } else {
-          // Ensure we land exactly on target
-          window.scrollTo(0, targetPosition);
-          // Update URL hash without causing a jump
-          window.history.pushState(null, "", href);
-        }
-      };
-      
-      window.requestAnimationFrame(step);
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) return;
+    const lenis = new Lenis({ lerp: 0.105, smoothWheel: true });
+    window.__lenis = lenis;
+    let raf = 0;
+    const loop = (time: number) => {
+      lenis.raf(time);
+      raf = requestAnimationFrame(loop);
     };
-
-    // Use capturing phase to intercept before Next.js Link or other handlers
-    document.addEventListener("click", handleAnchorClick, { capture: true });
-    
-    return () => document.removeEventListener("click", handleAnchorClick, { capture: true });
+    raf = requestAnimationFrame(loop);
+    return () => {
+      cancelAnimationFrame(raf);
+      lenis.destroy();
+      delete window.__lenis;
+    };
   }, []);
-  
   return null;
 }

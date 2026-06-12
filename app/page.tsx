@@ -1,30 +1,22 @@
-import Nav from "@/components/Nav";
+import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Course from "@/components/Course";
-import Enrol from "@/components/Enrol";
+import Learn from "@/components/Learn";
 import Projects from "@/components/Projects";
 import Testimonials from "@/components/Testimonials";
-import Cta from "@/components/Cta";
+import FinalCta from "@/components/FinalCta";
 import Footer from "@/components/Footer";
-import Cursor from "@/components/Cursor";
-import ScrollReveal from "@/components/ScrollReveal";
-import FloatingCTA from "@/components/FloatingCTA";
 
 export default function Home() {
   return (
     <>
-      <Cursor />
-      <ScrollReveal />
-      <Nav />
+      <Header />
       <main>
         <Hero />
-        <Course />
-        <Enrol />
+        <Learn />
         <Projects />
         <Testimonials />
+        <FinalCta />
       </main>
-      <Cta />
-      <FloatingCTA />
       <Footer />
     </>
   );

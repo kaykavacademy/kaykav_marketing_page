@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KayKav. Academy — Built, not prompted</title>
+<style>
+  /* ============ RESET ============ */
+  *,
+  *::before,
+  *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #000000;
+    --white: #ffffff;
+    --yellow: #f2d200;
+    --yellow-note: #f3cf1d;
+    --gray-line: #1d1d1d;
+    --gray-text: #8a8a8a;
+    --gray-num: #3a3a3a;
+    --gray-name: #383838;
+    --pad: clamp(18px, 2.2vw, 34px);
+    --font: "Helvetica Neue", Helvetica, Arial, "Inter", system-ui, sans-serif;
+    /* shared button metrics — nav CTA and hero buttons use the same font + height */
+    --btn-h: clamp(50px, 4.7vw, 64px);
+    --btn-fs: clamp(14px, 1.45vw, 22px);
+    --btn-px: clamp(22px, 2.2vw, 40px);
+  }
+
+  html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font);
+    line-height: 1.1;
+    overflow-x: hidden;
+  }
+
+  .wrap { padding-left: var(--pad); padding-right: var(--pad); }
+
+  /* ============ HEADER ============ */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: clamp(14px, 1.4vw, 22px);
+    padding-bottom: clamp(14px, 1.4vw, 22px);
+    gap: 20px;
+  }
+
+  .logo { display: inline-flex; align-items: center; }
+  .logo-img {
+    display: block;
+    height: clamp(36px, 3.2vw, 50px);
+    width: auto;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    white-space: nowrap;
+    transition: background .18s ease, color .18s ease;
+  }
+  .btn-outline {
+    color: var(--white);
+    background: transparent;
+    border-color: var(--white);
+  }
+  .btn-outline:hover { background: var(--white); color: var(--black); }
+  .btn-solid {
+    color: var(--black);
+    background: var(--white);
+    border-color: var(--white);
+  }
+  .btn-solid:hover { background: #d9d9d9; border-color: #d9d9d9; }
+
+  .header-cta {
+    font-size: var(--btn-fs);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    padding: 0 var(--btn-px);
+    border-radius: 2px;
+    min-height: var(--btn-h);
+  }
+
+  /* ============ HERO ============ */
+  .hero { position: relative; padding-top: clamp(24px, 4vw, 64px); padding-bottom: clamp(40px, 5vw, 80px); }
+
+  .hero h1 {
+    font-weight: 800;
+    font-size: clamp(64px, 14.6vw, 226px);
+    line-height: 0.86;
+    letter-spacing: -0.025em;
+    margin-left: -0.01em;
+  }
+
+  .hero .sub {
+    margin-top: clamp(30px, 3.8vw, 62px);
+    font-size: clamp(18px, 2vw, 32px);
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 0;
+  }
+
+  .hero-actions {
+    margin-top: clamp(28px, 3.4vw, 56px);
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .hero-actions .btn {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    padding: 0 var(--btn-px);
+    min-height: var(--btn-h);
+    border-radius: 2px;
+  }
+
+  /* --- hero video card (bottom-right) --- */
+  .hero-video {
+    position: absolute;
+    right: var(--pad);
+    bottom: clamp(40px, 5vw, 80px);
+    width: clamp(230px, 25vw, 350px);
+    aspect-ratio: 1.42 / 1;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    background:
+      linear-gradient(180deg, rgba(8,10,16,.12) 0%, rgba(8,10,16,.62) 100%),
+      radial-gradient(120% 110% at 64% 30%, #545765 0%, #34373f 48%, #181a20 100%);
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 24px 60px rgba(0,0,0,.45);
+  }
+  .hero-video .play {
+    position: absolute;
+    top: 33%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(46px, 4.2vw, 62px);
+    height: clamp(46px, 4.2vw, 62px);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    background: rgba(0,0,0,.18);
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .18s ease, background .18s ease;
+  }
+  .hero-video:hover .play { transform: translate(-50%,-50%) scale(1.06); background: rgba(0,0,0,.32); }
+  .hero-video .play::after {
+    content: "";
+    width: 0; height: 0;
+    border-left: clamp(13px, 1.1vw, 17px) solid #fff;
+    border-top: clamp(8px, 0.7vw, 11px) solid transparent;
+    border-bottom: clamp(8px, 0.7vw, 11px) solid transparent;
+    margin-left: clamp(3px, 0.3vw, 5px);
+  }
+  .hero-video .caption {
+    position: absolute;
+    left: clamp(14px, 1.4vw, 22px);
+    bottom: clamp(14px, 1.4vw, 22px);
+    color: #fff;
+    text-shadow: 0 2px 12px rgba(0,0,0,.5);
+  }
+  .hero-video .caption .l1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic; font-weight: 500;
+    font-size: clamp(19px, 2vw, 28px);
+    line-height: 1;
+  }
+  .hero-video .caption .l2 {
+    font-weight: 800;
+    font-size: clamp(20px, 2.1vw, 30px);
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    margin-top: 3px;
+  }
+
+  /* ============ SECTION HEADINGS ============ */
+  .section-title {
+    font-weight: 800;
+    font-size: clamp(40px, 6.6vw, 102px);
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+  }
+
+  /* ============ STUDENT PROJECTS ============ */
+  .projects { padding-top: clamp(34px, 4vw, 64px); padding-bottom: clamp(34px, 4vw, 60px); }
+
+  .projects .section-title { margin-bottom: clamp(22px, 2.4vw, 40px); }
+
+  .proj-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(10px, 1vw, 16px);
+  }
+  .card {
+    position: relative;
+    aspect-ratio: 1.1 / 1;
+    overflow: hidden;
+    border-radius: 2px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* --- matera card --- */
+  .card-matera {
+    background:
+      linear-gradient(180deg, rgba(20,18,16,.55), rgba(20,18,16,.78)),
+      radial-gradient(120% 90% at 70% 10%, #6e6256 0%, #3c352d 45%, #211d18 100%);
+  }
+  .tag {
+    position: absolute; top: 16px; left: 16px;
+    background: var(--white); color: var(--black);
+    font-size: clamp(8px, 0.62vw, 10px); font-weight: 700;
+    letter-spacing: 0.6px;
+    padding: 7px 11px; border-radius: 2px; z-index: 3;
+  }
+  .card-matera .center {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 2px;
+    text-align: center;
+  }
+  .card-matera .center .ttl {
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-weight: 500;
+    color: #f3efe9;
+    font-size: clamp(22px, 3vw, 46px);
+    line-height: 1.04;
+    letter-spacing: 0.5px;
+  }
+  .brand-bottom {
+    position: absolute; left: 0; right: 0; bottom: clamp(14px, 1.4vw, 22px);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    color: #f3efe9; font-weight: 600; letter-spacing: 0.3px;
+    font-size: clamp(11px, 1vw, 16px);
+  }
+  .brand-bottom .tri {
+    width: 0; height: 0;
+    border-left: 5px solid transparent; border-right: 5px solid transparent;
+    border-bottom: 9px solid #f3efe9;
+  }
+  .keys {
+    position: absolute; top: 8px; right: 14%;
+    font-size: clamp(22px, 2.6vw, 40px); transform: rotate(12deg); opacity: .9;
+    filter: saturate(1.2);
+  }
+
+  /* --- chance card (yellow) --- */
+  .card-chance { background: var(--yellow); color: var(--black); }
+  .card-chance .badge {
+    position: absolute; top: 14px; right: 16px;
+    background: #ff2d2d; color: #fff; font-weight: 800;
+    font-size: clamp(7px, 0.55vw, 9px); letter-spacing: .4px;
+    padding: 4px 8px; border-radius: 20px; transform: rotate(8deg);
+  }
+  .card-chance .headline {
+    position: absolute; top: 38%; left: 0; right: 0;
+    text-align: center; transform: translateY(-50%);
+    font-weight: 800; line-height: 0.9; letter-spacing: -0.01em;
+    font-size: clamp(22px, 3.2vw, 50px);
+  }
+  .card-chance .chance {
+    position: absolute; left: 0; right: 0; bottom: clamp(16px, 1.6vw, 26px);
+    text-align: center; font-weight: 700; letter-spacing: 0.4px;
+    font-size: clamp(12px, 1.1vw, 18px);
+  }
+  .collage { position: absolute; inset: 0; pointer-events: none; }
+  .collage i {
+    position: absolute; display: block; border-radius: 3px;
+    background: rgba(0,0,0,.12);
+    box-shadow: 0 3px 10px rgba(0,0,0,.15);
+  }
+  .collage i:nth-child(1){ width: 22%; height: 24%; top: 6%; left: 30%; transform: rotate(-6deg);
+    background: linear-gradient(135deg,#3a5a8a,#6f86a8); }
+  .collage i:nth-child(2){ width: 16%; height: 20%; top: 8%; left: 56%; transform: rotate(7deg);
+    background: linear-gradient(135deg,#7a5a3a,#b08a5a); }
+  .collage i:nth-child(3){ width: 18%; height: 22%; bottom: 22%; left: 8%; transform: rotate(-8deg);
+    background: linear-gradient(135deg,#444,#888); }
+  .collage i:nth-child(4){ width: 17%; height: 20%; bottom: 20%; right: 9%; transform: rotate(9deg);
+    background: linear-gradient(135deg,#5a6a4a,#8aa07a); }
+
+  /* --- silvr billboard card --- */
+  .card-silvr { background: linear-gradient(180deg,#dfe2e6 0%, #cfd4da 60%, #b9bfc6 100%); color: #111; }
+  .billboard {
+    position: absolute; top: 16%; left: 12%; width: 64%; aspect-ratio: 1.7/1;
+    background: #fff; border-radius: 4px;
+    box-shadow: 0 16px 30px rgba(0,0,0,.18);
+    padding: 9% 9% 0;
+    overflow: hidden;
+  }
+  .billboard .bb-ttl {
+    font-weight: 700; font-size: clamp(9px, 0.95vw, 15px);
+    line-height: 1.05; color: #111;
+  }
+  .billboard .bb-tag {
+    position: absolute; top: 9%; right: 9%;
+    font-size: clamp(5px,.45vw,7px); font-weight: 700;
+    border: 1px solid #111; border-radius: 20px; padding: 2px 6px;
+  }
+  .billboard .blob {
+    position: absolute; bottom: -6%; left: 30%; width: 55%; aspect-ratio: 1/1;
+    background: radial-gradient(circle at 35% 35%, #ffd1e6, #f7a8c8 55%, #e98bb4);
+    border-radius: 50%; filter: blur(.3px);
+  }
+  .billboard .blob.b2 { left: 12%; width: 36%; bottom: 2%; background: radial-gradient(circle at 35% 35%, #ffe0ee,#f8b9d2); }
+  .post { position: absolute; bottom: 0; left: 40%; width: 5%; height: 38%; background: linear-gradient(90deg,#9aa0a6,#7d838a); }
+  .card-silvr .silvr-logo {
+    position: absolute; left: 16%; bottom: 9%;
+    font-weight: 800; font-size: clamp(9px,.9vw,14px);
+    border: 1px solid #111; border-radius: 20px; padding: 4px 12px;
+    background: rgba(255,255,255,.6);
+  }
+
+  /* --- intramuros desert cards --- */
+  .card-intra {
+    background:
+      linear-gradient(165deg, #d8c79f 0%, #cab693 35%, #bda674 70%, #a98e57 100%);
+    color: #2a2418;
+  }
+  .card-intra .book {
+    position: absolute; left: 50%; top: 46%; transform: translate(-50%,-50%) rotate(-2deg);
+    width: 34%; aspect-ratio: .8/1; border-radius: 3px;
+    background: linear-gradient(160deg,#f4d23a 0%, #e9c21f 100%);
+    box-shadow: 0 14px 26px rgba(0,0,0,.28);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6%;
+    padding: 8%;
+  }
+  .card-intra .book .pg {
+    width: 70%; height: 5%; background: rgba(40,32,12,.8); border-radius: 2px;
+  }
+  .card-intra .book .pg.big { height: 14%; width: 80%; background: #2a2210; }
+  .card-intra .arms {
+    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 72%; height: 42%;
+    background: radial-gradient(120% 130% at 50% 120%, #6b4a32 0%, #6b4a32 40%, transparent 70%);
+  }
+  .card-intra .shirt {
+    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 50%; height: 22%; background: #efeae0; border-radius: 50% 50% 0 0;
+  }
+  .card-intra .intra-logo {
+    position: absolute; left: clamp(12px,1.2vw,20px); bottom: clamp(12px,1.2vw,20px);
+    font-weight: 600; letter-spacing: .3px; color: #2a2418;
+    font-size: clamp(11px, 1vw, 16px);
+  }
+
+  /* ============ WHAT YOU WILL LEARN ============ */
+  .learn { border-top: 1px solid #2c2c2c; padding-top: clamp(44px, 6vw, 96px); padding-bottom: clamp(40px, 5vw, 80px); }
+  .learn .section-title { margin-bottom: clamp(46px, 7.8vw, 112px); }
+  .learn-lead {
+    display: flex; justify-content: flex-end;
+    margin-bottom: clamp(56px, 10vw, 144px);
+  }
+  .learn-lead p {
+    width: 66%;
+    max-width: 950px;
+    font-size: clamp(19px, 2.5vw, 36px);
+    font-weight: 700;
+    line-height: 1.33;
+    letter-spacing: -0.01em;
+  }
+
+  .learn-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid #2c2c2c;
+  }
+  .learn-cell {
+    position: relative;
+    border-bottom: 1px solid #2c2c2c;
+    border-right: 1px solid #2c2c2c;
+    padding: clamp(16px, 1.4vw, 24px) clamp(18px, 1.8vw, 30px) clamp(50px, 6.4vw, 96px);
+    padding-left: clamp(18px, 1.8vw, 30px);
+  }
+  .learn-cell:nth-child(3n) { border-right: none; }
+  .learn-cell:nth-child(3n+1) { padding-left: 0; }
+  .learn-cell .num {
+    display: block;
+    font-weight: 800;
+    color: #5f5f5f;
+    font-size: clamp(64px, 9.2vw, 138px);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: clamp(20px, 2.4vw, 40px);
+  }
+  .learn-cell .txt {
+    color: #fff;
+    font-size: clamp(15px, 1.95vw, 28px);
+    font-weight: 700;
+    line-height: 1.32;
+    letter-spacing: -0.005em;
+  }
+
+  /* ============ NAMES / TESTIMONIAL ============ */
+  .names {
+    position: relative;
+    padding-top: clamp(40px, 5vw, 84px);
+    padding-bottom: clamp(40px, 5vw, 84px);
+  }
+  .name-list {
+    list-style: none;
+    text-align: center;
+  }
+  .name-item { position: relative; }
+  .name-btn {
+    appearance: none;
+    background: none;
+    border: 0;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 800;
+    font-size: clamp(46px, 9.3vw, 138px);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    color: #6e6e6e;
+    transition: color .18s ease;
+  }
+  /* default: the active name is white, its card is shown */
+  .name-item.is-active .name-btn { color: var(--white); }
+  /* hovering anywhere in the list dims every name... */
+  .name-list:hover .name-btn { color: #6e6e6e; }
+  /* ...and only the hovered name lights up */
+  .name-item:hover .name-btn { color: var(--white); }
+
+  .testimonial-card {
+    position: absolute;
+    top: clamp(20px, 4vw, 90px);
+    right: clamp(16px, 4vw, 80px);
+    width: clamp(250px, 30vw, 430px);
+    background: #f3b50c;
+    color: #131313;
+    transform: rotate(-8deg);
+    transform-origin: top right;
+    padding: clamp(18px, 1.8vw, 30px) clamp(20px, 2vw, 32px);
+    font-weight: 800;
+    font-size: clamp(13px, 1.45vw, 22px);
+    line-height: 1.32;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    box-shadow: 0 22px 50px rgba(0,0,0,.5);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .22s ease;
+    z-index: 5;
+  }
+  /* show the active card by default */
+  .name-item.is-active .testimonial-card { opacity: 1; visibility: visible; }
+  /* while hovering the list, hide every card... */
+  .name-list:hover .testimonial-card { opacity: 0; visibility: hidden; }
+  /* ...except the one belonging to the hovered name */
+  .name-item:hover .testimonial-card { opacity: 1; visibility: visible; }
+
+  /* ============ FINAL CTA ============ */
+  .final {
+    text-align: center;
+    padding-top: clamp(50px, 6vw, 96px);
+    padding-bottom: clamp(54px, 6.4vw, 104px);
+    border-top: 1px solid var(--gray-line);
+    margin-top: clamp(20px, 3vw, 50px);
+  }
+  .final h2 {
+    font-weight: 800;
+    font-size: clamp(34px, 5.4vw, 84px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+  }
+  /* reuses .header-cta (same button as the nav) — only spacing is local */
+  .final .btn { margin-top: clamp(28px, 3.2vw, 52px); }
+
+  /* ============ FOOTER ============ */
+  footer {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    align-items: stretch;
+    border-top: 1px solid #2c2c2c;
+  }
+  .f-cell {
+    display: flex;
+    align-items: center;
+    padding: clamp(22px, 2.2vw, 38px) clamp(22px, 2.4vw, 44px);
+    border-right: 1px solid #2c2c2c;
+    font-weight: 800;
+    font-size: clamp(11px, 0.95vw, 15px);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+    white-space: nowrap;
+  }
+  .f-cell:last-child { border-right: none; }
+  .f-cell.f-brand { padding-left: var(--pad); padding-right: clamp(26px, 3vw, 56px); }
+  .f-cell.f-gmt { padding-right: var(--pad); }
+  footer .logo-img { height: clamp(34px, 2.9vw, 45px); }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 720px) {
+    .proj-grid { grid-template-columns: 1fr; }
+    .learn-grid { grid-template-columns: 1fr; }
+    .learn-cell { border-right: none; padding-left: 0; }
+    .learn-lead p { width: 100%; }
+    .learn-lead { justify-content: flex-start; }
+    .testimonial-card {
+      position: static;
+      width: 100%;
+      max-width: 360px;
+      margin: 22px auto 0;
+      transform: rotate(-4deg);
+      transform-origin: center;
+    }
+    .hero-video {
+      position: static;
+      width: 100%;
+      max-width: 360px;
+      margin-top: 28px;
+    }
+    footer { grid-template-columns: 1fr; }
+    .f-cell {
+      border-right: none;
+      border-bottom: 1px solid #2c2c2c;
+      white-space: normal;
+      padding-left: var(--pad);
+      padding-right: var(--pad);
+    }
+    .f-cell:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="wrap">
+    <a href="#" class="logo" aria-label="KayKav. Academy">
+      <img class="logo-img" src="KayKav%20Academy%20Logo.svg" alt="KayKav. Academy" />
+    </a>
+    <a href="#" class="btn btn-solid header-cta">Enroll into our latest course</a>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero wrap">
+    <h1>Built, not<br>prompted</h1>
+    <p class="sub">Ship a real, deployed MVP with AI agents — in four weeks.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn btn-solid">Apply for cohort 02</a>
+      <a href="#" class="btn btn-outline">Course details</a>
+    </div>
+
+    <div class="hero-video" role="button" aria-label="Play project video">
+      <span class="play"></span>
+      <div class="caption">
+        <div class="l1">Le syndic</div>
+        <div class="l2">du 21ème siècle</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT YOU WILL LEARN ============ -->
+  <section class="learn wrap">
+    <h2 class="section-title">What you will learn</h2>
+    <div class="learn-lead">
+      <p>Over 4 weeks, you'll learn the exact system I used to build and ship TailorTab — an offline-first PWA now used by real tailors in Nigeria. No engineering team. No design-to-code handoff tools. Just Claude Code, Antigravity, and a method that treats AI agents like brilliant junior engineers who need structure to do their best work.</p>
+    </div>
+
+    <div class="learn-grid">
+      <div class="learn-cell"><span class="num">1</span><p class="txt">Ship a real, production-ready MVP to a live URL in 4 weeks, not a demo, a working product</p></div>
+      <div class="learn-cell"><span class="num">2</span><p class="txt">Ship a real, production-ready MVP to a live URL in 4 weeks, not a demo, a working product</p></div>
+      <div class="learn-cell"><span class="num">3</span><p class="txt">Ship a real, production-ready MVP to a live URL in 4 weeks, not a demo, a working product</p></div>
+      <div class="learn-cell"><span class="num">4</span><p class="txt">Ship a real, production-ready MVP to a live URL in 4 weeks, not a demo, a working product</p></div>
+      <div class="learn-cell"><span class="num">5</span><p class="txt">Ship a real, production-ready MVP to a live URL in 4 weeks, not a demo, a working product</p></div>
+      <div class="learn-cell"><span class="num">6</span><p class="txt">Ship a real, production-ready MVP to a live URL in 4 weeks, not a demo, a working product</p></div>
+    </div>
+  </section>
+
+  <!-- ============ STUDENT PROJECTS ============ -->
+  <section class="projects wrap">
+    <h2 class="section-title">Student projects</h2>
+    <div class="proj-grid">
+
+      <!-- matera -->
+      <div class="card card-matera">
+        <span class="tag">OPEN PROJECT</span>
+        <span class="keys">🔑</span>
+        <div class="center">
+          <div class="ttl">Le syndic<br>du 21ème siècle</div>
+        </div>
+        <div class="brand-bottom"><span class="tri"></span>matera</div>
+      </div>
+
+      <!-- chance -->
+      <div class="card card-chance">
+        <span class="badge">CHANCE</span>
+        <div class="collage"><i></i><i></i><i></i><i></i></div>
+        <div class="headline">RENCONTRER<br>L'AMOUR PRO</div>
+        <div class="chance">CHANCE</div>
+      </div>
+
+      <!-- silvr -->
+      <div class="card card-silvr">
+        <div class="billboard">
+          <span class="bb-tag">SILVR</span>
+          <div class="bb-ttl">Supercharged<br>Business<br>Loans</div>
+          <span class="blob b2"></span>
+          <span class="blob"></span>
+        </div>
+        <span class="post"></span>
+        <span class="silvr-logo">SILVR</span>
+      </div>
+
+      <!-- intramuros 1 -->
+      <div class="card card-intra">
+        <span class="arms"></span>
+        <span class="shirt"></span>
+        <div class="book"><span class="pg"></span><span class="pg"></span><span class="pg big"></span></div>
+        <span class="intra-logo">intramuros</span>
+      </div>
+
+      <!-- intramuros 2 -->
+      <div class="card card-intra">
+        <span class="arms"></span>
+        <span class="shirt"></span>
+        <div class="book"><span class="pg"></span><span class="pg"></span><span class="pg big"></span></div>
+        <span class="intra-logo">intramuros</span>
+      </div>
+
+      <!-- intramuros 3 -->
+      <div class="card card-intra">
+        <span class="arms"></span>
+        <span class="shirt"></span>
+        <div class="book"><span class="pg"></span><span class="pg"></span><span class="pg big"></span></div>
+        <span class="intra-logo">intramuros</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ NAMES / TESTIMONIAL ============ -->
+  <section class="names wrap">
+    <ul class="name-list">
+      <li class="name-item is-active">
+        <button type="button" class="name-btn">Olaoluwa</button>
+        <div class="testimonial-card">The value I got was way more than the money I paid. I joined just to build my portfolio, and now I'm creating a tool that solves a real problem: a wedding and ideas journal app.</div>
+      </li>
+      <li class="name-item">
+        <button type="button" class="name-btn">Sewa</button>
+        <div class="testimonial-card">I came in barely able to deploy a static page. Four weeks later I shipped a live product with auth, payments, and real users. The structure is everything.</div>
+      </li>
+      <li class="name-item">
+        <button type="button" class="name-btn">John</button>
+        <div class="testimonial-card">I stopped prompting and started shipping. The method turned the AI into a teammate I could actually direct, not a slot machine I kept begging for output.</div>
+      </li>
+      <li class="name-item">
+        <button type="button" class="name-btn">Wole</button>
+        <div class="testimonial-card">My first real MVP went from idea to a URL I could share in under a month. Clients take me seriously now because I have something they can touch.</div>
+      </li>
+      <li class="name-item">
+        <button type="button" class="name-btn">Eniola</button>
+        <div class="testimonial-card">This wasn't a tutorial you forget in a week. It's a system I still use every single day to build and launch products on my own.</div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="final wrap">
+    <h2>Stop prompting.<br>Start shipping.</h2>
+    <a href="#" class="btn btn-solid header-cta">Enroll into our latest course</a>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="f-cell f-brand">
+      <img class="logo-img" src="KayKav%20Academy%20Logo.svg" alt="KayKav. Academy" />
+    </div>
+    <div class="f-cell f-copy">© 2026 KayKav Academy. All rights reserved.</div>
+    <div class="f-cell f-built">Built, not prompted.</div>
+    <div class="f-cell f-gmt">GMT+1</div>
+  </footer>
+
+  <script>
+    // Testimonial names: clicking/tapping a name sets the persistent "active" state.
+    (function () {
+      var list = document.querySelector('.name-list');
+      if (!list) return;
+      var items = list.querySelectorAll('.name-item');
+      items.forEach(function (item) {
+        item.querySelector('.name-btn').addEventListener('click', function () {
+          items.forEach(function (i) { i.classList.remove('is-active'); });
+          item.classList.add('is-active');
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,48 +1,27 @@
-import Image from "next/image";
+import FooterClock from "./FooterClock";
+import Reveal from "./Reveal";
+
+const CELL =
+  "flex items-center whitespace-nowrap border-r border-line px-[clamp(22px,2.4vw,44px)] py-[clamp(22px,2.2vw,38px)] text-[clamp(11px,0.95vw,15px)] font-extrabold uppercase tracking-[0.06em] text-white max-[720px]:whitespace-normal max-[720px]:border-r-0 max-[720px]:border-b max-[720px]:px-[var(--pad)]";
 
 export default function Footer() {
   return (
-    <footer style={{
-      display: "grid",
-      gridTemplateColumns: "auto 1fr auto auto",
-      background: "#000",
-      borderTop: "0.5px solid #222",
-    }}>
-      <div className="footer-col" style={{ padding: "24px 28px", display: "flex", alignItems: "center" }}>
-        <Image src="/logo.svg" alt="KayKav" width={100} height={32}
-          style={{ height: "20px", width: "auto", opacity: 0.4, filter: "invert(1)" }} />
+    <Reveal y={18} duration={0.7}>
+    <footer className="grid grid-cols-[auto_1fr_auto_auto] items-stretch border-t border-line max-[720px]:grid-cols-1">
+      <div className={`${CELL} pl-[var(--pad)] pr-[clamp(26px,3vw,56px)] max-[720px]:pr-[var(--pad)]`}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/kaykav-academy-logo.svg"
+          alt="KayKav. Academy"
+          className="block h-[clamp(34px,2.9vw,45px)] w-auto"
+        />
       </div>
-      <div className="footer-col" style={{ padding: "24px 32px", display: "flex", alignItems: "center" }}>
-        <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-          © {new Date().getFullYear()} KayKav Academy. All rights reserved.
-        </span>
+      <div className={CELL}>© 2026 KayKav Academy. All rights reserved.</div>
+      <div className={CELL}>Built, not prompted.</div>
+      <div className={`${CELL} gap-[0.5em] border-r-0 pr-[var(--pad)] max-[720px]:border-b-0`}>
+        <FooterClock /> GMT+1
       </div>
-      <div className="footer-col" style={{ padding: "24px 32px", display: "flex", alignItems: "center" }}>
-        <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-          Built, Not Prompted.
-        </span>
-      </div>
-      <div className="footer-col" style={{ padding: "24px 32px", display: "flex", alignItems: "center" }}>
-        <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.3)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-          GMT+1
-        </span>
-      </div>
-      <style>{`
-        .footer-col {
-          border-right: 0.5px solid #222;
-        }
-        .footer-col:last-child {
-          border-right: none;
-        }
-
-        @media (max-width: 768px) {
-          footer { grid-template-columns: 1fr 1fr !important; }
-          .footer-col { border-bottom: 0.5px solid #222; }
-          .footer-col:nth-child(2n) { border-right: none; }
-          .footer-col:nth-child(3),
-          .footer-col:nth-child(4) { border-bottom: none; }
-        }
-      `}</style>
     </footer>
+    </Reveal>
   );
 }

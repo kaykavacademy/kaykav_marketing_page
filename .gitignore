@@ -13,8 +13,8 @@
 # testing
 /coverage
 
-# next.js
-/.next/
+# next.js (covers .next and isolated build dirs like .next-review)
+/.next*/
 /out/
 
 # production
