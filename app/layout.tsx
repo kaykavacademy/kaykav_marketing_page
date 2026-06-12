@@ -23,6 +23,15 @@ const delight = localFont({
 export const metadata: Metadata = {
   title: "KayKav. Academy: Built, not prompted",
   description: "Ship a real, deployed MVP with AI agents in four weeks.",
+  openGraph: {
+    title: "KayKav. Academy: Built, not prompted",
+    description: "Ship a real, deployed MVP with AI agents in four weeks.",
+    siteName: "KayKav. Academy",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
