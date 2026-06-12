@@ -121,17 +121,14 @@ export default function HeroVideoCard() {
 
   return (
     <>
-      {/* the small snippet card — a white panel: heading on top, video below.
-          click opens the full player */}
-      <div className="absolute right-[var(--pad)] bottom-[clamp(40px,5vw,80px)] w-[clamp(230px,25vw,350px)] rounded-[6px] bg-white p-[clamp(12px,1.2vw,18px)] shadow-[0_16px_48px_rgba(0,0,0,0.22)] max-[720px]:relative max-[720px]:right-auto max-[720px]:bottom-auto max-[720px]:mt-7 max-[720px]:w-full">
-        <p className="mb-[clamp(8px,0.8vw,14px)] text-[clamp(14px,1.1vw,18px)] font-bold text-black">
-          Course Trailer
-        </p>
+      {/* the small snippet card — bare video with the label overlaid on the
+          footage. click opens the full player */}
+      <div className="absolute right-[var(--pad)] bottom-[clamp(40px,5vw,80px)] w-[clamp(230px,25vw,350px)] max-[720px]:relative max-[720px]:right-auto max-[720px]:bottom-auto max-[720px]:mt-7 max-[720px]:w-full">
         <button
           type="button"
           aria-label="Play the course trailer"
           onClick={openPlayer}
-          className="group relative block aspect-[1.42/1] w-full cursor-pointer appearance-none overflow-hidden rounded-[4px] border-0 bg-transparent p-0 text-left max-[720px]:aspect-video"
+          className="group relative block aspect-[1.42/1] w-full cursor-pointer appearance-none overflow-hidden border-0 bg-transparent p-0 text-left shadow-[0_16px_48px_rgba(0,0,0,0.22)] max-[720px]:aspect-video"
         >
           <video
             // React omits the `muted` attribute from SSR HTML, which can let the
@@ -153,6 +150,10 @@ export default function HeroVideoCard() {
           {/* 64×64 play tile — brand gold, flips white on hover like the CTAs */}
           <span className="absolute top-1/2 left-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[2px] bg-[#FDC97A] shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-[background-color,transform] duration-[180ms] ease-[ease] group-hover:scale-105 group-hover:bg-white">
             <span className="ml-[4px] h-0 w-0 border-y-[11px] border-l-[17px] border-y-transparent border-l-black" />
+          </span>
+          {/* label overlaid on the footage */}
+          <span className="absolute bottom-[12px] left-[14px] text-[clamp(14px,1.2vw,17px)] font-bold text-white [text-shadow:0_1px_10px_rgba(0,0,0,0.5)]">
+            Course Trailer
           </span>
         </button>
       </div>
