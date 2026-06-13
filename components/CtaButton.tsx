@@ -2,7 +2,7 @@ import type { AnchorHTMLAttributes, ReactNode } from "react";
 import RippleTiles from "./RippleTiles";
 
 type Variant = "solid" | "outline";
-type Size = "nav" | "hero" | "banner";
+type Size = "nav" | "hero" | "banner" | "block";
 
 const VARIANT: Record<Variant, string> = {
   // gold button — white tiles ripple in, label stays black
@@ -24,6 +24,9 @@ const SIZE: Record<Size, string> = {
   // banner — wide final CTA (75% of the content width), scales down on mobile
   banner:
     "min-h-[clamp(64px,11.5vw,170px)] w-[75%] text-[clamp(20px,2.6vw,40px)] font-semibold tracking-[-0.01em] max-[720px]:text-[16px]",
+  // block — fills its container (e.g. a card column), tall and prominent
+  block:
+    "min-h-[clamp(64px,6.5vw,100px)] w-full text-[clamp(18px,2vw,30px)] font-semibold tracking-[-0.01em] max-[720px]:text-[16px]",
 };
 
 // water-ripple fill grids (see RippleTiles) — denser on bigger buttons so the
@@ -32,6 +35,7 @@ const GRID: Record<Size, [number, number]> = {
   nav: [18, 6],
   hero: [18, 6],
   banner: [40, 8],
+  block: [40, 8],
 };
 
 type CtaButtonProps = {

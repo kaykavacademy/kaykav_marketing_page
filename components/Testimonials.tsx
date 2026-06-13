@@ -230,7 +230,10 @@ export default function Testimonials() {
     const i1 = Math.min(N - 1, i0 + 1);
     const line = lines[i0] + (lines[i1] - lines[i0]) * (t - i0);
     const edge = Math.max(44, window.innerHeight * 0.07);
-    const max = panel.clientHeight - slot.offsetHeight - edge;
+    // larger clearance at the bottom so the pile never crowds the section
+    // divider beneath it — it would otherwise read as the cards touching the line
+    const bottomEdge = Math.max(96, window.innerHeight * 0.13);
+    const max = panel.clientHeight - slot.offsetHeight - bottomEdge;
     slotY.set(Math.max(edge, Math.min(line - slot.offsetHeight / 2, max)));
   }, [scrollYProgress, slotY]);
 
