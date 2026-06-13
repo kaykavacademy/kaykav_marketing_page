@@ -276,7 +276,11 @@ export default function Testimonials() {
       ref={wrapperRef}
       className="relative h-[420vh] border-t border-line pt-[clamp(32px,6vh,88px)] max-[720px]:h-auto"
     >
-      <h2 className="mb-[clamp(56px,9vw,150px)] px-[var(--pad)] text-[clamp(40px,9vw,130px)] font-extrabold leading-[0.92] tracking-[-0.025em]">
+      {/* smaller bottom margin than the other section headings on purpose:
+          the pinned panel below vertically-centres its content, so it already
+          adds ~90px above the first name — this keeps the heading→content gap
+          in line with the other sections instead of doubling it */}
+      <h2 className="mb-[clamp(24px,2.8vw,44px)] px-[var(--pad)] text-[clamp(40px,9vw,130px)] font-extrabold leading-[0.92] tracking-[-0.025em]">
         <Reveal inline mask duration={0.7}>
           Stories worth sharing
         </Reveal>

@@ -42,15 +42,14 @@ export default function Learn() {
             } max-[720px]:border-r-0 max-[720px]:pl-0`}
           >
             {/* clipping layer keeps the ripple inside the cell without
-                cutting off the full-width pseudo-element borders; outer
-                columns bleed through the page gutter like the hairlines do */}
+                cutting off the full-width pseudo-element borders. the gold
+                fill stays aligned to the content column (every cell the same,
+                whatever the screen size) while the hairline borders still
+                bleed to the page edges; only the mobile single column bleeds
+                edge-to-edge through its small gutter. */}
             <span
               aria-hidden
-              className={`absolute top-0 bottom-0 overflow-hidden ${
-                i % 3 === 0 ? "left-[calc(-1*var(--pad))]" : "left-0"
-              } ${
-                (i + 1) % 3 === 0 ? "right-[calc(-1*var(--pad))]" : "right-0"
-              } max-[720px]:left-[calc(-1*var(--pad))] max-[720px]:right-[calc(-1*var(--pad))]`}
+              className="absolute inset-x-0 top-0 bottom-0 overflow-hidden max-[720px]:left-[calc(-1*var(--pad))] max-[720px]:right-[calc(-1*var(--pad))]"
             >
               <RippleTiles cols={16} rows={12} tileClass="bg-[#FDC97A]" />
             </span>

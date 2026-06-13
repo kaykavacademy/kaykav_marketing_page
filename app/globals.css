@@ -13,10 +13,19 @@
 }
 
 :root {
+  /* widest the content column grows to; beyond this the page stays centered
+     and the brand-coloured gutters fill the rest (sits just above the point
+     where the vw-based type stops scaling, ~1545px) */
+  --site-max: 1600px;
   /* ruler chrome thickness (keep in sync with SIZE in FancyRuler.tsx; ruler hides below md) */
   --ruler: 0px;
-  /* page gutter — clears the ruler chrome plus the usual breathing room */
-  --pad: calc(var(--ruler) + clamp(18px, 2.2vw, 34px));
+  /* page gutter — the usual breathing room (clearing the ruler chrome), but
+     once the viewport passes --site-max it grows to centre the content column
+     while sections/dividers keep bleeding to the screen edges */
+  --pad: max(
+    calc(var(--ruler) + clamp(18px, 2.2vw, 34px)),
+    calc((100vw - var(--site-max)) / 2)
+  );
   /* sticky header height: logo height + vertical padding (keep in sync with Header.tsx) */
   --header-h: calc(clamp(36px, 3.2vw, 50px) + 2 * clamp(14px, 1.4vw, 22px));
   /* shared button metrics — nav CTA, hero buttons and final CTA stay in sync */
