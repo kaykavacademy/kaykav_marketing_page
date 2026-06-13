@@ -4,7 +4,7 @@ import Reveal from "./Reveal";
 
 export default function Hero() {
   return (
-    <section className="relative px-[var(--pad)] pt-[clamp(24px,4vw,64px)] pb-[clamp(40px,5vw,80px)]">
+    <section className="relative px-[var(--pad)] pt-[clamp(24px,4vw,64px)] pb-[var(--section-pb)]">
       <h1 className="ml-[-0.01em] text-[clamp(58px,13.2vw,204px)] font-extrabold leading-[0.86] tracking-[-0.025em]">
         <Reveal inline mask immediate duration={0.7}>
           Built, not

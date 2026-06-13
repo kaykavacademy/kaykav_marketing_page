@@ -3,7 +3,7 @@ import Reveal from "./Reveal";
 
 export default function FinalCta() {
   return (
-    <section className="border-t border-line px-[var(--pad)] pt-[clamp(50px,6vw,96px)] pb-[clamp(54px,6.4vw,104px)] text-center">
+    <section className="border-t border-line px-[var(--pad)] pt-[var(--section-pt)] pb-[var(--section-pb)] text-center">
       <h2 className="text-[clamp(40px,9vw,130px)] font-extrabold leading-[0.98] tracking-[-0.02em]">
         <Reveal inline mask duration={0.7}>
           Stop prompting.
@@ -19,7 +19,7 @@ export default function FinalCta() {
           target="_blank"
           rel="noopener noreferrer"
           size="banner"
-          className="mt-[clamp(28px,3.2vw,52px)]"
+          className="mt-[clamp(48px,7vw,132px)]"
         >
           Apply for Cohort 2.0
           <svg

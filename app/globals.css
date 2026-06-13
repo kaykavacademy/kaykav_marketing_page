@@ -26,6 +26,11 @@
     calc(var(--ruler) + clamp(18px, 2.2vw, 34px)),
     calc((100vw - var(--site-max)) / 2)
   );
+  /* shared vertical breathing room inside each section — keeps the divider
+     lines continuous while giving headings room to clear the line above and
+     sections room to separate. top is roomier so headings never hug the line */
+  --section-pt: clamp(72px, 8vw, 168px);
+  --section-pb: clamp(64px, 7vw, 150px);
   /* sticky header height: logo height + vertical padding (keep in sync with Header.tsx) */
   --header-h: calc(clamp(36px, 3.2vw, 50px) + 2 * clamp(14px, 1.4vw, 22px));
   /* shared button metrics — nav CTA, hero buttons and final CTA stay in sync */

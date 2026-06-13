@@ -12,7 +12,7 @@ const ITEMS = [
 
 export default function Learn() {
   return (
-    <section className="border-t border-line px-[var(--pad)] pt-[clamp(44px,6vw,96px)] pb-[clamp(40px,5vw,80px)]">
+    <section className="border-t border-line px-[var(--pad)] pt-[var(--section-pt)] pb-[var(--section-pb)]">
       <h2 className="mb-[clamp(46px,7.8vw,112px)] text-[clamp(40px,9vw,130px)] font-extrabold leading-[0.92] tracking-[-0.025em]">
         <Reveal inline mask duration={0.7}>
           What you will learn

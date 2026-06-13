@@ -277,7 +277,7 @@ export default function Testimonials() {
     // tall wrapper = pin duration: 100vh panel + ~50vh of scroll per card
     <section
       ref={wrapperRef}
-      className="relative h-[420vh] border-t border-line pt-[clamp(32px,6vh,88px)] max-[720px]:h-auto"
+      className="relative h-[420vh] border-t border-line pt-[var(--section-pt)] max-[720px]:h-auto"
     >
       {/* smaller bottom margin than the other section headings on purpose:
           the pinned panel below vertically-centres its content, so it already
