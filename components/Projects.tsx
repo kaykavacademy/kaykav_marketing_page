@@ -122,6 +122,9 @@ function ProjectCard({ project, eager = false }: { project: Project; eager?: boo
         {project.name}
       </h3>
       <div
+        // antivirus extensions (e.g. Bitdefender) tag <div>s with
+        // bis_skin_checked before hydration — ignore that attribute diff here
+        suppressHydrationWarning
         className={`relative overflow-hidden rounded-[2px] ${project.aspectClass ?? "aspect-[1.6/1]"}`}
       >
         <Image
@@ -134,7 +137,7 @@ function ProjectCard({ project, eager = false }: { project: Project; eager?: boo
           className="pointer-events-none object-cover object-top"
         />
       </div>
-      <div className="mt-[clamp(14px,1.6vw,28px)] flex flex-wrap items-start justify-between gap-[clamp(12px,1.4vw,24px)]">
+      <div suppressHydrationWarning className="mt-[clamp(14px,1.6vw,28px)] flex flex-wrap items-start justify-between gap-[clamp(12px,1.4vw,24px)]">
         <p className="max-w-[38ch] flex-1 basis-[30ch] text-[clamp(14px,1.15vw,19px)] font-medium leading-[1.4] text-white">
           {project.description}
         </p>

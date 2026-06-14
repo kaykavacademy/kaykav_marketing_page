@@ -69,6 +69,13 @@ html {
   }
 }
 
+/* reserve space for the sticky mobile apply bar so it never hides the footer */
+@media (max-width: 720px) {
+  body {
+    padding-bottom: calc(env(safe-area-inset-bottom) + 92px);
+  }
+}
+
 body {
   background: #295898;
   color: #fff;

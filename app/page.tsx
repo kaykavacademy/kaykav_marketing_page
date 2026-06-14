@@ -5,9 +5,11 @@ import Learn from "@/components/Learn";
 import Projects from "@/components/Projects";
 import Testimonials from "@/components/Testimonials";
 import NextStep from "@/components/NextStep";
+import FAQ from "@/components/FAQ";
 import MarqueeBand from "@/components/MarqueeBand";
 import FinalCta from "@/components/FinalCta";
 import Footer from "@/components/Footer";
+import MobileApplyBar from "@/components/MobileApplyBar";
 
 export default function Home() {
   return (
@@ -20,10 +22,12 @@ export default function Home() {
         <Projects />
         <Testimonials />
         <NextStep />
+        <FAQ />
         <MarqueeBand />
         <FinalCta />
       </main>
       <Footer />
+      <MobileApplyBar />
     </>
   );
 }
