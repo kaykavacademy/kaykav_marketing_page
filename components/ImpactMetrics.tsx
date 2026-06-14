@@ -61,11 +61,11 @@ function Counter({ value, suffix }: { value: number; suffix: string }) {
 
 export default function ImpactMetrics() {
   return (
-    <section aria-label="Impact metrics" className="border-t border-line">
+    <section aria-label="Impact metrics" className="relative border-t border-line">
       {METRICS.map((m, i) => (
-        <Reveal key={m.label} y={20} duration={0.7} delay={i * 0.15}>
+        <Reveal key={m.label} y={56} scale={0.92} duration={0.85} delay={i * 0.15}>
           <div
-            className={`${i > 0 ? "border-t border-line" : ""} grid grid-cols-[1.7fr_1fr] items-center gap-[clamp(24px,4vw,80px)] px-[var(--pad)] py-[clamp(44px,8vw,128px)] max-[720px]:grid-cols-1 max-[720px]:gap-3`}
+            className={`${i > 0 ? "border-t border-line" : ""} grid grid-cols-[1.7fr_1fr] items-center gap-[clamp(24px,4vw,80px)] px-[var(--pad)] py-[clamp(44px,8vw,128px)] max-[720px]:grid-cols-1 max-[720px]:gap-3 max-[720px]:px-[calc(var(--pad)_+_clamp(20px,5vw,28px))]`}
           >
             {/* tabular-nums: digits keep one width while counting, no jitter */}
             <span className="text-[clamp(64px,10vw,170px)] font-extrabold leading-[0.9] tracking-[-0.025em] text-white tabular-nums">
@@ -77,6 +77,15 @@ export default function ImpactMetrics() {
           </div>
         </Reveal>
       ))}
+      {/* vertical margin rails — mobile only, aligned with the curriculum grid */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 left-[var(--pad)] hidden w-px bg-line max-[720px]:block"
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 right-[var(--pad)] hidden w-px bg-line max-[720px]:block"
+      />
     </section>
   );
 }

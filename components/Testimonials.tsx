@@ -327,7 +327,7 @@ export default function Testimonials() {
         {/* mobile: a plain pile — each card reveals as it scrolls into view */}
         <div className="hidden max-[720px]:flex max-[720px]:flex-col max-[720px]:gap-7">
           {TESTIMONIALS.map((t, i) => (
-            <Reveal key={i} y={24} duration={0.7}>
+            <Reveal key={i} y={64} scale={0.9} duration={0.9}>
               <div
                 style={{
                   backgroundColor: t.color,

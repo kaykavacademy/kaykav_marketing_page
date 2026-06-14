@@ -19,6 +19,7 @@ export default function Reveal({
   children,
   delay = 0,
   y = 32,
+  scale = 1,
   duration = 0.7,
   mask = false,
   inline = false,
@@ -30,6 +31,8 @@ export default function Reveal({
   children: ReactNode;
   delay?: number;
   y?: number;
+  /** start scale for a dramatic scale-up reveal (1 = no scale) */
+  scale?: number;
   duration?: number;
   mask?: boolean;
   /** render spans instead of divs (valid inside headings) */
@@ -89,7 +92,9 @@ export default function Reveal({
       className={`block will-change-transform ${className}`}
       style={{
         opacity: shown ? 1 : 0,
-        transform: shown ? "translateY(0)" : `translateY(${y}px)`,
+        transform: shown
+          ? "translateY(0) scale(1)"
+          : `translateY(${y}px) scale(${scale})`,
         transition: shown
           ? `transform ${duration}s ${EASE} ${delay}s, opacity ${duration}s ${EASE} ${delay}s`
           : `transform ${duration * 0.6}s ${EASE_IN}, opacity ${duration * 0.6}s ${EASE_IN}`,

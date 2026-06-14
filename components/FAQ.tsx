@@ -60,7 +60,10 @@ export default function FAQ() {
       className="border-t border-line px-[var(--pad)] pt-[var(--section-pt)] pb-[var(--section-pb)]"
     >
       <div className="grid grid-cols-[0.85fr_1.15fr] gap-[clamp(40px,6vw,120px)] max-[860px]:grid-cols-1 max-[860px]:gap-[clamp(32px,8vw,56px)]">
-        <h2 className="text-[clamp(40px,9vw,130px)] font-extrabold leading-[0.92] tracking-[-0.025em]">
+        {/* smaller cap than the other headings: "Questions" is one unbreakable
+            word and would otherwise outgrow its grid column and get clipped by
+            the reveal mask. this keeps it inside the column with breathing room */}
+        <h2 className="text-[clamp(40px,6.8vw,104px)] font-extrabold leading-[0.92] tracking-[-0.025em]">
           <Reveal inline mask duration={0.7}>
             Questions
           </Reveal>

@@ -328,7 +328,7 @@ export default function Projects() {
           revealing as it enters the viewport */}
       <div className="hidden flex-col gap-[clamp(56px,16vw,90px)] px-[var(--pad)] max-[720px]:flex">
         {PROJECTS.map((p) => (
-          <Reveal key={p.name} y={24} duration={0.7}>
+          <Reveal key={p.name} y={72} scale={0.9} duration={0.95}>
             <a
               href={p.href}
               target="_blank"

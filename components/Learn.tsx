@@ -42,7 +42,7 @@ export default function Learn() {
               (i + 1) % 3 === 0 ? "" : "border-r border-line"
             } ${
               i % 3 === 0 ? "pl-0" : "pl-[clamp(18px,1.8vw,30px)]"
-            } max-[720px]:border-r-0 max-[720px]:pl-0`}
+            } max-[720px]:border-r-0 max-[720px]:pl-[clamp(20px,5vw,28px)]`}
           >
             {/* clipping layer keeps the ripple inside the cell without
                 cutting off the full-width pseudo-element borders. the gold
@@ -62,7 +62,13 @@ export default function Learn() {
             >
               <RippleTiles cols={16} rows={12} tileClass="bg-[#FDC97A]" />
             </span>
-            <Reveal delay={(i % 3) * 0.05} y={40} className="relative z-10">
+            <Reveal
+              delay={(i % 3) * 0.05}
+              y={64}
+              scale={0.9}
+              duration={0.85}
+              className="relative z-10"
+            >
               <span className="mb-[clamp(20px,2.4vw,40px)] block text-[clamp(64px,9.2vw,138px)] font-extrabold leading-none tracking-[-0.03em] text-dim-deep transition-colors duration-300 group-hover:text-black">
                 {item.num}
               </span>
@@ -72,6 +78,16 @@ export default function Learn() {
             </Reveal>
           </div>
         ))}
+        {/* vertical rails framing the grid at the page margins — mobile only
+            (the desktop grid already has its column dividers) */}
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 left-0 hidden w-px bg-line max-[720px]:block"
+        />
+        <span
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 right-0 hidden w-px bg-line max-[720px]:block"
+        />
       </div>
     </section>
   );
