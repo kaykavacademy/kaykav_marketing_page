@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import CtaButton from "./CtaButton";
 import MobileMenu from "./MobileMenu";
@@ -8,10 +8,38 @@ import { APPLY_HREF, NAV_ITEMS, scrollToSection } from "./nav";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+
+  // mobile navbar (paradigmai-style): hide when scrolling down, reveal the
+  // moment you scroll up, and always show at the very top (the hero). desktop
+  // opts out entirely — it has no sticky navbar.
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      if (window.innerWidth > 720) return; // mobile only
+      const y = window.scrollY;
+      if (y <= 8) setHidden(false); // at the top → always visible
+      else if (y > lastY + 4) setHidden(true); // scrolling down → hide
+      else if (y < lastY - 4) setHidden(false); // scrolling up → show
+      lastY = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
-      <header className="sticky top-[var(--ruler)] z-50 flex items-center justify-between gap-5 border-b border-line bg-brand px-[var(--pad)] py-[clamp(14px,1.4vw,22px)]">
+      <header
+        // desktop: a normal (non-sticky) bar that scrolls away. mobile: sticky
+        // with the hide/show transform (`hidden` is only set on mobile).
+        style={{
+          transform:
+            hidden && !menuOpen
+              ? "translateY(calc(-100% - var(--ruler)))"
+              : undefined,
+        }}
+        className="static top-[var(--ruler)] z-50 flex items-center justify-between gap-5 border-b border-line bg-brand px-[var(--pad)] py-[clamp(14px,1.4vw,22px)] transition-transform duration-300 ease-[cubic-bezier(0.165,0.84,0.44,1)] will-change-transform max-[720px]:sticky"
+      >
         <a href="#" aria-label="KayKav Academy" className="inline-flex items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

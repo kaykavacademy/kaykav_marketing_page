@@ -46,7 +46,9 @@ export default function MobileMenu({ onClose }: { onClose: () => void }) {
         <button
           type="button"
           onClick={onClose}
-          className="cursor-pointer appearance-none rounded-[2px] border-0 bg-[#FDC97A] px-[clamp(20px,5vw,28px)] py-[clamp(12px,3vw,16px)] text-[clamp(15px,4vw,18px)] font-bold text-black transition-[scale] duration-200 active:scale-[0.97]"
+          // same height as the header hamburger so the bar (and its divider)
+          // line up exactly when the menu opens and closes
+          className="inline-flex h-[clamp(44px,12vw,56px)] cursor-pointer appearance-none items-center justify-center rounded-[2px] border-0 bg-[#FDC97A] px-[clamp(20px,5vw,28px)] text-[clamp(15px,4vw,18px)] font-bold text-black transition-[scale] duration-200 active:scale-[0.97]"
         >
           Close
         </button>
@@ -85,7 +87,7 @@ export default function MobileMenu({ onClose }: { onClose: () => void }) {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[clamp(12px,3.4vw,14px)] font-semibold uppercase tracking-[0.08em] text-white/70 transition-colors duration-200 hover:text-white"
+                className="text-[clamp(14px,4vw,17px)] font-semibold tracking-[-0.005em] text-white no-underline transition-opacity duration-200 hover:opacity-70"
               >
                 {s.label}
               </a>
