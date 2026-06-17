@@ -12,6 +12,9 @@ export const NAV_ITEMS: NavItem[] = [
 export const APPLY_HREF =
   "https://mainstack.com/ship-real-mvps-with-ai-agents-kaykav";
 
+// 10% welcome discount — single source of truth for the modal + promo bars
+export const PROMO_CODE = "ADALV01";
+
 export const SOCIAL_LINKS: NavItem[] = [
   { label: "Instagram", href: "https://www.instagram.com/kaykav.academy/" },
   { label: "LinkedIn", href: "https://www.linkedin.com/company/kaykav-academy" },

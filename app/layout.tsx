@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import DiscountModal from "../components/DiscountModal";
 import FancyRuler from "../components/FancyRuler";
 import SmoothScroll from "../components/SmoothScroll";
 import "./globals.css";
@@ -53,6 +54,7 @@ export default function RootLayout({
         <SmoothScroll />
         <FancyRuler />
         {children}
+        <DiscountModal />
       </body>
     </html>
   );

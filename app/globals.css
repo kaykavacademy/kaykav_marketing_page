@@ -69,10 +69,16 @@ html {
   }
 }
 
-/* reserve space for the sticky mobile apply bar so it never hides the footer */
+/* reserve space for the fixed bottom promo bars so they never hide the footer */
+@media (min-width: 721px) {
+  body {
+    padding-bottom: 62px; /* desktop promo bar */
+  }
+}
 @media (max-width: 720px) {
   body {
-    padding-bottom: calc(env(safe-area-inset-bottom) + 92px);
+    /* offer line + apply button */
+    padding-bottom: calc(env(safe-area-inset-bottom) + 126px);
   }
 }
 

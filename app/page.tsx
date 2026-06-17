@@ -10,6 +10,7 @@ import MarqueeBand from "@/components/MarqueeBand";
 import FinalCta from "@/components/FinalCta";
 import Footer from "@/components/Footer";
 import MobileApplyBar from "@/components/MobileApplyBar";
+import PromoBarBottom from "@/components/PromoBarBottom";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
       </main>
       <Footer />
       <MobileApplyBar />
+      <PromoBarBottom />
     </>
   );
 }
