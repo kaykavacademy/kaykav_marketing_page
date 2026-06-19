@@ -127,14 +127,14 @@ export default function DiscountModal() {
             </button>
 
             <span className="text-[clamp(11px,2.8vw,13px)] font-bold uppercase tracking-[0.14em] text-[#FDC97A]">
-              Welcome offer
+              Father&apos;s Day offer
             </span>
             <h2 className="mt-[clamp(10px,2vw,14px)] max-w-[15ch] text-[clamp(28px,8vw,40px)] font-extrabold leading-[1.02] tracking-[-0.02em] text-white">
-              Get&apos;s 10% OFF building with AI
+              Get 20% OFF this Father&apos;s Day
             </h2>
             <p className="mt-[clamp(12px,3vw,16px)] text-[clamp(14px,3.8vw,16px)] font-medium leading-[1.5] text-white/85">
-              First time here? Copy this code and use it at checkout. It&apos;s
-              only good while you&apos;re on this page.
+              Celebrate father's worldwide by building something real with AI.
+              Copy this code and use it at checkout while the offer lasts.
             </p>
 
             {/* code + copy */}

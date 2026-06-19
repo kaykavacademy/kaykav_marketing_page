@@ -12,7 +12,7 @@ export default function PromoBarBottom() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 hidden items-center justify-center gap-[clamp(16px,2vw,40px)] overflow-hidden border-t border-black/10 bg-white px-[var(--pad)] py-[clamp(10px,1vw,15px)] text-[#11253f] shadow-[0_-6px_24px_rgba(13,32,64,0.12)] min-[721px]:flex">
       <p className="text-[clamp(14px,1.3vw,17px)] font-bold tracking-[-0.005em]">
-        Get <span className="font-extrabold text-brand">10% off</span> with this code at checkout
+        Let Celebrate Father&apos;s Day: Get <span className="font-extrabold text-brand">20% off</span> with this code at checkout
       </p>
 
       <button

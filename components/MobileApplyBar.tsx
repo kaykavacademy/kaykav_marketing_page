@@ -3,7 +3,7 @@
 import { APPLY_HREF, PROMO_CODE } from "./nav";
 import { useCopyCode } from "./useCopyCode";
 
-// the fixed bottom bar on mobile: the 10% offer + copyable code on top, the
+// the fixed bottom bar on mobile: the 20% offer + copyable code on top, the
 // persistent apply CTA below. (the page reserves space for it in globals.css.)
 export default function MobileApplyBar() {
   const { copied, copy } = useCopyCode();
@@ -13,7 +13,7 @@ export default function MobileApplyBar() {
       {/* offer line */}
       <div className="mb-[10px] flex items-center justify-center gap-[10px] text-[13px] font-semibold text-[#11253f]">
         <span>
-          Get <span className="font-extrabold text-brand">10% off</span> with
+          Father&apos;s Day: <span className="font-extrabold text-brand">20% off</span> with
           code
         </span>
         <button

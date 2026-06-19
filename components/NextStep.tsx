@@ -14,7 +14,7 @@ import { PROMO_CODE } from "./nav";
 import { useCopyCode } from "./useCopyCode";
 
 const PRICE = "NGN 90,000";
-const DISCOUNTED_PRICE = "NGN 81,000";
+const DISCOUNTED_PRICE = "NGN 72,000";
 const APPLY_HREF = "https://mainstack.com/ship-real-mvps-with-ai-agents-kaykav";
 
 const PERKS = [
@@ -90,7 +90,7 @@ export default function NextStep() {
         <div className="grid grid-cols-2 border border-line max-[720px]:grid-cols-1">
           {/* price */}
           <div className="relative overflow-hidden border-r border-line p-[clamp(28px,3.2vw,60px)] max-[720px]:border-r-0 max-[720px]:border-b">
-            <OfferRibbon position="right" />
+            <OfferRibbon position="right" text="Father's Day offer" />
             <Reveal y={24} duration={0.7}>
               <p className="text-[clamp(15px,1.3vw,22px)] font-bold tracking-[-0.005em] text-white">
                 Course Price
@@ -135,7 +135,7 @@ export default function NextStep() {
               className="mt-[clamp(16px,1.8vw,24px)]"
             >
               <div className="flex flex-wrap items-center gap-x-[7px] gap-y-2 text-[clamp(13px,1.05vw,16px)] font-medium leading-[1.5] text-white/75">
-                <span>Use code</span>
+                <span>Father&apos;s Day: use code</span>
                 <button
                   type="button"
                   onClick={copy}
@@ -164,7 +164,7 @@ export default function NextStep() {
                   )}
                 </button>
                 <span>
-                  at checkout for 10% off,{" "}
+                  at checkout for 20% off,{" "}
                   <span className="font-bold text-white">
                     just {DISCOUNTED_PRICE}
                   </span>{" "}
