@@ -15,7 +15,7 @@ export default function FinalCta() {
       {/* full-width banner button with an arrow-to-bar glyph */}
       <Reveal delay={0.15}>
         <CtaButton
-          href="https://mainstack.com/ship-real-mvps-with-ai-agents-kaykav"
+          href="https://mainstack.com/p/ship-real-mvps-with-ai-agents-kaykav"
           target="_blank"
           rel="noopener noreferrer"
           size="banner"

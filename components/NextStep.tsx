@@ -15,7 +15,7 @@ import { useCopyCode } from "./useCopyCode";
 
 const PRICE = "NGN 90,000";
 const DISCOUNTED_PRICE = "NGN 72,000";
-const APPLY_HREF = "https://mainstack.com/ship-real-mvps-with-ai-agents-kaykav";
+const APPLY_HREF = "https://mainstack.com/p/ship-real-mvps-with-ai-agents-kaykav";
 
 const PERKS = [
   "Live sessions + recordings",

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const VIDEO_SRC = "/build-with-me-at-kaykav.mp4";
-const ENROLL_URL = "https://mainstack.com/ship-real-mvps-with-ai-agents-kaykav";
+const ENROLL_URL = "https://mainstack.com/p/ship-real-mvps-with-ai-agents-kaykav";
 
 // Hero variant B (A/B test): headline, subtitle row with a plain-text apply
 // link, and a full-width course-preview player. Same content as variant A.
