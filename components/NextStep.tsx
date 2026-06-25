@@ -8,13 +8,9 @@ import {
   useTransform,
 } from "framer-motion";
 import CtaButton from "./CtaButton";
-import OfferRibbon from "./OfferRibbon";
 import Reveal from "./Reveal";
-import { PROMO_CODE } from "./nav";
-import { useCopyCode } from "./useCopyCode";
 
 const PRICE = "NGN 90,000";
-const DISCOUNTED_PRICE = "NGN 72,000";
 const APPLY_HREF = "https://mainstack.com/p/ship-real-mvps-with-ai-agents-kaykav";
 
 const PERKS = [
@@ -47,7 +43,6 @@ function ArrowMark() {
 export default function NextStep() {
   const ref = useRef<HTMLElement | null>(null);
   const reduced = useReducedMotion();
-  const { copied, copy } = useCopyCode();
   // the climb is a desktop scroll-scene flourish; off for reduced-motion and
   // the stacked mobile layout (which has no pinned testimonials beneath it)
   const [enabled, setEnabled] = useState(false);
@@ -89,8 +84,7 @@ export default function NextStep() {
 
         <div className="grid grid-cols-2 border border-line max-[720px]:grid-cols-1">
           {/* price */}
-          <div className="relative overflow-hidden border-r border-line p-[clamp(28px,3.2vw,60px)] max-[720px]:border-r-0 max-[720px]:border-b">
-            <OfferRibbon position="right" text="Father's Day offer" />
+          <div className="border-r border-line p-[clamp(28px,3.2vw,60px)] max-[720px]:border-r-0 max-[720px]:border-b">
             <Reveal y={24} duration={0.7}>
               <p className="text-[clamp(15px,1.3vw,22px)] font-bold tracking-[-0.005em] text-white">
                 Course Price
@@ -127,50 +121,6 @@ export default function NextStep() {
                   <path d="M20 5v14" />
                 </svg>
               </CtaButton>
-            </Reveal>
-            <Reveal
-              y={16}
-              duration={0.6}
-              delay={0.18}
-              className="mt-[clamp(16px,1.8vw,24px)]"
-            >
-              <div className="flex flex-wrap items-center gap-x-[7px] gap-y-2 text-[clamp(13px,1.05vw,16px)] font-medium leading-[1.5] text-white/75">
-                <span>Father&apos;s Day: use code</span>
-                <button
-                  type="button"
-                  onClick={copy}
-                  aria-label={`Copy code ${PROMO_CODE}`}
-                  className="inline-flex items-center gap-[5px] rounded-[2px] border border-[#FDC97A]/60 px-[9px] py-[4px] text-[12px] font-bold tracking-[0.04em] text-[#FDC97A] transition-[scale] duration-200 active:scale-[0.96]"
-                >
-                  {copied ? (
-                    "Copied!"
-                  ) : (
-                    <>
-                      {PROMO_CODE}
-                      <svg
-                        viewBox="0 0 24 24"
-                        aria-hidden
-                        className="h-[13px] w-[13px]"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <rect x="9" y="9" width="11" height="11" rx="2" />
-                        <path d="M5 15V5a2 2 0 0 1 2-2h10" />
-                      </svg>
-                    </>
-                  )}
-                </button>
-                <span>
-                  at checkout for 20% off,{" "}
-                  <span className="font-bold text-white">
-                    just {DISCOUNTED_PRICE}
-                  </span>{" "}
-                  <span className="text-white/55 line-through">{PRICE}</span>.
-                </span>
-              </div>
             </Reveal>
           </div>
 
