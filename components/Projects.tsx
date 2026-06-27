@@ -41,7 +41,7 @@ const PROJECTS: Project[] = [
     builder: "Ayobami Aderemi",
   },
   {
-    name: "Drafted Desk",
+    name: "Draft Desk",
     src: "/projects/draftdesk.png",
     href: "https://www.draftdesk.online/",
     description:
