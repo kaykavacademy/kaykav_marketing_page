@@ -10,7 +10,13 @@ import {
 import CtaButton from "./CtaButton";
 import Reveal from "./Reveal";
 
-const PRICE = "NGN 90,000";
+// what it sells for now vs. the old list price — the badge percentage is
+// derived from the pair, so changing a number keeps the maths honest
+const PRICE_NGN = 75_000;
+const LIST_PRICE_NGN = 90_000;
+const PERCENT_OFF = Math.round((1 - PRICE_NGN / LIST_PRICE_NGN) * 100);
+const naira = (n: number) => `NGN ${n.toLocaleString("en-NG")}`;
+
 const APPLY_HREF = "https://learn.kaykav.academy/courses/built-not-prompted";
 
 const PERKS = [
@@ -90,7 +96,16 @@ export default function NextStep() {
                 Course Price
               </p>
               <p className="mt-[clamp(14px,1.6vw,28px)] text-[clamp(38px,5.8vw,88px)] font-extrabold leading-[0.95] tracking-[-0.02em] text-white tabular-nums">
-                {PRICE}
+                {naira(PRICE_NGN)}
+              </p>
+              {/* old price + savings badge, on one line under the figure */}
+              <p className="mt-[clamp(10px,1.2vw,18px)] flex flex-wrap items-center gap-x-[10px] gap-y-2 text-[clamp(14px,1.2vw,20px)] font-bold tracking-[-0.005em]">
+                <span className="text-white/55 line-through tabular-nums">
+                  {naira(LIST_PRICE_NGN)}
+                </span>
+                <span className="rounded-[2px] bg-[#FDC97A] px-[10px] py-[4px] text-[clamp(12px,1vw,15px)] font-extrabold tracking-[0.02em] text-black tabular-nums">
+                  {PERCENT_OFF}% off
+                </span>
               </p>
             </Reveal>
             <Reveal

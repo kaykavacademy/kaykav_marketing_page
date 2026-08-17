@@ -25,11 +25,11 @@ export default function Learn() {
       <div className="mb-[clamp(56px,10vw,144px)] flex justify-end max-[720px]:justify-start">
         <Reveal delay={0.1} className="w-[66%] max-w-[950px] max-[720px]:w-full">
           <p className="text-[clamp(19px,2.5vw,36px)] font-bold leading-[1.33] tracking-[-0.01em]">
-            Within 4 weeks, you&apos;ll learn the exact system I used to build and
-            ship TailorTab, an offline-first PWA now used by real tailors in
-            Nigeria. No engineering team. No design-to-code handoff tools. Just
-            Claude Code, Antigravity, and a method that treats AI agents like
-            brilliant junior engineers who need structure to do their best work.
+            Within 4 weeks, you&apos;ll learn a repeatable system for taking an
+            idea from a blank folder to a product real people use. No engineering
+            team. No design-to-code handoff tools. Just Claude Code, Antigravity,
+            and a method that treats AI agents like brilliant junior engineers
+            who need structure to do their best work.
           </p>
         </Reveal>
       </div>

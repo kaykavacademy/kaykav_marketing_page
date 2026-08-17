@@ -10,8 +10,8 @@ const METRICS = [
     suffix: "+",
     label: "Projects successfully deployed to Live URLs",
   },
-  { value: 32, suffix: "+", label: "Builders graduated from the course" },
-  { value: 6, suffix: "+", label: "Countries represented across 3 continents" },
+  { value: 65, suffix: "+", label: "Builders graduated from the course" },
+  { value: 7, suffix: "+", label: "Countries represented across 3 continents" },
 ];
 
 const COUNT_MS = 2000;
