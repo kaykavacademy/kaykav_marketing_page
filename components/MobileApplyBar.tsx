@@ -11,7 +11,7 @@ export default function MobileApplyBar() {
         rel="noopener noreferrer"
         className="flex min-h-[clamp(54px,15vw,64px)] w-full items-center justify-center rounded-[2px] bg-[#FDC97A] px-6 text-center text-[16px] font-semibold text-black transition-[scale] duration-200 active:scale-[0.98]"
       >
-        Apply for Cohort 2.0
+        Get the course
       </a>
     </div>
   );

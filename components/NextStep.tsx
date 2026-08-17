@@ -11,10 +11,10 @@ import CtaButton from "./CtaButton";
 import Reveal from "./Reveal";
 
 const PRICE = "NGN 90,000";
-const APPLY_HREF = "https://mainstack.com/p/ship-real-mvps-with-ai-agents-kaykav";
+const APPLY_HREF = "https://learn.kaykav.academy/courses/built-not-prompted";
 
 const PERKS = [
-  "Live sessions + recordings",
+  "Lifetime access to every lesson",
   "Ship to a live URL",
   "Get templates, prompts, and MDs",
   "Access to community of builders",
@@ -105,7 +105,7 @@ export default function NextStep() {
                 rel="noopener noreferrer"
                 size="block"
               >
-                Join the course
+                Get the course
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"

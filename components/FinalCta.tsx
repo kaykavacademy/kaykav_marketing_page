@@ -15,13 +15,13 @@ export default function FinalCta() {
       {/* full-width banner button with an arrow-to-bar glyph */}
       <Reveal delay={0.15}>
         <CtaButton
-          href="https://mainstack.com/p/ship-real-mvps-with-ai-agents-kaykav"
+          href="https://learn.kaykav.academy/courses/built-not-prompted"
           target="_blank"
           rel="noopener noreferrer"
           size="banner"
           className="mt-[clamp(48px,7vw,132px)]"
         >
-          Apply for Cohort 2.0
+          Get the course
           <svg
             viewBox="0 0 24 24"
             fill="none"

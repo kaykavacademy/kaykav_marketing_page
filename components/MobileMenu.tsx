@@ -78,7 +78,7 @@ export default function MobileMenu({ onClose }: { onClose: () => void }) {
             rel="noopener noreferrer"
             className="flex min-h-[clamp(60px,16vw,72px)] w-full items-center justify-center rounded-[2px] bg-[#FDC97A] px-6 text-center text-[clamp(16px,4.6vw,20px)] font-semibold text-black transition-[scale] duration-200 active:scale-[0.98]"
           >
-            Apply for Cohort 2.0
+            Get the course
           </a>
           <div className="mt-[clamp(24px,7vw,36px)] flex gap-[clamp(24px,8vw,44px)]">
             {SOCIAL_LINKS.map((s) => (

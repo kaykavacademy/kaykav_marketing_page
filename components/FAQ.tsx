@@ -12,19 +12,19 @@ const FAQS: Item[] = [
     a: "No. You direct AI agents to write the code; your job is to think clearly and make decisions. If you can use a computer and follow a system, you can ship.",
   },
   {
-    q: "How long is the cohort?",
-    a: "Four weeks. By the end you have a real, deployed MVP on a live URL, not a slide deck or a demo.",
+    q: "How long is the course?",
+    a: "Four weeks of material, and you go at your own pace. By the end you have a real, deployed MVP on a live URL, not a slide deck or a demo.",
   },
   {
     q: "What tools will I learn?",
     a: "Claude Code for architecture and logic, Google Antigravity for UI, and Supabase for auth and data. You will know exactly when to reach for each one.",
   },
   {
-    q: "What if I miss a live session?",
-    a: "Every session is recorded and yours to keep, along with the templates, prompts, and ProjectPort documents we build together.",
+    q: "Is the course live or self-paced?",
+    a: "Self-paced. Every lesson is already recorded and yours to keep, along with the templates, prompts, and ProjectPort documents we build together. Start today, watch on your schedule.",
   },
   {
-    q: "Is there support after the sessions?",
+    q: "Is there support after the course?",
     a: "Yes. You join a community of builders pushing each other forward, and you keep access to future course updates.",
   },
   {

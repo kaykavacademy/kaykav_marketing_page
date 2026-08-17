@@ -69,7 +69,7 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Apply for Cohort 2.0
+            Get the course
           </CtaButton>
         </nav>
 

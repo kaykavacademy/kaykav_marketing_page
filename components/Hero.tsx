@@ -22,12 +22,12 @@ export default function Hero() {
 
       <Reveal immediate delay={0.22} className="mt-[clamp(28px,3.4vw,56px)] flex flex-wrap gap-[14px]">
         <CtaButton
-          href="https://mainstack.com/p/ship-real-mvps-with-ai-agents-kaykav"
+          href="https://learn.kaykav.academy/courses/built-not-prompted"
           target="_blank"
           rel="noopener noreferrer"
           size="hero"
         >
-          Apply for Cohort 2.0
+          Get the course
         </CtaButton>
       </Reveal>
 

@@ -10,7 +10,7 @@ export const NAV_ITEMS: NavItem[] = [
 ];
 
 export const APPLY_HREF =
-  "https://mainstack.com/p/ship-real-mvps-with-ai-agents-kaykav";
+  "https://learn.kaykav.academy/courses/built-not-prompted";
 
 export const SOCIAL_LINKS: NavItem[] = [
   { label: "Instagram", href: "https://www.instagram.com/kaykav.academy/" },

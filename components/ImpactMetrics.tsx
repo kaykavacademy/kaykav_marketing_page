@@ -10,7 +10,7 @@ const METRICS = [
     suffix: "+",
     label: "Projects successfully deployed to Live URLs",
   },
-  { value: 32, suffix: "+", label: "Builders graduated from the program" },
+  { value: 32, suffix: "+", label: "Builders graduated from the course" },
   { value: 6, suffix: "+", label: "Countries represented across 3 continents" },
 ];
 
