@@ -6,7 +6,7 @@ import Reveal from "./Reveal";
 
 const METRICS = [
   {
-    value: 12,
+    value: 24,
     suffix: "+",
     label: "Projects successfully deployed to Live URLs",
   },
